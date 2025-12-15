@@ -1,14 +1,14 @@
 # GFC Infrastructure
 
-This repository contains core contracts and documentation for the
-German Foundation Coin (GFC) transparency infrastructure.
+This repository contains core contracts and documentation
+for the German Foundation Coin (GFC) transparency infrastructure.
 
-Focus:
-- verifiable fund flows
-- long-term governance
-- public accountability
+## Focus
+
+- Verifiable fund flows
+- Long-term governance
+- Public accountability
 
 This repository is intentionally minimal at this stage.
-Specifications and implementations will be added incrementally.
-
-No marketing. No hype. Long-term only.
+Specifications are published before implementation and
+expanded incrementally over time.
