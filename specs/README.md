@@ -1,12 +1,17 @@
 # Specifications
 
-This directory will contain formal specifications for the core
-components of the GFC infrastructure.
+This directory contains formal specifications for the core components
+of the GFC infrastructure.
 
-Planned specifications include:
-- vesting and lock mechanisms
-- charity and foundation fund flows
-- governance constraints and safeguards
-- presale and distribution logic
+Specifications are published prior to implementation and focus on
+intended behavior, constraints, and system boundaries rather than
+technical details.
 
-Specifications are published before implementation.
+## Scope
+
+Planned and existing specifications include:
+
+- Vesting and lock mechanisms
+- Charity and foundation fund flows
+- Governance constraints and safeguards
+- Presale and token distribution logic
