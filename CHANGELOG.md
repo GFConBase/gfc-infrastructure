@@ -1,28 +1,24 @@
 # Changelog
-
-All notable changes to the German Foundation Coin (GFC) project
-are documented in this file.
+All notable changes to the German Foundation Coin (GFC) project are documented in this file.
 
 The project follows a transparency-first, documentation-driven approach.
 
----
-
 ## [Unreleased]
-- Documentation refinements and clarifications in progress.
-
----
+### Changed
+- Ongoing documentation refinements and clarifications.
 
 ## [2026-01-05]
 ### Added
-- Public documentation of the final GFC Presale architecture.
-- Clarified instant token distribution logic.
-- Explicit softcap and refund behavior documentation.
+- Public documentation of the final GFC presale architecture.
+- Explicit specification of instant token distribution.
+- Documented softcap and refund behavior.
 
 ### Confirmed
 - Fixed presale price: 0.05 EUR per GFC.
-- Supported assets: ETH, USDC, DAI on Base.
+- Supported assets: ETH, USDC, and DAI on Base.
 - Immutable contract design (no proxy, no upgrades).
 
 ### Notes
-- No presale functionality is active before the official start.
-- All architectural decisions are intentionally conservative and irreversible.
+- No presale functionality is active prior to the official start.
+- Architectural decisions are defined as conservative and non-upgradable by specification.
+
