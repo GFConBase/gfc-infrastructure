@@ -1,82 +1,62 @@
 # GFC Transparency Model
+**Status:** Stable
 
-This document describes how German Foundation Coin (GFC) approaches transparency
-in a practical, technical, and verifiable way.
+This document defines how German Foundation Coin (GFC) implements transparency as a practical, technical, and verifiable system property.
 
 Transparency is treated as infrastructure, not as a marketing concept.
 
----
-
 ## 1. Problem Statement
-
-In many charitable and impact-driven initiatives, transparency relies on trust-based
-reporting, delayed disclosures, or selectively published information.
+In many charitable and impact-driven initiatives, transparency relies on trust-based reporting, delayed disclosures, or selectively published information.
 
 This creates several systemic issues:
-- Donors cannot independently verify fund flows.
-- Reporting is often delayed, incomplete, or difficult to compare.
-- Accountability depends on centralized actors and good intentions.
+- donors cannot independently verify fund flows,
+- reporting is often delayed, incomplete, or difficult to compare,
+- accountability depends on centralized actors and good intentions.
 
-GFC is designed to reduce these trust dependencies by shifting transparency
-towards on-chain verifiability and publicly documented processes.
-
----
+GFC is designed to reduce these trust dependencies by shifting transparency toward on-chain verifiability and publicly documented processes.
 
 ## 2. Core Principles
+The GFC transparency model is constrained by the following non-negotiable principles:
 
-GFC follows a small set of non-negotiable transparency principles:
+### Verifiability over promises
+Relevant fund movements **must** be traceable on-chain or through publicly auditable contracts.
 
-1. **Verifiability over promises**  
-   Any relevant fund movement should be traceable on-chain or through
-   publicly auditable contracts.
+### Process documentation over narratives
+How decisions are made and executed takes precedence over how they are presented or summarized.
 
-2. **Process documentation over narratives**  
-   How decisions are made is more important than how they are presented.
+### Delayed discretion, not delayed disclosure
+Where discretion is necessary (e.g. timing or execution), disclosure **must** follow in a predictable and documented manner.
 
-3. **Delayed discretion, not delayed disclosure**  
-   Where discretion is necessary (e.g. timing, execution), disclosure
-   must follow in a predictable and documented manner.
-
-4. **Separation of roles**  
-   Operational control, custody, and verification should not be concentrated
-   in a single entity.
-
----
+### Separation of roles
+Operational control, custody, and verification **must not** be concentrated in a single entity.
 
 ## 3. On-Chain Components
-
-The transparency model relies on several on-chain building blocks:
+The transparency model relies on the following on-chain building blocks:
 
 - **Token contract**  
   Public supply, distribution, and transfer rules.
 
 - **Lock and vesting contracts**  
-  Long-term commitments with enforced time constraints and no unilateral
-  early-release mechanisms.
+  Long-term commitments with enforced time constraints and no unilateral early-release mechanisms.
 
 - **Charity and foundation-related wallets**  
   Publicly known addresses with clearly defined roles.
 
 All contract addresses are intended to be published and documented once finalized.
 
----
-
 ## 4. Off-Chain Transparency
-
 Not all processes can or should be fully automated.
 
-For off-chain components, GFC follows these rules:
-- Written specifications exist before execution.
-- Deviations must be documented.
-- Historical records remain publicly accessible.
+For off-chain components, the following constraints apply:
+- written specifications exist before execution,
+- deviations **must** be documented,
+- historical records remain publicly accessible.
 
-This includes governance decisions, partner selection, and non-automated
-fund distributions.
+Documentation increases accountability but does not replace or override on-chain constraints.
 
----
+This includes governance decisions, partner selection, and non-automated fund distributions.
 
 ## 5. Limitations
-
 Transparency does not eliminate the need for judgment or responsibility.
 
 GFC does not claim:
@@ -84,16 +64,14 @@ GFC does not claim:
 - that on-chain data alone provides full context,
 - or that transparency removes the need for long-term credibility.
 
-The goal is not perfection, but a measurable reduction of opacity.
+The goal is not perfection, but a measurable reduction of opacity **within defined system boundaries**.
 
----
-
-## 6. Status
-
-This document describes the intended transparency model.
+## Status Notes
+This document defines the intended transparency model.
 
 Implementation details may evolve, but changes are expected to be:
 - documented,
 - versioned,
 - and publicly traceable.
+
 
