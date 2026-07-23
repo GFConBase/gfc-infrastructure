@@ -2123,10 +2123,11 @@ The architecture does not claim that trust can be eliminated entirely.
 
 ## 47. Naming and Legal-Form Clarification
 
-The name “German Foundation Coin” does not by itself establish or imply:
+The name “Global Foundation Coin” does not by itself establish or imply:
 
-- the existence of a German legal foundation;
+- the existence of a legal foundation;
 - charitable legal status;
+- nonprofit status;
 - tax-exempt status;
 - government approval;
 - regulatory approval;
