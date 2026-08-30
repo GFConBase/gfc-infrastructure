@@ -4,99 +4,162 @@
 **Maturity:** Draft  
 **Authority:** Normative  
 **Version:** Unreleased  
-**Implementation Status:** Pre-deployment  
-**Intended Network:** Base Mainnet  
-**Chain ID:** 8453  
-**Last Updated:** 2026-07-23
+**Implementation Status:** Pre-mainnet specification and pilot development  
+**Primary Product Focus:** GFC Token / Economic Layer  
+**Intended Production Network:** Base Mainnet  
+**Production Chain ID:** 8453  
+**Public Pilot Network:** Base Sepolia  
+**Pilot Chain ID:** 84532  
+**Last Updated:** 2026-08-30
 
 ---
 
 ## 1. Document Status
 
-This document defines the intended transparency, evidence, verification, disclosure, and accountability model of Global Foundation Coin (GFC).
+This document defines the current intended transparency, evidence, verification, disclosure, historical-record, and accountability model for Global Foundation Coin (GFC).
 
 It is normative because it defines intended requirements, classifications, boundaries, and prohibited representations.
 
-Its maturity remains Draft. The requirements may change before the first versioned release.
+Its maturity remains Draft.
 
-At the time of publication:
+At the current repository state:
 
-- no production GFC transparency protocol is represented as deployed;
-- no production GFC transparency portal is represented as fully operational;
-- no production token, presale, treasury, staking, vesting, or governance contract is represented by this document as deployed;
-- no wallet, contract, allocation, evidence record, or impact claim should be treated as official unless published through an authenticated GFC release process;
-- no active presale is established by this document;
-- no public presale date is established by this document;
-- evidence schemas, review procedures, anchoring mechanisms, and impact-evaluation methodologies remain under development;
-- no implementation is governed by this document unless it explicitly identifies an applicable versioned release.
+- the **GFC Token / Economic Layer** is the current primary product focus;
+- the broader long-term direction is a wider **Accountability Infrastructure**;
+- a public GFC pilot exists on **Base Sepolia**;
+- no production GFC token is deployed on Base Mainnet;
+- no GFC presale is live;
+- no production Treasury Reserve, Liquidity Reserve, staking, governance, allocation, or vesting infrastructure is represented as operational;
+- no complete production Transparency Registry is deployed;
+- no production evidence-review system is represented as operational;
+- no production impact-evaluation system is represented as operational;
+- no production evidence schema, anchoring architecture, or protected-evidence storage model is established as final;
+- no production registry admission, verification, downgrade, suspension, or removal process is established as operational;
+- and no implementation is designated as conforming to a Stable production transparency release.
 
-The presence of a mechanism or classification in this specification does not mean that it has already been:
+The public Base Sepolia pilot is non-production.
 
-- implemented;
-- tested;
-- reviewed;
-- audited;
-- deployed;
-- activated;
-- independently verified;
-- or made publicly available.
+It MUST NOT be interpreted as evidence that the broader production transparency architecture described here is deployed.
 
-The continuously changing `main` branch MUST NOT automatically be treated as the authoritative transparency specification for any future production deployment.
+The continuously changing `main` branch MUST NOT automatically be treated as the authoritative transparency specification for a future production deployment.
+
+Current project and deployment status is maintained in [`../STATUS.md`](../STATUS.md).
 
 ---
 
 ## 2. Purpose
 
-This document defines how GFC intends to treat transparency as a practical system property rather than a marketing claim.
+This document defines how GFC intends to treat transparency as a practical accountability property rather than a marketing claim.
 
 Its purpose is to establish:
 
 - what can be verified directly on-chain;
+- what requires governance and authority records;
 - what requires supporting off-chain evidence;
-- what requires governance records;
 - what requires outcome or impact evaluation;
 - how evidence is classified;
-- how records are linked to claims;
-- how protected information can remain reviewable without being publicly exposed;
-- how corrections and disputes are handled;
-- how transparency limitations are disclosed;
-- and how public interfaces must avoid overstating the strength of available evidence.
+- how claims are classified;
+- how authority is exposed;
+- how records are linked across time;
+- how corrections, disputes, downgrades, suspensions, and supersession are represented;
+- how protected information can remain reviewable without being unnecessarily exposed;
+- how a future Transparency Registry may represent changing status over time;
+- and how public interfaces MUST avoid overstating evidence strength.
 
 The objective is not to make every piece of information public.
 
-The objective is to make relevant claims:
+The objective is to make material claims:
 
 - traceable;
 - attributable;
 - reviewable;
 - evidence-based;
-- historically accountable;
+- historically reconstructable;
+- uncertainty-aware;
 - and accurately classified.
 
 ---
 
-## 3. Core Transparency Principle
+## 3. Canonical Accountability Model
 
-GFC distinguishes between three separate verification questions:
+The canonical long-term GFC accountability model is:
 
-### Transaction
+**Funds → Authority → Rules → Decisions → Outcomes → Evidence**
 
-**Did the funds move as stated?**
+This model is foundational.
 
-Primary evidence:
+A material transparency record SHOULD make it possible to reconstruct, where applicable:
 
-- on-chain transaction records;
+1. **Funds** — what value, assets, rights, or resources were involved;
+2. **Authority** — who or what had the power to act;
+3. **Rules** — what constraints and procedures applied;
+4. **Decisions** — what was approved, rejected, executed, changed, or withheld;
+5. **Outcomes** — what actually happened as a result;
+6. **Evidence** — what supports the represented history.
+
+No individual stage proves all later stages.
+
+For example:
+
+- a transaction does not prove legitimate authority;
+- legitimate authority does not prove compliant use;
+- compliant use does not prove a positive outcome;
+- a positive outcome does not automatically prove broader impact.
+
+Different claims require different evidence.
+
+---
+
+## 4. Core Verification Distinctions
+
+GFC distinguishes among multiple verification questions.
+
+### 4.1 Transaction verification
+
+**Did the recorded transaction occur as represented?**
+
+Relevant evidence may include:
+
+- transaction hash;
 - contract events;
-- wallet balances;
+- authenticated addresses;
+- block data;
+- token transfers;
 - timestamps;
-- transfer amounts;
+- balances;
 - and verified contract state.
 
-### Use
+### 4.2 Authority verification
 
-**Were the funds used for the documented purpose?**
+**Was the actor or mechanism authorized to perform the action?**
 
-Primary evidence may include:
+Relevant evidence may include:
+
+- authority registry;
+- role assignment;
+- signer or multisig configuration;
+- governance approval;
+- timelock state;
+- contract permissions;
+- and authenticated release records.
+
+### 4.3 Rules verification
+
+**Which rules applied at the time of the action?**
+
+Relevant evidence may include:
+
+- applicable specification version;
+- contract parameters;
+- governance constraints;
+- legal or operational rules;
+- and historical configuration.
+
+### 4.4 Use-of-funds verification
+
+**Were funds used for the documented purpose?**
+
+Relevant evidence may include:
 
 - approvals;
 - agreements;
@@ -105,396 +168,339 @@ Primary evidence may include:
 - delivery records;
 - reconciliations;
 - recipient confirmations;
-- and protected supporting documentation.
+- and protected supporting records.
 
-### Impact
+### 4.5 Outcome verification
 
-**Did the documented use create a meaningful result?**
+**Did the documented activity produce the represented result?**
 
-Primary evidence may include:
+Relevant evidence may include:
 
+- delivery evidence;
 - output records;
-- outcome indicators;
+- metrics;
 - follow-up data;
+- and review.
+
+### 4.6 Impact evaluation
+
+**Did the activity contribute to a meaningful broader or longer-term result?**
+
+Relevant evidence may include:
+
 - methodology;
+- baseline;
+- indicators;
+- attribution analysis;
 - independent evaluation;
-- uncertainty disclosures;
-- and impact assessments.
+- limitations;
+- and uncertainty disclosure.
 
 These questions MUST NOT be treated as interchangeable.
 
-The following distinction is foundational:
+The following distinctions are foundational:
 
-> TRANSACTION VERIFIED does not equal IMPACT VERIFIED.
+> TRANSACTION VERIFIED does not equal USE VERIFIED.
 
-Different claims require different evidence.
+> USE VERIFIED does not equal OUTCOME VERIFIED.
+
+> OUTCOME VERIFIED does not automatically equal IMPACT VERIFIED.
 
 ---
 
-## 4. Scope
+## 5. Current Product Focus and Long-Term Transparency Direction
+
+The current primary product focus is the **GFC Token / Economic Layer**.
+
+Therefore, near-term transparency requirements SHOULD prioritize accurate representation of:
+
+- token identity;
+- token supply;
+- allocations;
+- production deployment status;
+- authority;
+- fees;
+- vesting and locks;
+- presale mechanics;
+- staking status;
+- treasury and liquidity status;
+- economic flows;
+- and security status.
+
+The broader **Accountability Infrastructure**, including a more comprehensive Transparency Registry for GFC and potentially external projects, organizations, or programs, is a longer-term direction.
+
+The broader infrastructure MUST NOT be represented as fully deployed or operational today.
+
+---
+
+## 6. Scope
 
 This specification covers:
 
+- accountability principles;
 - transparency principles;
+- verification distinctions;
 - transaction verification;
+- authority transparency;
+- rules and governance transparency;
 - use-of-funds verification;
 - outcome and impact evaluation;
-- governance transparency;
-- authority disclosure;
-- contract and wallet registries;
-- fund-flow records;
+- contract and wallet authentication;
 - allocation reporting;
 - presale transparency;
 - treasury transparency;
+- liquidity transparency;
 - vesting and lock transparency;
-- staking and fee transparency;
+- staking transparency;
+- fee transparency;
 - evidence classification;
 - evidence provenance;
 - evidence status;
+- claim status;
 - cryptographic anchoring;
-- protected off-chain documentation;
+- protected off-chain evidence;
 - evidence review;
-- correction and version history;
-- disputes and challenges;
-- public portal requirements;
+- historical records;
+- corrections;
+- disputes;
+- future Transparency Registry behavior;
+- portal requirements;
 - privacy boundaries;
-- security requirements;
-- implementation conformance;
+- security;
+- conformance;
 - and unresolved transparency decisions.
 
 ---
 
-## 5. Out of Scope
+## 7. Out of Scope
 
 This document does not independently define:
 
 - final smart-contract code;
-- final contract addresses;
-- final wallet addresses;
+- final production contract addresses;
+- final production wallet addresses;
 - final evidence-storage provider;
 - final database architecture;
-- final cryptographic anchoring protocol;
-- final document formats;
+- final anchoring protocol;
+- final evidence schema;
 - final impact methodology;
-- final independent reviewer;
+- final reviewer roster;
 - final audit provider;
 - final legal privilege rules;
 - final retention periods;
 - final data-controller responsibilities;
 - final beneficiary-consent process;
 - final accounting standards;
+- final registry status vocabulary;
+- final registry admission criteria;
+- final registry review workflow;
 - final reporting cadence;
 - or jurisdiction-specific disclosure obligations.
 
-These matters require separate technical, operational, legal, privacy, accounting, or impact documentation before production use.
+These matters require separate technical, operational, legal, privacy, accounting, governance, or implementation records before production use.
 
 ---
 
-## 6. Relationship to Other Specifications
+## 8. Relationship to Other Specifications
 
-This document must be read together with:
+This document MUST be interpreted together with:
 
-- `architecture.md`;
-- `governance-constraints.md`;
-- `presale.md`;
-- `non-goals.md`;
-- `glossary.md`;
-- and the repository-level `SECURITY.md`.
+- [`README.md`](README.md);
+- [`glossary.md`](glossary.md);
+- [`non-goals.md`](non-goals.md);
+- [`architecture.md`](architecture.md);
+- [`roles-and-authority.md`](roles-and-authority.md);
+- [`governance-constraints.md`](governance-constraints.md);
+- [`security-model.md`](security-model.md);
+- [`token.md`](token.md);
+- [`allocations.md`](allocations.md);
+- [`vesting-and-unlocks.md`](vesting-and-unlocks.md);
+- [`economic-flows.md`](economic-flows.md);
+- [`staking.md`](staking.md);
+- [`presale.md`](presale.md);
+- repository-level [`../STATUS.md`](../STATUS.md);
+- and repository-level [`../SECURITY.md`](../SECURITY.md).
 
-Future specifications SHOULD additionally define:
-
-- token and fee logic;
-- allocation and treasury controls;
-- evidence schemas;
-- evidence storage;
-- privacy;
-- impact evaluation;
-- governance records;
-- incident response;
-- and deployment authentication.
-
-Where this specification conflicts with another applicable specification, the conflict MUST be resolved before either document is marked Stable.
+Where another Draft specification conflicts with this document, the conflict MUST be resolved explicitly before Stable status.
 
 ---
 
-## 7. Normative Language
+## 9. Normative Language
 
 The terms **MUST**, **MUST NOT**, **REQUIRED**, **SHALL**, **SHALL NOT**, **SHOULD**, **SHOULD NOT**, **RECOMMENDED**, **NOT RECOMMENDED**, **MAY**, and **OPTIONAL** express requirement levels.
 
 These terms are normative only when:
 
 - they appear in uppercase;
-- the document declares `Authority: Normative`;
-- and the document version applies to the implementation being evaluated.
+- the containing document declares `Authority: Normative`;
+- and the applicable version governs the implementation, process, or communication being evaluated.
 
-Because this document is currently Draft, its requirements describe the intended transparency model but remain subject to review and versioned release.
+Because this document is Draft, its requirements remain subject to formal review and versioned release.
 
 ---
 
-## 8. Transparency Principles
+## 10. Transparency Principles
 
-### 8.1 Verification over explanation
+### 10.1 Verification over explanation
 
 A public explanation MUST NOT be treated as equivalent to independently reviewable evidence.
 
-Narrative communication may provide context, but it does not replace:
-
-- on-chain records;
-- approvals;
-- supporting documentation;
-- reconciliation;
-- or outcome evaluation.
-
-### 8.2 Claims require evidence
+### 10.2 Claims require evidence
 
 Every material transparency claim SHOULD identify:
 
-- what is being claimed;
-- the applicable time period;
-- the responsible party;
-- the supporting evidence;
-- the evidence classification;
-- the review status;
-- and known limitations.
+- claim;
+- period;
+- responsible authority or publisher;
+- evidence;
+- evidence classification;
+- review status;
+- limitations;
+- and current historical status.
 
-### 8.3 Visibility is not verification
+### 10.3 Visibility is not verification
 
-Information being publicly visible does not automatically mean that it has been verified.
+Public visibility does not automatically equal verification.
 
-A public wallet provides visibility into recorded transactions.
+### 10.4 Integrity is not factual truth
 
-It does not independently establish:
+Cryptographic integrity does not independently prove factual accuracy.
 
-- wallet purpose;
-- controlling authority;
-- recipient identity;
-- approval legitimacy;
-- use of funds;
-- or impact.
+### 10.5 Transparency does not eliminate trust
 
-### 8.4 Integrity is not truth
+Transparency can expose and constrain trust dependencies.
 
-Cryptographic anchoring can support record integrity.
-
-It does not automatically establish that the underlying record is:
-
-- accurate;
-- authentic;
-- lawful;
-- complete;
-- unbiased;
-- or factually correct.
-
-### 8.5 Transparency does not eliminate trust
-
-Transparency can reduce and bound trust dependencies.
-
-It cannot eliminate reliance on:
+It cannot eliminate all dependence on:
 
 - signers;
-- evidence providers;
 - reviewers;
+- evidence providers;
 - legal processes;
 - operational execution;
 - methodology;
-- or real-world data.
+- or real-world information.
 
-### 8.6 Privacy-aware disclosure
+### 10.6 Privacy-aware disclosure
 
-Transparency MUST NOT require unnecessary publication of:
+Transparency MUST NOT require unnecessary disclosure of protected information.
 
-- personal data;
-- beneficiary identities;
-- banking information;
-- confidential contracts;
-- medical information;
-- security-sensitive material;
-- or legally protected documentation.
+### 10.7 Historical accountability
 
-### 8.7 Historical accountability
+Material prior state SHOULD remain reconstructable.
 
-Material records SHOULD remain historically reviewable.
+### 10.8 Accurate certainty
 
-Corrections MUST NOT silently erase materially different previous statements or evidence statuses.
+The strength of a claim MUST NOT exceed the strength of its supporting evidence.
 
-### 8.8 Accurate certainty
+### 10.9 Responsibility follows authority
 
-The strength of a public claim MUST NOT exceed the strength of its supporting evidence.
+Material authority SHOULD be attributable and linked to decisions and outcomes.
 
-### 8.9 Separation of roles
+### 10.10 No transparency theatre
 
-The following responsibilities SHOULD be separated where reasonably possible:
-
-- funding approval;
-- transaction execution;
-- evidence submission;
-- evidence custody;
-- evidence review;
-- accounting reconciliation;
-- outcome evaluation;
-- and impact evaluation.
-
-### 8.10 No transparency theatre
-
-Publishing large volumes of data MUST NOT be presented as meaningful transparency where the information:
-
-- lacks context;
-- lacks provenance;
-- cannot be reconciled;
-- cannot be reviewed;
-- omits authority;
-- or does not support the claim being made.
+High data volume MUST NOT be presented as meaningful accountability where authority, context, provenance, rules, or evidence are missing.
 
 ---
 
-## 9. Three-Layer System Model
+## 11. Supporting Three-Layer View
 
-GFC transparency requires the combined operation of three system layers.
+For explanatory purposes, GFC MAY group accountability infrastructure into three supporting layers:
 
-### 9.1 Technology
+1. **Technology**
+2. **Governance**
+3. **Evidence and Outcomes**
 
-Technology provides:
+This is a supporting conceptual view.
 
-- contract execution;
-- transaction records;
-- wallet balances;
-- allocation state;
-- vesting state;
-- lock state;
-- governance execution records;
-- cryptographic commitments;
-- timestamps;
-- and public verification interfaces.
+It does not replace the canonical accountability model:
 
-Technology determines what technically executed.
+**Funds → Authority → Rules → Decisions → Outcomes → Evidence**
 
-### 9.2 Governance
+### 11.1 Technology
 
-Governance provides:
+Technology records and enforces technical state.
 
-- authority definitions;
-- approval records;
-- role assignments;
-- signer structures;
-- parameter-change records;
-- decision rationales;
-- conflict disclosures;
-- emergency actions;
-- and accountability.
+### 11.2 Governance
 
-Governance determines who was authorized to act and under which rules.
+Governance defines and constrains authority and decisions.
 
-### 9.3 Impact and Evidence
+### 11.3 Evidence and Outcomes
 
-Impact and evidence processes provide:
+Evidence and outcome processes support claims about use, delivery, results, and impact.
 
-- intended-purpose records;
-- supporting documentation;
-- use-of-funds reconciliation;
-- delivery evidence;
-- outcome records;
-- methodology;
-- review;
-- limitations;
-- and impact evaluation.
-
-This layer determines what can be supported beyond transaction execution.
-
-No single layer is sufficient by itself.
+No layer is sufficient alone.
 
 ---
 
-## 10. Evidence Disclosure Levels
+## 12. Evidence Disclosure Levels
 
-Evidence may be handled through three principal disclosure levels.
+Evidence MAY be classified into three principal disclosure levels.
 
-### 10.1 Public On-Chain
+### 12.1 Public On-Chain
 
-Public on-chain evidence may include:
+Examples include:
 
-- verified contract addresses;
+- authenticated contract addresses;
 - transaction hashes;
 - token transfers;
-- wallet balances;
-- allocation balances;
-- lock status;
-- vesting status;
-- claim records;
-- refund records;
+- balances;
+- allocation state;
+- lock state;
+- vesting state;
+- presale distribution;
+- refunds;
 - governance execution;
-- role changes;
-- cryptographic commitments;
-- and relevant contract events.
+- authority changes;
+- and cryptographic commitments.
 
-Public on-chain evidence is directly reviewable through Base and appropriate verification tools.
+### 12.2 Cryptographically Anchored
 
-Its scope is limited to the information encoded on-chain.
+Off-chain records MAY be linked to public cryptographic commitments.
 
-### 10.2 Cryptographically Anchored
+Anchoring MAY establish integrity or historical existence.
 
-Cryptographically anchored evidence consists of off-chain records whose integrity is linked to a public:
+Anchoring does not independently establish:
 
-- hash;
-- digital signature;
-- timestamp;
-- Merkle root;
-- content commitment;
-- or equivalent cryptographic reference.
-
-Anchoring MAY support verification that:
-
-- a specific record existed;
-- a specific version existed;
-- the record has not changed since anchoring;
-- or a group of records was committed at a defined time.
-
-Anchoring does not independently prove:
-
-- the identity of the original author;
 - factual accuracy;
+- authorship;
+- legal validity;
 - completeness;
-- lawful creation;
-- genuine delivery;
-- or meaningful impact.
+- or impact.
 
-### 10.3 Protected Off-Chain
+### 12.3 Protected Off-Chain
 
-Protected off-chain evidence may include:
+Protected evidence MAY include:
 
 - personal information;
-- beneficiary records;
-- identity documents;
+- beneficiary information;
 - confidential agreements;
+- identity records;
 - invoices;
 - banking records;
 - commercially sensitive information;
-- sensitive operational records;
-- internal control records;
-- security-sensitive material;
-- and legally protected documentation.
+- security-sensitive information;
+- and legally protected records.
 
-Protected evidence MUST remain subject to:
+Protected evidence MUST remain subject to appropriate:
 
 - access control;
 - integrity protection;
-- retention rules;
-- documented review procedures;
-- and appropriate disclosure limitations.
-
-Protected information MUST NOT be placed permanently on a public blockchain merely to create an appearance of transparency.
+- retention;
+- review;
+- and disclosure limitations.
 
 ---
 
-## 11. Evidence Provenance
+## 13. Evidence Provenance
 
-Every material evidence item SHOULD identify its provenance.
+Material evidence SHOULD identify its provenance.
 
-Evidence provenance categories may include:
+Possible provenance categories MAY include:
 
-- generated directly by a verified smart contract;
-- generated from public blockchain data;
+- generated by an authenticated smart contract;
+- derived from public blockchain data;
 - submitted by GFC;
-- submitted by a funding recipient;
+- submitted by a recipient;
 - submitted by a supplier;
 - submitted by a partner;
 - submitted by a beneficiary;
@@ -503,166 +509,104 @@ Evidence provenance categories may include:
 - derived from another record;
 - or imported from an external authority.
 
-The provenance record SHOULD identify:
-
-- source category;
-- source identifier where lawful;
-- submission time;
-- applicable project or transaction;
-- responsible custodian;
-- integrity reference;
-- and known limitations.
-
-The source of evidence MUST NOT be concealed where source independence is relevant to the claim.
+Where source independence is material, provenance MUST NOT be concealed.
 
 ---
 
-## 12. Evidence Status Model
+## 14. Evidence Status
 
-Evidence status MUST be separate from claim status.
+Evidence status MUST remain distinct from claim status.
 
-An evidence item MAY use statuses such as:
+Potential evidence statuses MAY include:
 
-### 12.1 Submitted
+- Submitted;
+- Integrity Anchored;
+- Under Review;
+- Reviewed;
+- Independently Reviewed;
+- Accepted;
+- Rejected;
+- Disputed;
+- Superseded;
+- Withdrawn;
+- or Unavailable.
 
-The evidence was received but has not yet been reviewed.
+The final production vocabulary remains unresolved.
 
-### 12.2 Integrity Anchored
+A status MUST NOT be interpreted more strongly than its definition permits.
 
-The evidence has been cryptographically committed.
+For example:
 
-This status concerns integrity, not factual verification.
-
-### 12.3 Under Review
-
-The evidence is being evaluated.
-
-### 12.4 Reviewed
-
-A defined reviewer has examined the evidence.
-
-The reviewer and review scope MUST be identifiable.
-
-### 12.5 Independently Reviewed
-
-An external party with an adequately documented degree of independence has reviewed the evidence.
-
-### 12.6 Accepted
-
-The evidence satisfies the applicable internal evidence requirements.
-
-### 12.7 Rejected
-
-The evidence does not satisfy the applicable requirements.
-
-### 12.8 Disputed
-
-The evidence or its interpretation has been formally challenged.
-
-### 12.9 Superseded
-
-A later version replaces the evidence for current interpretation.
-
-### 12.10 Withdrawn
-
-The submitting party has withdrawn the evidence.
-
-Withdrawal MUST NOT silently erase historical existence where the record was previously used to support a public claim.
-
-### 12.11 Unavailable
-
-Required evidence is missing, inaccessible, or cannot currently be verified.
-
-The transparency interface MUST NOT treat these statuses as equivalent.
+- `Integrity Anchored` is not factual verification;
+- `Reviewed` is not necessarily independent review;
+- `Accepted` is not necessarily proof of outcome.
 
 ---
 
-## 13. Claim Categories
+## 15. Claim Categories
 
-A transparency record SHOULD classify the type of claim being made.
+A transparency record SHOULD identify the type of claim.
 
-Claim categories may include:
+Claim categories MAY include:
 
-- transaction claim;
-- balance claim;
-- allocation claim;
-- custody claim;
-- authority claim;
-- approval claim;
-- use-of-funds claim;
-- delivery claim;
-- output claim;
-- outcome claim;
-- impact claim;
-- compliance claim;
-- security claim;
-- or implementation-status claim.
+- transaction;
+- balance;
+- allocation;
+- custody;
+- authority;
+- rules;
+- governance approval;
+- use of funds;
+- delivery;
+- output;
+- outcome;
+- impact;
+- compliance;
+- security;
+- implementation status;
+- registry status;
+- or verification status.
 
-A single project activity may involve multiple claim categories.
-
-Each claim category requires evidence appropriate to that claim.
-
----
-
-## 14. Claim Status Model
-
-Claim status MUST describe the strength and current state of the claim.
-
-### 14.1 Declared
-
-The claim has been stated but has not yet been supported by sufficient reviewed evidence.
-
-### 14.2 Evidence Submitted
-
-Supporting evidence exists but has not completed the applicable review.
-
-### 14.3 Partially Supported
-
-Some material elements are supported, while other required elements remain unavailable or unresolved.
-
-### 14.4 Supported
-
-The claim is supported by evidence satisfying the applicable internal requirements.
-
-### 14.5 Independently Supported
-
-The claim has been reviewed by a suitably independent external party under a documented scope.
-
-### 14.6 Verified On-Chain
-
-The claim concerns a fact directly determinable from authenticated on-chain data.
-
-This status MUST be limited to facts actually encoded or directly derivable on-chain.
-
-### 14.7 Disputed
-
-The claim is subject to a material unresolved challenge.
-
-### 14.8 Not Supported
-
-Available evidence does not support the claim.
-
-### 14.9 Superseded
-
-The claim has been replaced by a newer or corrected claim.
-
-### 14.10 Unable to Determine
-
-Available evidence is insufficient to reach a conclusion.
-
-The term `verified` MUST NOT be used without identifying what was verified and through which evidence category.
+Each category requires evidence appropriate to the specific claim.
 
 ---
 
-## 15. Verification Vocabulary
+## 16. Claim Status
 
-Public interfaces and documentation SHOULD use precise labels.
+Claim status MUST describe the current strength and historical position of a claim.
 
-Appropriate examples include:
+Potential statuses MAY include:
+
+- Declared;
+- Evidence Submitted;
+- Partially Supported;
+- Supported;
+- Independently Supported;
+- Verified On-Chain;
+- Disputed;
+- Not Supported;
+- Superseded;
+- or Unable to Determine.
+
+The final production vocabulary remains unresolved.
+
+The term `verified` MUST NOT be used without identifying:
+
+- what was verified;
+- by whom or what;
+- through which evidence;
+- and within what scope.
+
+---
+
+## 17. Verification Vocabulary
+
+Public interfaces SHOULD use precise labels such as:
 
 - transaction verified on-chain;
 - allocation balance verified on-chain;
 - contract source verified;
+- authority assignment authenticated;
 - evidence integrity anchored;
 - supporting documentation reviewed;
 - use of funds supported;
@@ -670,70 +614,46 @@ Appropriate examples include:
 - impact evaluation pending;
 - independently reviewed;
 - disputed;
+- superseded;
 - or unable to determine.
 
-The following vague or overstated labels SHOULD NOT be used without qualification:
+Vague labels such as:
 
 - fully transparent;
 - fully verified;
 - completely audited;
+- permanent approval;
 - guaranteed impact;
 - trustless;
-- independently proven;
-- or permanently secure.
+- or independently proven
+
+SHOULD NOT be used without precise scope and evidence.
 
 ---
 
-## 16. Transaction Verification
+## 18. Transaction Verification
 
-### 16.1 Required data
-
-A transaction record SHOULD identify:
+A transaction record SHOULD identify, where applicable:
 
 - network;
 - chain ID;
 - transaction hash;
-- block number;
+- block;
 - timestamp;
-- sending address;
-- receiving address;
+- sender;
+- recipient;
 - asset;
 - amount;
 - relevant contract;
-- relevant event;
-- transaction status;
-- and confirmation status.
+- event;
+- status;
+- and confirmation state.
 
-### 16.2 Address authentication
+A transaction MUST NOT be attributed to GFC solely because an unauthenticated label says so.
 
-A transaction MUST NOT be attributed to GFC solely because an address label claims that it belongs to GFC.
+Transaction verification does not independently prove:
 
-Official addresses MUST be authenticated through:
-
-- versioned releases;
-- official registries;
-- verified contract records;
-- and authenticated GFC publication channels.
-
-### 16.3 Transaction context
-
-Where a transaction is associated with a documented purpose, the record SHOULD link to:
-
-- allocation;
-- approval;
-- proposal;
-- purpose;
-- evidence package;
-- reconciliation status;
-- and applicable claim.
-
-### 16.4 Limitations
-
-On-chain transaction verification does not prove:
-
-- lawful ownership;
-- beneficial ownership;
-- actual recipient identity;
+- legitimate authority;
 - purpose;
 - use;
 - delivery;
@@ -742,109 +662,130 @@ On-chain transaction verification does not prove:
 
 ---
 
-## 17. Use-of-Funds Verification
+## 19. Authority Transparency
 
-### 17.1 Required elements
+Material production authority MUST be reviewable.
+
+Where applicable, transparency records SHOULD identify:
+
+- role;
+- environment;
+- network;
+- controlling address, contract, multisig, entity, or other holder;
+- permitted actions;
+- approval requirements;
+- timelock;
+- pause authority;
+- upgrade authority;
+- migration authority;
+- effective status;
+- and historical changes.
+
+Authority transparency MUST remain consistent with [`roles-and-authority.md`](roles-and-authority.md).
+
+Pilot authority MUST NOT be presented as production authority.
+
+---
+
+## 20. Rules Transparency
+
+A material action SHOULD be linkable to the rules that governed it at the time.
+
+Relevant rules MAY include:
+
+- specification version;
+- contract parameters;
+- allocation constraints;
+- governance constraints;
+- timelock requirements;
+- presale rules;
+- vesting rules;
+- evidence-review rules;
+- or another applicable policy.
+
+A later rule change MUST NOT silently rewrite the historical rule that applied to an earlier action.
+
+---
+
+## 21. Governance and Decision Transparency
+
+Material governance records SHOULD identify:
+
+- proposal;
+- proposer;
+- affected component;
+- authority;
+- applicable rules;
+- rationale;
+- conflicts;
+- approval requirements;
+- approval result;
+- execution;
+- implementation status;
+- and final outcome.
+
+The system MUST distinguish between:
+
+- Proposed;
+- Approved;
+- Scheduled;
+- Executed;
+- Rejected;
+- Cancelled;
+- Failed;
+- Superseded;
+- and Migrated
+
+where those concepts apply.
+
+A governance decision MUST NOT be presented as executed until execution can be verified.
+
+---
+
+## 22. Use-of-Funds Verification
 
 A use-of-funds record SHOULD identify:
 
 - source allocation;
-- approved amount;
-- executing transaction;
+- source transaction;
+- authority;
+- approval;
 - stated purpose;
 - recipient category;
-- applicable approval;
-- supporting evidence;
+- transferred amount;
 - actual amount used;
-- reconciliation status;
-- unused amount;
+- supporting evidence;
+- reconciliation;
 - exceptions;
 - and review status.
 
-### 17.2 Reconciliation
+A transaction description, wallet label, internal note, or narrative statement MUST NOT by itself be treated as sufficient proof of use.
 
-Use-of-funds reconciliation SHOULD establish the relationship between:
-
-- approved amount;
-- transferred amount;
-- invoiced amount;
-- paid amount;
-- delivered value;
-- returned amount;
-- and unresolved difference.
-
-### 17.3 Evidence sufficiency
-
-A transaction description, wallet label, internal note, or public statement MUST NOT by itself be treated as sufficient proof of use.
-
-### 17.4 Partial use
-
-Where only.
-
-### 17.4 Partial use
-
-Where only part of a payment can be reconciled to the documented purpose, the record MUST identify:
+Where only part of a payment can be reconciled, the record SHOULD distinguish:
 
 - supported amount;
 - unsupported amount;
 - disputed amount;
-- and reason for the difference.
-
-### 17.5 Protected evidence
-
-Where supporting records cannot be made public, the system SHOULD disclose:
-
-- that protected evidence exists;
-- evidence category;
-- integrity anchor where applicable;
-- review status;
-- reviewer category;
-- and reason for restricted access.
+- returned amount;
+- and unresolved difference.
 
 ---
 
-## 18. Output, Outcome, and Impact
+## 23. Output, Outcome, and Impact
 
-GFC MUST distinguish between output, outcome, and impact.
+GFC MUST distinguish among:
 
-### 18.1 Output
+### 23.1 Output
 
-An output is a direct deliverable or activity resulting from expenditure.
+A direct deliverable or activity.
 
-Examples may include:
+### 23.2 Outcome
 
-- equipment delivered;
-- service provided;
-- infrastructure built;
-- training completed;
-- or material distributed.
+An observable result following the output.
 
-### 18.2 Outcome
+### 23.3 Impact
 
-An outcome is an observable change resulting after the output.
-
-Examples may include:
-
-- increased access;
-- reduced operating costs;
-- improved service availability;
-- or measurable beneficiary improvement.
-
-### 18.3 Impact
-
-Impact is a meaningful broader or longer-term result that can reasonably be attributed, at least in part, to the funded activity.
-
-Impact claims require:
-
-- methodology;
-- relevant indicators;
-- time period;
-- evidence;
-- attribution limitations;
-- uncertainty;
-- and review.
-
-### 18.4 No automatic progression
+A broader or longer-term result for which attribution requires appropriate methodology.
 
 A verified payment does not automatically verify an output.
 
@@ -854,233 +795,209 @@ A verified outcome does not automatically prove broader impact.
 
 ---
 
-## 19. Impact Evaluation
+## 24. Impact Evaluation
 
-### 19.1 Methodology requirement
-
-An impact claim MUST identify the applicable evaluation methodology.
+A material impact claim MUST identify an applicable methodology.
 
 The methodology SHOULD define:
 
 - objective;
-- indicators;
 - baseline;
+- indicators;
 - target;
-- data sources;
+- data source;
 - collection method;
-- evaluation period;
+- period;
 - attribution assumptions;
 - limitations;
+- uncertainty;
 - and reviewer.
 
-### 19.2 Attribution
+The system MUST permit:
 
-Impact MUST NOT be attributed exclusively to GFC where other material causes or contributors exist unless the methodology supports that conclusion.
+- negative results;
+- mixed results;
+- missed targets;
+- inconclusive findings;
+- and disputed impact claims.
 
-### 19.3 Uncertainty
-
-Impact evaluations MUST disclose material:
-
-- uncertainty;
-- missing data;
-- data-quality limitations;
-- selection bias;
-- attribution limits;
-- and methodological constraints.
-
-### 19.4 Negative or mixed results
-
-The transparency system MUST permit publication of:
-
-- unsuccessful activities;
-- negative outcomes;
-- mixed findings;
-- unmet targets;
-- and inconclusive results.
-
-Transparency MUST NOT be limited to favorable outcomes.
-
-### 19.5 Independent review
-
-An impact claim MUST NOT be described as independently verified unless:
-
-- the reviewer is identified or appropriately described;
-- independence is documented;
-- scope is documented;
-- methodology is documented;
-- limitations are published;
-- and the review was not controlled solely by the party benefiting from the claim.
+Impact MUST NOT be represented as independently verified unless the relevant independence, scope, methodology, and limitations are documented.
 
 ---
 
-## 20. Governance Transparency
+## 25. Authentication of Official Technical Records
 
-Material governance records SHOULD identify:
+Before a production technical record is represented as official, its authentication SHOULD be traceable through the applicable release and deployment process.
 
-- proposal;
-- proposer;
-- affected component;
-- authority;
-- rationale;
-- conflicts of interest;
-- approval requirements;
-- approval result;
-- execution transaction;
-- implementation status;
-- and final outcome.
+Examples include:
 
-The transparency system MUST distinguish between:
+- token contract;
+- allocation contract;
+- presale contract;
+- vesting contract;
+- treasury wallet;
+- liquidity wallet;
+- governance executor;
+- or other material production address.
 
-- proposed;
-- approved;
-- scheduled;
-- executed;
-- rejected;
-- cancelled;
-- failed;
-- superseded;
-- and reversed or migrated.
-
-A governance decision MUST NOT be presented as executed until execution can be verified.
+An address label alone does not establish authenticity.
 
 ---
 
-## 21. Authority Transparency
+## 26. Contract Records
 
-The transparency system MUST expose the material control surface of production components.
-
-For each material role, it SHOULD identify:
-
-- role name;
-- controlling address or contract;
-- affected component;
-- permitted actions;
-- approval threshold;
-- timelock;
-- pause authority;
-- upgrade authority;
-- replacement authority;
-- and current status.
-
-The interface MUST NOT imply that a system is trustless or decentralized while material privileged authority remains undisclosed.
-
----
-
-## 22. Contract Registry
-
-Before a production contract is represented as official, the public contract registry MUST identify:
+A production contract record SHOULD identify, where applicable:
 
 - contract name;
 - purpose;
+- environment;
 - network;
 - chain ID;
-- contract address;
-- implementation address where applicable;
-- proxy type where applicable;
-- source-code repository;
-- source-code commit;
-- compiler version;
-- verification status;
+- address;
+- implementation address;
+- proxy type;
+- source repository;
+- source commit;
+- compiler;
+- source-verification status;
 - deployment transaction;
 - deployer;
 - administrator;
+- authority;
 - applicable specification version;
-- audit or review status;
+- security-review status;
+- audit status;
 - known deviations;
 - pause status;
 - upgradeability;
 - and deprecation status.
 
-A contract MUST NOT be labeled immutable where any external mechanism can materially redirect or change its behavior.
+A contract MUST NOT be described as immutable where the complete architecture permits material change.
 
 ---
 
-## 23. Wallet Registry
+## 27. Wallet Records
 
-Each material production wallet SHOULD identify:
+A material production wallet record SHOULD identify:
 
 - address;
-- role;
+- purpose;
 - allocation;
+- environment;
 - custody model;
-- approval threshold;
+- approval model;
 - signer-category disclosure;
 - permitted use;
 - prohibited use;
-- reporting requirements;
-- and active or deprecated status.
+- active status;
+- and historical replacement where applicable.
 
-A wallet name MUST NOT be presented as proof that its assets are technically restricted to the stated purpose.
+A wallet label is not a technical restriction.
 
 ---
 
-## 24. Token and Allocation Transparency
+## 28. Token Transparency
 
-The transparency system SHOULD make the following reviewable:
+The production transparency model SHOULD make reviewable:
 
-- fixed total supply;
-- supply creation transaction;
-- mint authority transaction;
-- mint authority status;
-- allocation percentages;
-- allocation token amounts;
-- recipient addresses;
-- vesting contracts;
-- lock contracts;
-- current balances;
-- released amounts;
-- claimed amounts;
-- transferred amounts;
+- authenticated token contract;
+- token identity;
+- decimals;
+- fixed supply;
+- supply creation;
+- mint-authority status;
+- buy fee;
+- sell fee;
+- fee authority;
+- transfer restrictions where applicable;
+- upgradeability;
 - and known deviations.
 
-The intended allocation model is:
+No production GFC token is currently deployed on Base Mainnet.
+
+The public Base Sepolia pilot MUST remain separately labeled.
+
+---
+
+## 29. Allocation Transparency
+
+The current Draft allocation model is:
 
 | Allocation | Percentage | Token Amount |
 |---|---:|---:|
 | Impact Vault | 25% | 250,000,000 GFC |
-| Guardian Growth Fund | 20% | 200,000,000 GFC |
-| Presale Allocation | 15% | 150,000,000 GFC |
+| Guardian Growth | 20% | 200,000,000 GFC |
+| Presale | 15% | 150,000,000 GFC |
 | Treasury Reserve | 15% | 150,000,000 GFC |
 | Liquidity Reserve | 15% | 150,000,000 GFC |
-| Ecosystem Growth Fund | 5% | 50,000,000 GFC |
+| Ecosystem | 5% | 50,000,000 GFC |
 | Core Team | 5% | 50,000,000 GFC |
 | **Total** | **100%** | **1,000,000,000 GFC** |
 
-An allocation label establishes an intended category.
+Transparency SHOULD distinguish:
 
-It does not prove compliant use.
-
----
-
-## 25. Impact Vault Transparency
-
-The transparency system SHOULD make the following reviewable for the Impact Vault:
-
-- initial allocation;
-- vault contract;
-- lock start;
-- lock end;
-- remaining duration;
-- released amount;
+- intended allocation;
+- authenticated production allocation;
+- current balance;
 - locked amount;
-- migration authority;
-- upgradeability;
-- administrative roles;
-- and any permitted extension.
+- vested amount;
+- distributed amount;
+- transferred amount;
+- spent amount where applicable;
+- and migrated amount.
 
-The intended lock period is 50 years.
-
-The public interface MUST NOT describe the Impact Vault as immutable or impossible to access early unless the deployed implementation technically proves that claim.
-
-The existence of the Impact Vault MUST NOT be presented as proof that future impact will occur.
+An allocation label does not prove compliant use.
 
 ---
 
-## 26. Core Team Vesting Transparency
+## 30. Impact Vault Transparency
 
-The Core Team allocation is intended to vest linearly over 19 years.
+The Impact Vault is intended to contain:
 
-The transparency system SHOULD distinguish between:
+```text
+250,000,000 GFC
+```
+
+and use a:
+
+```text
+50-year lock
+```
+
+Production transparency SHOULD make reviewable:
+
+- authenticated custody;
+- lock implementation;
+- lock start;
+- represented lock end;
+- current locked amount;
+- released amount;
+- upgradeability;
+- migration authority;
+- recovery authority;
+- and historical changes.
+
+No production lock-start timestamp is established by this Draft.
+
+The Impact Vault MUST NOT be represented as technically locked until authenticated production implementation supports that claim.
+
+---
+
+## 31. Core Team Vesting Transparency
+
+The Core Team allocation is:
+
+```text
+50,000,000 GFC
+```
+
+with intended:
+
+```text
+19-year linear vesting
+```
+
+Production transparency SHOULD distinguish:
 
 - total allocation;
 - unvested amount;
@@ -1091,156 +1008,221 @@ The transparency system SHOULD distinguish between:
 - beneficiary structure;
 - vesting start;
 - vesting end;
-- and migration or reassignment authority.
+- reassignment;
+- migration;
+- and recovery authority.
 
-Vested tokens MUST NOT be described as locked once they are claimable.
+No production vesting-start timestamp is established by this Draft.
+
+Vested tokens MUST NOT be described as unvested or fully locked merely because they remain unclaimed.
 
 ---
 
-## 27. Presale Transparency
+## 32. Presale Transparency
 
-The presale transparency interface SHOULD disclose:
+No GFC presale is currently live.
+
+The current Draft presale design includes:
+
+- €0.05 reference price per GFC;
+- intended eight-week duration;
+- €250,000 soft cap;
+- no separate monetary hard cap;
+- 150,000,000 GFC Presale allocation;
+- intended support for ETH, USDC, and DAI on Base;
+- immediate GFC distribution as the current design direction;
+- refund rights if the applicable success condition is not satisfied;
+- and immutable material sale logic as the current design direction.
+
+A production presale transparency surface SHOULD disclose:
 
 - presale state;
-- verified contract address;
-- applicable specification version;
+- authenticated contract;
+- specification version;
 - reference price;
 - supported payment assets;
 - pricing method;
-- conversion source;
-- start time;
-- end time;
+- start and end;
 - soft cap;
-- Presale Allocation;
-- cumulative reference value;
-- cumulative GFC entitlement;
-- remaining allocation;
+- Presale allocation;
+- cumulative GFC distributed;
+- remaining GFC;
 - contribution-asset balances;
+- soft-cap reference value;
 - pause state;
+- cancellation state;
 - finalization state;
-- claim status;
 - refund status;
 - proceeds withdrawals;
-- and unsold-token treatment.
+- unsold-GFC treatment;
+- authority changes;
+- incidents;
+- and corrections.
 
-The interface MUST distinguish between:
+The interface MUST distinguish:
 
-- purchase transaction;
-- GFC entitlement;
-- successful finalization;
-- token claim;
+- purchase;
+- GFC distribution;
+- contribution custody;
+- soft-cap status;
+- finalization;
 - refund;
 - and proceeds withdrawal.
 
-A purchase MUST NOT be represented as a final token distribution before the applicable claim has occurred.
+The current model MUST NOT be presented as deferred claim.
+
+The unresolved relationship between immediate GFC distribution and failed-sale refunds MUST remain visible until resolved.
 
 ---
 
-## 28. Treasury Transparency
+## 33. Treasury Transparency
 
-For each material treasury action, the system SHOULD disclose:
+For a material Treasury Reserve action, the transparency model SHOULD disclose, where appropriate:
 
-- source wallet;
-- source allocation;
+- source;
+- allocation;
+- authority;
+- approval;
 - destination;
 - asset;
 - amount;
-- approval record;
 - purpose category;
-- execution transaction;
-- supporting evidence status;
-- reconciliation status;
-- and final classification.
+- transaction;
+- supporting evidence;
+- reconciliation;
+- and final status.
 
-Where recipient identity cannot be public, the system MAY use a protected recipient identifier.
-
-The reason for restricted disclosure SHOULD be documented.
+On-chain transfer visibility does not replace use-of-funds evidence.
 
 ---
 
-## 29. Liquidity Transparency
+## 34. Liquidity Transparency
 
-Liquidity-related transparency SHOULD include:
+Liquidity transparency SHOULD distinguish:
 
+- Liquidity Reserve balance;
+- liquidity actually deployed;
 - venue;
-- trading pair;
-- deployed token amount;
-- paired asset amount;
-- initial price;
+- pair;
+- GFC amount;
+- paired asset;
 - liquidity-provider position;
 - position custodian;
 - lock status;
-- lock duration;
 - withdrawal authority;
-- fee collection;
 - rebalancing authority;
+- trading-fee flow;
 - and material changes.
 
-Liquidity MUST NOT be described as locked unless the position is technically and publicly verifiable as locked.
+Liquidity Reserve MUST NOT be represented as active liquidity merely because the allocation exists.
+
+Liquidity MUST NOT be described as permanently locked unless technically verifiable.
 
 ---
 
-## 30. Fee Transparency
+## 35. Fee Transparency
 
-The current intended transaction-fee model is:
+The current intended GFC token fee model is:
 
-- buy fee: 0%;
-- sell fee: 1%.
+- **Buy fee:** 0%
+- **Sell fee:** 1%
 
-The transparency system SHOULD disclose:
+Production transparency SHOULD disclose:
 
-- active fee rate;
-- maximum permitted fee;
+- active fee rule;
 - classification logic;
 - recognized pools;
 - exemptions;
 - fee destination;
 - fee amount collected;
-- fee distribution;
-- and any parameter changes.
+- fee-proceeds use;
+- authority;
+- and historical parameter changes.
 
-Fee revenue MUST NOT be labeled impact funding unless its allocation and actual use are separately evidenced.
+The final sell-fee destination and use remain unresolved.
+
+Transparency MUST NOT imply a specific fee destination before it is finalized and deployed.
+
+Fee proceeds MUST NOT be labeled impact funding solely because of a wallet name or narrative statement.
 
 ---
 
-## 31. Staking Transparency
+## 36. Staking Transparency
 
-Where staking is introduced, the transparency system SHOULD disclose:
+No production GFC staking system is currently operational.
 
-- staking contract;
+The current intended design direction is **hybrid and non-inflationary**.
+
+If staking is later deployed, production transparency SHOULD disclose:
+
+- authenticated staking contract;
+- principal-custody model;
 - reward source;
-- reward allocation;
-- reward rate;
+- reward pool;
+- reward-rate rules;
 - calculation method;
 - duration;
-- total staked;
+- total principal;
 - distributed rewards;
-- remaining reward allocation;
+- remaining authorized reward capacity;
 - lock conditions;
 - withdrawal conditions;
-- administrative authority;
-- governance rights;
-- and known risks.
+- governance-related rights;
+- authority;
+- pause status;
+- upgradeability;
+- and migration history.
 
-A displayed annual percentage rate MUST NOT be presented as guaranteed.
+No reward source is assigned by this Draft.
+
+A displayed APR or APY MUST NOT be represented as guaranteed.
 
 ---
 
-## 32. Evidence Packages
+## 37. Economic-Flow Transparency
 
-A material use-of-funds or impact claim MAY be represented through an evidence package.
+Material economic flows SHOULD remain consistent with [`economic-flows.md`](economic-flows.md).
 
-An evidence package SHOULD include:
+Transparency SHOULD distinguish:
 
-- unique package identifier;
+- allocation;
+- custody;
+- transfer;
+- release;
+- vesting;
+- claim;
+- spending;
+- fee collection;
+- fee use;
+- contribution;
+- refundable contribution;
+- finalized proceeds;
+- liquidity deployment;
+- staking reward;
+- migration;
+- and recovery.
+
+Internal transfers MUST NOT be represented as new external funding.
+
+---
+
+## 38. Evidence Packages
+
+A material claim MAY be represented through an evidence package.
+
+An evidence package SHOULD identify:
+
+- package identifier;
 - related claim;
-- related allocation;
+- related allocation or system component;
 - related transaction;
+- authority;
+- applicable rules;
 - intended purpose;
 - evidence inventory;
 - evidence disclosure levels;
-- evidence provenance;
-- integrity anchors;
+- provenance;
+- integrity references;
 - reviewer;
 - review status;
 - limitations;
@@ -1248,20 +1230,20 @@ An evidence package SHOULD include:
 - publication date;
 - and version.
 
-The package MUST distinguish between public documents and protected documents.
-
-A package MUST NOT imply that all evidence is public merely because the package itself is publicly listed.
+The package MUST distinguish public evidence from protected evidence.
 
 ---
 
-## 33. Record Identifiers
+## 39. Durable Record Identifiers
 
-Material transparency records SHOULD use durable identifiers.
+Material transparency records SHOULD use stable identifiers.
 
-Record types may include:
+Potential record types MAY include:
 
+- deployment record;
 - contract record;
 - wallet record;
+- authority record;
 - transaction record;
 - governance record;
 - allocation record;
@@ -1269,382 +1251,542 @@ Record types may include:
 - use-of-funds record;
 - outcome record;
 - impact record;
+- registry record;
 - dispute record;
 - incident record;
-- and correction record.
+- correction record;
+- and supersession record.
 
-Identifiers SHOULD remain stable across portal updates and migrations.
-
----
-
-## 34. Record Linkage
-
-The transparency infrastructure SHOULD allow records to be linked across the full lifecycle.
-
-A material fund-flow record SHOULD support linkage between:
-
-1. funding source;
-2. allocation;
-3. authority;
-4. proposal;
-5. approval;
-6. execution;
-7. transaction;
-8. evidence;
-9. reconciliation;
-10. output;
-11. outcome;
-12. impact evaluation;
-13. dispute;
-14. and final status.
-
-The absence of a later-stage record MUST NOT alter the existence of an earlier-stage record.
-
-For example, a missing impact evaluation does not invalidate a real transaction, but it limits the permissible impact claim.
+Identifiers SHOULD survive portal redesigns and migrations where technically practical.
 
 ---
 
-## 35. Cryptographic Anchoring Requirements
+## 40. Record Linkage
 
-### 35.1 Content-specific commitments
+The transparency infrastructure SHOULD permit lifecycle linkage among:
 
-An anchor MUST correspond to a defined record or record set.
+1. funds;
+2. authority;
+3. rules;
+4. decisions;
+5. execution;
+6. transaction;
+7. supporting evidence;
+8. reconciliation;
+9. output;
+10. outcome;
+11. impact evaluation;
+12. dispute;
+13. correction;
+14. supersession;
+15. and final current status.
 
-### 35.2 Version awareness
-
-Where a document changes, the updated version SHOULD receive a new integrity commitment.
-
-The earlier commitment MUST remain historically reviewable.
-
-### 35.3 Confidentiality protection
-
-Low-entropy documents or predictable identifiers MUST NOT be hashed without appropriate protection where brute-force reconstruction or confirmation is reasonably possible.
-
-Protection MAY include:
-
-- salting;
-- keyed hashing;
-- structured commitments;
-- selective disclosure;
-- or Merkle-tree methods.
-
-### 35.4 Anchor metadata
-
-An anchor record SHOULD identify:
-
-- anchoring method;
-- hash algorithm;
-- creation time;
-- publication transaction;
-- record identifier;
-- version;
-- and responsible role.
-
-### 35.5 Algorithm migration
-
-The system MUST define how evidence remains verifiable if the selected cryptographic algorithm becomes unsuitable.
-
-Migration MUST preserve historical linkage.
+Absence of a later-stage record MUST NOT rewrite the existence of an earlier-stage record.
 
 ---
 
-## 36. Protected Evidence
+# Transparency Registry
 
-### 36.1 Access control
+## 41. Transparency Registry Purpose
 
-Protected evidence MUST use role-based access.
+The planned GFC Transparency Registry is intended to provide a **versioned historical record**.
 
-### 36.2 Access logging
+It MUST NOT be designed or represented as a permanent approval badge.
 
-Access SHOULD be logged where technically and legally appropriate.
+The Registry MAY eventually contain records concerning:
 
-### 36.3 Purpose limitation
+- GFC itself;
+- GFC-related infrastructure;
+- external projects;
+- NGOs;
+- organizations;
+- companies;
+- programs;
+- or other eligible entities or initiatives
 
-Protected evidence MUST be accessed only for legitimate:
+where the applicable governance and admission model permits inclusion.
 
+No complete production Transparency Registry is currently deployed.
+
+---
+
+## 42. Registry Is Not a Permanent Badge
+
+Registry inclusion MUST NOT imply:
+
+- permanent approval;
+- permanent verification;
+- permanent endorsement;
+- perpetual compliance;
+- perpetual evidence validity;
+- or permanent satisfaction of governance requirements.
+
+Evidence can expire.
+
+Policies can change.
+
+Governance can change.
+
+Claims can change.
+
+Conflicts can emerge.
+
+New information can supersede prior information.
+
+Therefore, a registry record SHOULD make material status changes historically reconstructable.
+
+---
+
+## 43. Versioned Accountability
+
+A material Registry record SHOULD preserve, where appropriate:
+
+- what was disclosed;
+- what evidence supported the disclosure;
+- what policy or rule applied;
+- what governance or authority applied;
+- what claim was made;
+- what status existed;
+- when the status changed;
+- who or what had authority to change it;
+- and why the change occurred.
+
+A newer record MUST NOT silently erase a materially different prior record merely because the earlier state is unfavorable or outdated.
+
+---
+
+## 44. Registry Authority
+
+The final production authority model remains unresolved.
+
+However, where GFC operates the Registry, the applicable governance model MAY assign GFC-defined authority relating to:
+
+- admission;
+- publication;
+- verification status;
+- correction;
+- downgrade;
+- suspension;
+- supersession;
+- removal from current active presentation;
+- and historical retention.
+
+Such authority MUST be:
+
+- explicit;
+- bounded;
+- reviewable;
+- historically recorded;
+- and consistent with [`roles-and-authority.md`](roles-and-authority.md).
+
+No such production authority is represented as active today.
+
+---
+
+## 45. Registry Admission
+
+A future Registry admission process MUST define:
+
+- eligible entity or record types;
+- admission criteria;
+- evidence requirements;
+- authority;
+- conflicts;
+- rejection handling;
+- publication rules;
+- and historical status.
+
+Admission MUST NOT automatically mean verification.
+
+Admission MUST NOT automatically mean endorsement.
+
+---
+
+## 46. Registry Verification Status
+
+If a future Registry uses verification statuses, the exact meaning of each status MUST be defined.
+
+A verification status MUST identify:
+
+- claim or scope being evaluated;
+- evidence basis;
+- reviewer or authority;
+- review date;
+- limitations;
+- and current historical version.
+
+A single global `verified` badge without scope is NOT RECOMMENDED.
+
+Verification of one claim MUST NOT be presented as verification of unrelated claims.
+
+---
+
+## 47. Registry Downgrade
+
+A future Registry MAY support status downgrade where:
+
+- evidence weakens;
+- evidence expires;
+- conflicting information appears;
+- applicable requirements are no longer satisfied;
+- governance changes;
+- material claims become disputed;
+- or another predefined condition applies.
+
+Downgrade authority and criteria MUST be defined.
+
+A downgrade SHOULD preserve the prior status in historical context.
+
+---
+
+## 48. Registry Suspension
+
+A future Registry MAY support suspension where current reliance should be restricted pending:
+
+- investigation;
+- missing evidence;
+- serious dispute;
+- security incident;
+- governance concern;
+- or another predefined condition.
+
+Suspension MUST NOT silently erase historical records.
+
+The record SHOULD identify:
+
+- suspension time;
+- authority;
+- reason category;
+- affected claim or scope;
+- and review status.
+
+---
+
+## 49. Registry Removal
+
+A future Registry MAY permit removal from current active presentation under defined conditions.
+
+Removal MUST NOT be used merely to erase unfavorable history.
+
+Where lawful and appropriate, the historical record SHOULD preserve that:
+
+- a record existed;
+- it was later removed from current presentation;
+- when;
+- under what authority;
+- and for what reason category.
+
+Protected content MAY still require redaction or deletion under applicable legal or privacy obligations.
+
+---
+
+## 50. Registry Corrections
+
+A material Registry correction SHOULD identify:
+
+- original record;
+- corrected record;
+- correction date;
+- authority;
+- reason;
+- affected claims;
+- and whether the prior status remains historically visible.
+
+Corrections MUST NOT create the impression that the original material error never occurred.
+
+---
+
+## 51. Registry Disputes
+
+A future Registry SHOULD support representation of material disputes.
+
+A disputed status SHOULD identify:
+
+- challenged record or claim;
+- dispute status;
+- submission time;
+- review authority;
+- current response state;
+- and resulting status change where applicable.
+
+The original publisher MUST NOT be treated as the only valid dispute reviewer for all material disputes.
+
+---
+
+## 52. Registry Independence Claims
+
+A GFC-operated Registry MUST NOT be described as independently controlled or independently verified merely because it applies structured rules.
+
+If GFC retains material authority over:
+
+- admission;
+- status;
 - verification;
-- accounting;
-- legal;
-- security;
-- operational;
-- or impact-evaluation purposes.
+- downgrade;
+- suspension;
+- or removal,
 
-### 36.4 Reviewer access
+that authority MUST be disclosed.
 
-Reviewers SHOULD receive only the information required for the defined review scope.
+External review MAY support specific claims without making the entire Registry independent.
 
-### 36.5 Public representation
+---
 
-Where protected evidence exists, the portal MAY display:
+## 53. Registry Historical Integrity
+
+Registry history SHOULD preserve material transitions among statuses.
+
+Where technically and legally appropriate, the system SHOULD retain:
+
+- prior published versions;
+- prior evidence references;
+- prior authority;
+- prior claim status;
+- correction history;
+- downgrade history;
+- suspension history;
+- and supersession history.
+
+Historical integrity does not require permanent publication of protected information.
+
+---
+
+# Evidence Integrity and Privacy
+
+## 54. Cryptographic Anchoring Requirements
+
+Where cryptographic anchoring is used, the implementation MUST define:
+
+- record scope;
+- canonicalization;
+- hash algorithm;
+- version;
+- publication method;
+- verification method;
+- and migration strategy.
+
+Updated records SHOULD receive new commitments.
+
+Prior commitments SHOULD remain reviewable where appropriate.
+
+Low-entropy protected content MUST NOT be naively hashed where brute-force confirmation presents a realistic privacy risk.
+
+---
+
+## 55. Protected Evidence
+
+Protected evidence MUST use access controls appropriate to its sensitivity.
+
+Access SHOULD be:
+
+- role-based;
+- purpose-limited;
+- authenticated;
+- revocable;
+- and logged where appropriate.
+
+The public system MAY expose metadata such as:
 
 - evidence category;
-- existence status;
+- existence;
 - integrity status;
 - review status;
 - reviewer category;
-- access restriction;
+- restriction reason;
 - and limitation.
 
-The portal MUST NOT claim that protected evidence was independently verified where no qualifying independent review occurred.
+Protected evidence MUST NOT be represented as independently verified unless qualifying review actually occurred.
 
 ---
 
-## 37. Privacy and Data Protection
+## 56. Privacy and Data Protection
 
-### 37.1 Data minimization
-
-GFC SHOULD collect and disclose only information necessary for:
+GFC SHOULD collect and disclose only information necessary for legitimate:
 
 - verification;
 - accountability;
 - compliance;
 - security;
 - operations;
-- or legitimate impact evaluation.
+- or impact evaluation.
 
-### 37.2 Personal data on-chain
+Personal data SHOULD NOT be placed directly on a public blockchain.
 
-Personal data SHOULD NOT be published directly on-chain.
+Beneficiary information MUST NOT be published merely to strengthen an impact narrative.
 
-### 37.3 Beneficiary protection
+Wallet addresses MUST NOT be publicly linked to identified natural persons without appropriate lawful basis and disclosure.
 
-Beneficiary information MUST NOT be published merely to strengthen a public impact narrative.
-
-### 37.4 Wallet linkage
-
-Wallet addresses MUST NOT be publicly linked to identified natural persons without lawful basis and appropriate disclosure.
-
-### 37.5 Retention
-
-The final transparency system MUST define:
-
-- retention periods;
-- deletion procedures;
-- archival requirements;
-- legal holds;
-- redaction;
-- and treatment of immutable on-chain references.
-
-### 37.6 Consent limitations
-
-Consent MUST NOT be treated as the only possible lawful basis or as automatically valid in contexts involving power imbalance or vulnerable beneficiaries.
+The final system MUST define retention, deletion, redaction, archival, and immutable-reference handling.
 
 ---
 
-## 38. Transparency Portal
+# Portal and Data Infrastructure
 
-### 38.1 Purpose
+## 57. Transparency Portal
 
-The public transparency portal is intended to aggregate and explain reviewable GFC records.
+The public transparency portal is intended to aggregate and explain reviewable records.
 
-### 38.2 Read-only authority
-
-The portal SHOULD remain separate from custody and governance execution.
+It SHOULD remain separate from custody and governance execution.
 
 It MUST NOT possess undisclosed authority to:
 
 - transfer funds;
+- alter user balances;
 - modify contract state;
-- approve transactions;
-- change allocation balances;
-- change governance outcomes;
-- or alter historical evidence status.
+- approve treasury transactions;
+- override governance;
+- rewrite authenticated evidence history;
+- or create false verification status.
 
-### 38.3 Data-source labeling
+No complete production portal or Registry is represented as operational by this document.
 
-Every material portal record SHOULD identify whether it is based on:
+---
+
+## 58. Data-Source Labeling
+
+Material portal records SHOULD identify whether they derive from:
 
 - direct on-chain data;
 - indexed on-chain data;
-- project-submitted information;
+- GFC-authored information;
 - external information;
 - cryptographically anchored evidence;
 - protected evidence;
 - internal review;
-- or independent review.
+- independent review;
+- or derived calculations.
 
-### 38.4 Verification links
-
-Where possible, on-chain records SHOULD link to an appropriate Base block explorer or other direct verification source.
-
-### 38.5 Status accuracy
-
-The portal MUST distinguish between:
-
-- planned;
-- configured;
-- deployed;
-- active;
-- paused;
-- deprecated;
-- migrated;
-- and unavailable.
-
-### 38.6 No false source of truth
-
-The portal MUST NOT override actual on-chain behavior.
-
-Where portal data conflicts with authenticated on-chain state, the conflict MUST be disclosed and investigated.
-
-### 38.7 Availability limitations
-
-Portal unavailability MUST NOT remove access to core authenticated contract and transaction records.
+Derived information MUST be distinguishable from primary source data.
 
 ---
 
-## 39. Data Indexing and Derived Information
+## 59. Portal Status Accuracy
 
-Indexed and derived information may differ from raw on-chain data due to:
+The portal MUST use implementation-status terminology consistently with the repository glossary.
+
+Where applicable, it SHOULD distinguish:
+
+- Draft;
+- Proposed;
+- Planned;
+- Specified;
+- Implemented;
+- Tested;
+- Pilot;
+- Reviewed;
+- Audited;
+- Deployed;
+- Live;
+- Active;
+- Operational;
+- Independently Verified;
+- Not Deployed;
+- Paused;
+- Migrated;
+- and Retired.
+
+These states MUST NOT be treated as interchangeable.
+
+---
+
+## 60. Indexed and Derived Data
+
+Indexed or derived information may differ from primary on-chain state due to:
 
 - indexing delay;
 - provider outage;
 - chain reorganization;
 - parsing error;
-- incorrect token metadata;
+- metadata error;
 - or software defect.
 
-Derived data MUST be identifiable as derived.
+Where material, the portal SHOULD identify:
 
-Where material, the portal SHOULD display:
-
-- last update time;
-- indexed block;
 - data source;
+- last update;
+- indexed block;
+- calculation method;
 - and known delay.
 
-The system MUST support reconciliation against direct on-chain state.
+Authenticated primary source state prevails over conflicting derived display data.
 
 ---
 
-## 40. Historical Integrity
+# Historical Integrity
 
-### 40.1 Version history
+## 61. Version History
 
 Material records SHOULD retain:
 
 - original publication date;
-- latest update date;
-- prior versions;
-- responsible publisher;
+- latest update;
+- prior version linkage;
+- responsible publisher or authority;
 - reason for change;
-- and applicable integrity references.
+- applicable rule version;
+- and integrity references where applicable.
 
-### 40.2 No silent deletion
+---
 
-Material records MUST NOT be silently removed merely because they became unfavorable, incorrect, disputed, or outdated.
+## 62. No Silent Deletion
 
-### 40.3 Redaction
+Material records MUST NOT be silently removed solely because they are:
 
-Where information must be removed for privacy, security, or legal reasons, the historical record SHOULD indicate:
+- unfavorable;
+- incorrect;
+- disputed;
+- outdated;
+- downgraded;
+- or embarrassing.
+
+This requirement remains subject to legitimate privacy, legal, security, and data-protection obligations.
+
+---
+
+## 63. Redaction
+
+Where information must be redacted, the historical record SHOULD indicate, where lawful:
 
 - that redaction occurred;
 - date;
 - authority;
 - and reason category.
 
-The removed protected content itself MUST NOT be preserved publicly.
-
-### 40.4 Supersession
-
-A corrected record SHOULD link to the record it supersedes.
-
-The superseded record SHOULD link to the correction.
+The protected removed content itself MUST NOT remain publicly exposed merely to satisfy historical transparency.
 
 ---
 
-## 41. Corrections
+## 64. Supersession
 
-A material correction SHOULD identify:
+A corrected or newer record SHOULD link to the record it supersedes.
 
-- incorrect statement or record;
-- corrected information;
-- date of correction;
-- reason;
-- responsible authority;
-- affected claims;
-- and whether previous conclusions changed.
+A superseded record SHOULD identify its successor where practical.
 
-Corrections MUST NOT be presented as if the original error never existed.
-
-Minor typographical corrections that do not alter meaning MAY use a lighter correction process.
+Supersession is not equivalent to deletion.
 
 ---
 
-## 42. Disputes and Challenges
+# Review, Disputes, and Audits
 
-The transparency infrastructure SHOULD support challenges concerning:
-
-- transaction attribution;
-- wallet ownership;
-- authority;
-- approval;
-- use of funds;
-- evidence authenticity;
-- evidence completeness;
-- evidence status;
-- outcome claims;
-- impact claims;
-- reviewer independence;
-- conflicts of interest;
-- or implementation conformance.
-
-The dispute process MUST define:
-
-- eligible challenger;
-- submission method;
-- evidence requirements;
-- reviewer;
-- response period;
-- possible status changes;
-- and reconsideration or appeal where applicable.
-
-A challenged record SHOULD be marked as disputed while a material challenge remains unresolved.
-
----
-
-## 43. Independent Review
-
-### 43.1 Independence criteria
+## 65. Independent Review
 
 A review MUST NOT be labeled independent solely because the reviewer is external.
 
 Relevant factors include:
 
 - financial relationship;
-- control relationship;
+- control;
 - prior involvement;
 - scope restriction;
 - data access;
 - methodology control;
 - and ability to publish unfavorable findings.
 
-### 43.2 Review scope
-
-An independent-review record SHOULD identify:
-
-- reviewer;
-- subject;
-- period;
-- evidence accessed;
-- methodology;
-- exclusions;
-- findings;
-- limitations;
-- and date.
-
-### 43.3 Review does not imply universal assurance
-
-A security audit does not verify fund use or impact.
-
-An accounting review does not prove smart-contract security.
-
-An impact evaluation does not prove contract correctness.
-
-Each review MUST be presented only within its defined scope.
+Independent review applies only within its actual scope.
 
 ---
 
-## 44. Audits
+## 66. Audits
 
 The term `audit` MUST be used precisely.
 
@@ -1653,7 +1795,7 @@ An audit record SHOULD identify:
 - auditor;
 - audit type;
 - scope;
-- standards or methodology;
+- methodology or standard;
 - reviewed components;
 - exclusions;
 - report date;
@@ -1661,34 +1803,61 @@ An audit record SHOULD identify:
 - remediation status;
 - and applicable implementation version.
 
-A code review, informal review, automated scan, or internal check MUST NOT automatically be described as an audit.
+A code review, automated scan, internal review, or source verification MUST NOT automatically be described as an audit.
 
 ---
 
-## 45. Limitations and Uncertainty
+## 67. Disputes and Challenges
 
-Every material transparency surface SHOULD disclose relevant limitations.
+The transparency infrastructure SHOULD support challenges concerning:
+
+- transaction attribution;
+- address ownership;
+- authority;
+- approval;
+- rule application;
+- use of funds;
+- evidence authenticity;
+- evidence completeness;
+- evidence status;
+- Registry status;
+- outcome claims;
+- impact claims;
+- reviewer independence;
+- conflicts;
+- and conformance.
+
+The final dispute process remains unresolved.
+
+A material unresolved challenge SHOULD be visible as disputed status.
+
+---
+
+## 68. Limitations and Uncertainty
+
+Material transparency surfaces SHOULD disclose relevant limitations.
 
 Potential limitations include:
 
 - incomplete evidence;
 - protected evidence;
 - unavailable evidence;
-- reliance on self-reporting;
+- self-reporting;
 - reviewer conflict;
 - data delay;
 - indexing error;
-- oracle dependency;
-- methodology limitations;
+- pricing dependency;
+- methodological limitations;
 - attribution uncertainty;
 - legal restrictions;
-- and unresolved dispute.
+- security restrictions;
+- and unresolved disputes.
 
-Limitations MUST NOT be hidden solely because they weaken a public claim.
+Limitations MUST NOT be concealed merely because they weaken a claim.
 
 ---
 
-## 46. Negative Information
+## 69. Negative Information
 
 The transparency model MUST permit publication of:
 
@@ -1696,61 +1865,30 @@ The transparency model MUST permit publication of:
 - overspending;
 - underspending;
 - delayed delivery;
-- unreconciled transactions;
+- unresolved reconciliation;
 - unsupported claims;
 - rejected evidence;
+- downgrades;
+- suspensions;
 - disputes;
 - incidents;
-- audit findings;
+- security findings;
 - governance failures;
-- and negative impact findings.
+- and negative or mixed outcomes.
 
-Transparency limited to positive information is not sufficient.
-
----
-
-## 47. Transparency and Communication
-
-Public communication MUST distinguish between:
-
-- what GFC intends to do;
-- what specifications require;
-- what has been implemented;
-- what has been deployed;
-- what executed on-chain;
-- what has supporting evidence;
-- what was reviewed;
-- and what was independently verified.
-
-Marketing, social media, articles, and interfaces MUST NOT overstate the current transparency status.
-
-The phrase `fully transparent` SHOULD NOT be used as an absolute description.
+Transparency limited to favorable information is not sufficient.
 
 ---
 
-## 48. Transparency and Legal Responsibility
+# Security and Incidents
 
-Public transparency does not replace:
-
-- legal obligations;
-- contractual obligations;
-- accounting obligations;
-- data-protection obligations;
-- tax obligations;
-- regulatory obligations;
-- or fiduciary responsibility where applicable.
-
-A public record MUST NOT be treated as automatically legally sufficient merely because it is on-chain.
-
----
-
-## 49. Security Requirements
+## 70. Security Requirements
 
 The transparency infrastructure MUST protect against:
 
 - unauthorized record modification;
 - evidence deletion;
-- false evidence-status assignment;
+- false status assignment;
 - unauthorized protected-data access;
 - integrity-anchor mismatch;
 - portal compromise;
@@ -1759,105 +1897,188 @@ The transparency infrastructure MUST protect against:
 - indexer manipulation;
 - database corruption;
 - privilege escalation;
+- reviewer impersonation;
 - and audit-log deletion.
 
-Security controls SHOULD include:
-
-- least privilege;
-- strong authentication;
-- role separation;
-- immutable or append-only logs where appropriate;
-- backups;
-- monitoring;
-- authenticated releases;
-- cryptographic verification;
-- and incident response.
+Detailed requirements are defined in [`security-model.md`](security-model.md).
 
 ---
 
-## 50. Transparency Incidents
+## 71. Transparency Incidents
 
-Transparency incidents may include:
+Transparency incidents MAY include:
 
 - publication of false information;
 - incorrect wallet attribution;
 - altered evidence;
+- unauthorized status change;
 - missing evidence;
-- unauthorized evidence access;
-- false independent-review claims;
-- concealed conflicts;
-- false impact claims;
+- protected-data exposure;
+- false independent-review claim;
+- concealed conflict;
+- false impact claim;
 - portal compromise;
 - indexer failure;
 - incorrect contract data;
 - privacy breach;
-- or historical-record deletion.
+- historical-record deletion;
+- or Registry-history manipulation.
 
-A material incident SHOULD identify:
-
-- incident identifier;
-- detection time;
-- affected records;
-- affected claims;
-- responsible authority;
-- containment;
-- correction;
-- disclosure status;
-- and continuing risk.
+Material incidents SHOULD remain historically reviewable after remediation where appropriate.
 
 ---
 
-## 51. Required Transparency Invariants
+# Pilot and Production Separation
 
-The implementation MUST preserve at least the following invariants:
+## 72. Public Base Sepolia Pilot
 
-1. On-chain execution and off-chain claims remain distinguishable.
-2. Transaction verification is not represented as use-of-funds verification.
-3. Use-of-funds verification is not represented as impact verification.
-4. Cryptographic anchoring is not represented as proof of factual truth.
-5. Project-authored evidence is not represented as independent evidence.
-6. Protected evidence is not represented as publicly available evidence.
-7. Material authority remains identifiable.
-8. Material records retain historical accountability.
-9. Corrections do not silently erase previous materially different records.
-10. Evidence status and claim status remain separate.
-11. The strength of a claim does not exceed the strength of its evidence.
-12. Disputed claims are marked appropriately.
-13. Material limitations remain visible.
-14. Personal data is not published on-chain without adequate justification.
-15. Portal data can be reconciled against authenticated primary sources.
-16. Wallet labels are not treated as technical restrictions.
-17. Allocation labels are not treated as proof of compliant use.
-18. Impact claims identify methodology and uncertainty.
-19. Reviewer independence is not assumed solely from external status.
-20. Planned functionality is not presented as active functionality.
+A public pilot exists on Base Sepolia:
+
+- **Network:** Base Sepolia
+- **Chain ID:** `84532`
+- **Pilot token:** `tGFC`
+- **Pilot contract:** `0x7262Cca91938ede6bB6560F81104Aa410848e7f3`
+- **Source status:** verified
+
+This is a public testnet pilot.
+
+It MUST NOT be presented as:
+
+- production GFC;
+- Base Mainnet deployment;
+- live presale;
+- production allocation infrastructure;
+- production staking;
+- production treasury;
+- production governance;
+- complete production Transparency Registry;
+- or proof that future production architecture will use identical code, parameters, addresses, or authority.
 
 ---
 
-## 52. Conformance
+## 73. Production Transparency Authentication
+
+Before production transparency records are represented as official, they SHOULD identify:
+
+- production environment;
+- network;
+- authenticated production contracts or wallets;
+- applicable specifications;
+- authority records;
+- release records;
+- and verification status.
+
+Pilot records MUST remain distinguishable from production records.
+
+---
+
+# Public Communication
+
+## 74. Public Communication Requirements
+
+Public communication MUST distinguish between:
+
+- intended design;
+- Draft specification;
+- implemented feature;
+- tested feature;
+- pilot feature;
+- reviewed feature;
+- audited feature;
+- deployed feature;
+- live feature;
+- operational feature;
+- and independently verified claim.
+
+Public communication MUST NOT:
+
+- present the Base Sepolia pilot as production;
+- describe a future Registry as operational today;
+- describe Registry inclusion as permanent approval;
+- use `verified` without scope;
+- describe immediate Presale distribution as deferred claiming;
+- describe staking as operational when it is not;
+- describe an allocation as technically locked before enforcement exists;
+- or imply impact from transaction visibility alone.
+
+---
+
+## 75. Transparency and Legal Responsibility
+
+Public transparency does not replace:
+
+- legal obligations;
+- contractual obligations;
+- accounting obligations;
+- privacy obligations;
+- tax obligations;
+- regulatory obligations;
+- or professional responsibility.
+
+An on-chain record is not automatically legally sufficient merely because it is public.
+
+---
+
+# Invariants and Conformance
+
+## 76. Required Transparency Invariants
+
+A conforming implementation MUST preserve at least the following invariants:
+
+1. `Funds → Authority → Rules → Decisions → Outcomes → Evidence` remains the canonical accountability model.
+2. On-chain execution and off-chain claims remain distinguishable.
+3. Transaction verification is not represented as use-of-funds verification.
+4. Use-of-funds verification is not represented as outcome or impact verification.
+5. Cryptographic anchoring is not represented as factual truth.
+6. Project-authored evidence is not represented as independent evidence.
+7. Protected evidence is not represented as public evidence.
+8. Material authority remains identifiable.
+9. Material historical state remains reconstructable where appropriate.
+10. Corrections do not silently erase materially different prior records.
+11. Evidence status and claim status remain distinct.
+12. Claim strength does not exceed evidence strength.
+13. Disputed claims or records are represented appropriately.
+14. Material limitations remain visible.
+15. Personal data is not placed on-chain without adequate justification.
+16. Portal data can be reconciled to authenticated primary sources.
+17. Wallet labels are not treated as technical restrictions.
+18. Allocation labels are not treated as proof of compliant use.
+19. Impact claims identify methodology and uncertainty.
+20. Reviewer independence is not inferred solely from external status.
+21. Planned functionality is not presented as active functionality.
+22. Registry inclusion is not represented as permanent approval.
+23. Registry status changes remain historically reviewable where appropriate.
+24. Pilot status is not represented as production status.
+25. Presale transparency reflects immediate distribution rather than the deprecated deferred-claim model.
+26. Staking transparency reflects the current hybrid, non-inflationary Draft direction without inventing a reward source.
+
+---
+
+## 77. Conformance
 
 A transparency implementation conforms to this specification only when:
 
-- it identifies an applicable versioned specification release;
-- it distinguishes transaction, use-of-funds, and impact verification;
-- it distinguishes Technology, Governance, and Impact and Evidence layers;
-- it distinguishes Public On-Chain, Cryptographically Anchored, and Protected Off-Chain evidence;
-- evidence provenance is available;
-- claim status and evidence status are separate;
-- authority is disclosed;
-- official contracts and wallets are authenticated;
+- it identifies an applicable versioned transparency specification;
+- the canonical accountability model is preserved;
+- transaction, authority, rules, use, outcome, and impact claims remain appropriately distinguished;
+- Public On-Chain, Cryptographically Anchored, and Protected Off-Chain evidence remain distinguishable;
+- evidence provenance is available where material;
+- evidence status and claim status remain separate;
+- material authority is disclosed;
+- production contracts and wallets are authenticated;
 - protected evidence is access-controlled;
-- cryptographic anchoring is not overstated;
 - historical records remain reviewable;
 - corrections are documented;
 - disputes can be represented;
-- limitations are visible;
+- Registry status does not imply permanent endorsement;
+- limitations remain visible;
+- production and pilot status are correctly separated;
 - public communication reflects actual implementation status;
 - and material deviations are disclosed.
 
 ---
 
-## 53. Non-Conformance
+## 78. Transparency Non-Conformance
 
 Transparency non-conformance includes:
 
@@ -1866,36 +2087,42 @@ Transparency non-conformance includes:
 - false wallet attribution;
 - undisclosed authority;
 - unsupported use-of-funds claims;
+- unsupported outcome claims;
 - unsupported impact claims;
 - project-authored evidence presented as independent;
-- cryptographic anchoring presented as proof of factual truth;
-- silent record modification;
-- silent deletion;
+- cryptographic anchoring presented as factual proof;
+- silent material record modification;
+- silent material deletion;
 - concealed dispute;
 - concealed limitation;
 - unauthorized protected-data access;
-- false audit claims;
-- false independent-review claims;
-- or presenting planned infrastructure as operational.
+- false audit claim;
+- false independent-review claim;
+- Registry inclusion represented as permanent approval;
+- status downgrade or suspension silently erased;
+- pilot infrastructure presented as production;
+- deferred-claim presale language presented as the current model;
+- or planned infrastructure presented as operational.
 
 Material non-conformance MAY require:
 
 - correction;
 - status downgrade;
+- suspension;
+- supersession;
 - public disclosure;
-- record withdrawal;
+- access revocation;
 - independent review;
 - portal suspension;
-- access revocation;
 - incident treatment;
-- specification update;
-- or system migration.
+- migration;
+- or deprecation.
 
-The specification MUST NOT be revised retrospectively merely to conceal transparency non-conformance.
+A specification MUST NOT be rewritten retrospectively merely to conceal transparency non-conformance.
 
 ---
 
-## 54. Transparency Non-Goals
+## 79. Transparency Non-Goals
 
 The GFC transparency model does not aim to:
 
@@ -1911,26 +2138,27 @@ The GFC transparency model does not aim to:
 - expose security-sensitive information;
 - equate public data volume with accountability;
 - treat wallet publication as sufficient transparency;
+- treat Registry inclusion as permanent endorsement;
 - or claim that trust can be eliminated entirely.
 
-The objective is to make trust dependencies visible, constrained, and reviewable.
+The objective is to make material trust dependencies visible, bounded, historically reviewable, and accountable.
 
 ---
 
-## 55. Unresolved Transparency Decisions
+## 80. Current Unresolved Transparency Decisions
 
-The following matters remain unresolved and MUST be completed before this document can become Stable.
+The following matters remain unresolved unless separately established by a later versioned specification or authenticated implementation record.
 
-### 55.1 Evidence schema
+### 80.1 Evidence schema
 
 - record fields;
 - required metadata;
 - evidence identifiers;
 - claim identifiers;
-- evidence-package format;
+- evidence-package structure;
 - and relationship model.
 
-### 55.2 Evidence status
+### 80.2 Evidence status
 
 - final status vocabulary;
 - transition authority;
@@ -1938,36 +2166,51 @@ The following matters remain unresolved and MUST be completed before this docume
 - dispute effects;
 - and supersession rules.
 
-### 55.3 Claim status
+### 80.3 Claim status
 
 - final claim-status vocabulary;
 - evidence thresholds;
 - independent-support standard;
-- and status-downgrade rules.
+- downgrade rules;
+- and supersession rules.
 
-### 55.4 Cryptographic anchoring
+### 80.4 Transparency Registry
+
+- final entity eligibility;
+- admission criteria;
+- submission process;
+- verification-status vocabulary;
+- review workflow;
+- downgrade criteria;
+- suspension criteria;
+- removal criteria;
+- appeal or reconsideration;
+- current-versus-historical presentation;
+- and production authority model.
+
+### 80.5 Cryptographic anchoring
 
 - hash algorithms;
-- anchoring method;
-- Base contract or transaction mechanism;
-- Merkle-tree design;
+- anchoring mechanism;
+- Base transaction or contract model;
+- Merkle design;
 - salting;
 - versioning;
 - and algorithm migration.
 
-### 55.5 Protected evidence
+### 80.6 Protected evidence
 
-- storage provider;
+- storage architecture;
 - encryption;
 - access roles;
-- access logging;
+- logging;
 - retention;
 - backup;
 - recovery;
 - deletion;
-- and legal-hold procedures.
+- and legal-hold procedure.
 
-### 55.6 Portal
+### 80.7 Portal
 
 - implementation architecture;
 - data sources;
@@ -1977,16 +2220,16 @@ The following matters remain unresolved and MUST be completed before this docume
 - authentication;
 - and fallback access.
 
-### 55.7 Review
+### 80.8 Review
 
 - reviewer categories;
 - independence criteria;
-- reviewer appointment;
-- review scope;
-- evidence-access process;
-- and publication requirements.
+- appointment;
+- evidence access;
+- publication rules;
+- and conflicts.
 
-### 55.8 Impact
+### 80.9 Impact
 
 - methodology framework;
 - indicator selection;
@@ -1994,49 +2237,59 @@ The following matters remain unresolved and MUST be completed before this docume
 - attribution model;
 - uncertainty model;
 - evaluator appointment;
-- and verification terminology.
+- and terminology.
 
-### 55.9 Disputes
+### 80.10 Disputes
 
-- submission process;
 - eligible challengers;
+- submission;
 - review authority;
 - response periods;
 - appeals;
 - and public status treatment.
 
-### 55.10 Privacy
+### 80.11 Privacy
 
 - legal roles;
 - lawful bases;
-- beneficiary consent;
-- retention periods;
+- consent handling;
+- retention;
 - deletion;
 - redaction;
-- international transfers;
+- international transfer;
 - and breach response.
 
-### 55.11 Historical records
+### 80.12 Historical records
 
 - append-only model;
 - correction format;
-- archive location;
+- archive;
 - integrity verification;
-- and long-term preservation.
+- long-term preservation;
+- and legally required deletion interaction.
+
+These unresolved matters MUST NOT be represented as finalized production decisions.
 
 ---
 
-## 56. Requirements Before Stable Status
+## 81. Requirements Before Stable Status
 
 This document MUST NOT be marked Stable until:
 
+- the canonical accountability model is consistently applied;
 - the evidence schema is finalized;
 - the claim model is finalized;
-- the evidence-status model is finalized;
-- the claim-status model is finalized;
-- contract and wallet registries are specified;
-- the authority registry is specified;
-- the evidence anchoring mechanism is finalized;
+- evidence-status vocabulary is finalized;
+- claim-status vocabulary is finalized;
+- production contract and wallet authentication records are specified;
+- the authority registry relationship is finalized;
+- Transparency Registry admission rules are finalized;
+- Registry verification-status rules are finalized;
+- downgrade rules are finalized;
+- suspension rules are finalized;
+- removal and historical-retention rules are finalized;
+- Registry authority is finalized;
+- evidence anchoring is finalized;
 - hash and privacy protections are finalized;
 - protected-evidence storage is finalized;
 - access-control roles are defined;
@@ -2047,18 +2300,21 @@ This document MUST NOT be marked Stable until:
 - correction procedures are finalized;
 - dispute procedures are finalized;
 - independent-review criteria are finalized;
-- impact methodology requirements are finalized;
-- limitation and uncertainty disclosures are finalized;
+- impact-methodology requirements are finalized;
+- limitation and uncertainty requirements are finalized;
+- presale transparency matches the final production presale model;
+- staking transparency matches the final production staking model;
 - privacy responsibilities are identified;
-- security controls are reviewed;
+- security controls are mapped to the implementation;
 - incident procedures are defined;
+- Base Sepolia pilot and Base Mainnet production terminology are consistently separated;
 - implementation feasibility is confirmed;
 - public terminology is consistent;
 - and all related specifications are mutually consistent.
 
 ---
 
-## 57. Final Transparency Principles
+## 82. Final Transparency Principles
 
 The GFC transparency model preserves the following distinctions:
 
@@ -2066,11 +2322,13 @@ The GFC transparency model preserves the following distinctions:
 
 > Public does not automatically mean verified.
 
-> A wallet address shows movements, not motives or authority.
+> A wallet address shows movements, not motives, rules, or authority.
 
-> Transaction verification does not prove use of funds.
+> A transaction does not prove compliant use.
 
-> Use-of-funds verification does not automatically prove impact.
+> Compliant use does not automatically prove outcome.
+
+> Outcome does not automatically prove impact.
 
 > Cryptographic anchoring proves integrity, not factual truth.
 
@@ -2080,6 +2338,14 @@ The GFC transparency model preserves the following distinctions:
 
 > Protected evidence can remain reviewable without being publicly exposed.
 
+> A Transparency Registry should preserve history rather than reduce accountability to a badge.
+
+> Registry inclusion does not mean permanent approval.
+
+> Verification status can change when evidence, governance, policy, or claims change.
+
+> Pilot does not mean production.
+
 > Different claims require different evidence.
 
-Transparency is credible only where execution, authority, purpose, evidence, outcomes, limitations, and historical changes can be examined together.
+Transparency is credible only where **Funds, Authority, Rules, Decisions, Outcomes, Evidence, limitations, corrections, disputes, and historical changes** can be examined together.

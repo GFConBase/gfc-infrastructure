@@ -4,10 +4,13 @@
 **Maturity:** Draft  
 **Authority:** Normative  
 **Version:** Unreleased  
-**Implementation Status:** Pre-deployment  
-**Intended Network:** Base Mainnet  
-**Chain ID:** 8453  
-**Last Updated:** 2026-07-23
+**Implementation Status:** Pre-mainnet specification and pilot development  
+**Primary Product Focus:** GFC Token / Economic Layer  
+**Intended Production Network:** Base Mainnet  
+**Production Chain ID:** 8453  
+**Public Pilot Network:** Base Sepolia  
+**Pilot Chain ID:** 84532  
+**Last Updated:** 2026-08-30
 
 ---
 
@@ -21,16 +24,21 @@ Its maturity remains Draft. Definitions may change before the first versioned re
 
 At the time of publication:
 
-- no production GFC token contract is represented by this repository as deployed;
+- the current primary product focus is the **GFC Token / Economic Layer**;
+- the broader long-term direction is a wider **Accountability Infrastructure**;
+- a public GFC pilot exists on **Base Sepolia**;
+- no production GFC token is deployed on Base Mainnet;
 - no GFC presale is live;
-- no production treasury, staking, governance, vesting, or transparency system is represented as fully operational;
-- no public presale date is established by this document;
-- no contract or wallet address is established as official by this document;
-- no definition in this glossary independently establishes implementation, deployment, audit, legal status, or operational availability.
+- no production treasury, staking, governance, vesting, allocation, or broader accountability infrastructure is represented as operational;
+- no public presale launch date is established by this document;
+- no production contract or wallet address is established as official by this document;
+- and no definition in this glossary independently establishes implementation, deployment, audit, legal status, or operational availability.
 
 Definitions describe how terms are intended to be used.
 
 They do not prove that the component described by a term already exists.
+
+The Base Sepolia pilot and future Base Mainnet production systems MUST be treated as distinct environments.
 
 ---
 
@@ -56,10 +64,14 @@ The appearance of a term does not mean that the corresponding feature has been:
 
 - implemented;
 - tested;
+- reviewed;
 - audited;
 - deployed;
 - activated;
-- or publicly released.
+- made operational;
+- or released for production use.
+
+A term describing a production component does not imply that the Base Sepolia pilot implements that component.
 
 ### 2.5 Actual execution and conformance
 
@@ -103,6 +115,51 @@ The name does not independently establish:
 - governmental recognition;
 - regulatory approval;
 - or any particular legal structure.
+
+### GFC Token / Economic Layer
+
+The current primary GFC product focus.
+
+It refers to the intended token-centered economic system and the supporting specifications required for later presale and Mainnet readiness, including:
+
+- token behavior;
+- allocations;
+- vesting and unlocks;
+- economic flows;
+- staking;
+- presale mechanics;
+- governance constraints;
+- security requirements;
+- transparency requirements;
+- and deployment authentication.
+
+The term does not imply that all listed components are already implemented or deployed.
+
+### Economic Layer
+
+The token-centered economic portion of GFC, including token supply, allocations, vesting, economic flows, staking, presale mechanics, liquidity-related design, and related authority constraints.
+
+The Economic Layer is the current primary product area but is not represented as fully deployed on Base Mainnet.
+
+### Accountability Infrastructure
+
+The broader long-term GFC system direction intended to make material flows of value, authority, rules, decisions, outcomes, and evidence more reconstructable and reviewable.
+
+The canonical model is:
+
+`Funds → Authority → Rules → Decisions → Outcomes → Evidence`
+
+The term describes a long-term system direction.
+
+It MUST NOT be used to imply that the complete infrastructure is currently deployed or operational.
+
+### Accountability Model
+
+The canonical GFC relationship:
+
+`Funds → Authority → Rules → Decisions → Outcomes → Evidence`
+
+The model separates distinct accountability questions rather than treating transaction visibility as sufficient proof of responsibility, use, outcome, or impact.
 
 ### German Foundation Coin
 
@@ -268,9 +325,21 @@ A document may be both:
 
 A version status indicating that the document has not yet been included in an authoritative versioned release.
 
+### Pre-Mainnet Specification and Pilot Development
+
+An implementation status indicating that:
+
+- specification and implementation work is ongoing;
+- one or more non-production pilots or test deployments MAY exist;
+- and no production GFC deployment is represented as active on Base Mainnet.
+
+This is the current repository-level development status.
+
 ### Pre-deployment
 
-An implementation status indicating that no production deployment is represented as active under the document.
+A generic status indicating that the specific production component being described has not been deployed.
+
+The term MUST NOT be used to deny the existence of a separately identified testnet or pilot deployment.
 
 ---
 
@@ -322,19 +391,58 @@ A distributed ledger that records transactions and state according to a defined 
 
 ### Base
 
-The intended initial blockchain network for GFC deployment.
+The blockchain ecosystem selected for the current GFC pilot and intended initial production deployment.
+
+GFC currently distinguishes between:
+
+- Base Sepolia for the public testnet pilot; and
+- Base Mainnet for intended production deployment.
 
 ### Base Mainnet
 
 The production Base network.
 
+Its chain ID is:
+
+`8453`
+
+No production GFC token is currently represented as deployed on Base Mainnet.
+
+### Base Sepolia
+
+The Base test network used for the current public GFC pilot.
+
+Its chain ID is:
+
+`84532`
+
+A Base Sepolia deployment is not a Base Mainnet production deployment.
+
+### Public Pilot
+
+A limited publicly accessible implementation or deployment used for experimentation, validation, demonstration, testing, or learning.
+
+A public pilot MUST identify its environment and MUST NOT be represented as production solely because it is public or technically deployed.
+
+### tGFC
+
+The token identifier used for the current public GFC Base Sepolia pilot.
+
+`tGFC` is a testnet pilot token.
+
+It MUST NOT be represented as the production GFC token.
+
 ### Chain ID
 
 A numeric identifier used to distinguish blockchain networks.
 
-The intended GFC network uses Base Chain ID:
+The intended GFC production network uses Base Mainnet Chain ID:
 
 `8453`
+
+The current public pilot uses Base Sepolia Chain ID:
+
+`84532`
 
 ### On-Chain
 
@@ -527,7 +635,7 @@ It is intended to be subject to a 50-year lock.
 
 The existence of the allocation does not itself prove future impact.
 
-### Guardian Growth Fund
+### Guardian Growth
 
 The intended allocation containing 20% of total GFC supply:
 
@@ -561,7 +669,7 @@ The intended allocation containing 15% of total GFC supply:
 
 It is intended for defined liquidity-related purposes.
 
-### Ecosystem Growth Fund
+### Ecosystem
 
 The intended allocation containing 5% of total GFC supply:
 
@@ -569,7 +677,7 @@ The intended allocation containing 5% of total GFC supply:
 
 It may support documented ecosystem, development, grant, partnership, infrastructure, community, or growth activities.
 
-### Core Team Allocation
+### Core Team
 
 The intended allocation containing 5% of total GFC supply:
 
@@ -667,7 +775,7 @@ A conforming lock or vesting migration must preserve or strengthen the remaining
 
 ### Presale
 
-A time-bound token-distribution process conducted under predefined pricing, allocation, contribution, success, finalization, claim, and refund rules.
+A time-bound token-distribution process conducted under predefined pricing, allocation, contribution, success, finalization, delivery, and refund rules.
 
 ### Planned Presale
 
@@ -712,6 +820,18 @@ An asset accepted as consideration in the presale.
 ### Supported Payment Asset
 
 A payment asset explicitly identified by contract address, network, decimals, and applicable valuation rules.
+
+### Current Intended Payment Assets
+
+The current Draft presale design intends to support:
+
+- ETH;
+- USDC;
+- and DAI
+
+on Base.
+
+Support is not operational until the production presale implementation authenticates the applicable network and token contract addresses.
 
 ### Unsupported Payment Asset
 
@@ -761,27 +881,47 @@ A record identifying the contributor, payment asset, accepted amount, reference 
 
 ### Token Entitlement
 
-The recorded right to claim a defined amount of GFC after successful finalization.
+A participant's recorded right to receive a defined amount of GFC under the applicable presale rules.
 
-An entitlement is not the same as an immediately transferred token balance.
+An entitlement MAY be satisfied through immediate distribution or through another explicitly specified delivery mechanism.
 
-### Claim
+### Immediate Distribution
 
-The action through which a valid participant receives GFC associated with a token entitlement.
+A token-delivery model in which the purchased GFC amount is transferred to the participant as part of, or immediately following, a successful purchase transaction.
 
-### Claim Phase
+Immediate distribution is the current intended GFC presale design direction.
 
-The state or period in which valid GFC entitlements can be claimed following successful finalization.
-
-### Deferred Claim
-
-A token-delivery model in which purchased GFC becomes claimable after successful presale finalization rather than being transferred during the active sale.
+It remains a Draft requirement until an applicable versioned presale specification and production implementation establish the final behavior.
 
 ### Instant Distribution
 
-A token-delivery model in which tokens are transferred at purchase time.
+Equivalent in this specification set to `Immediate Distribution` unless a more specific component specification distinguishes the terms.
 
-Instant distribution is not the current intended GFC presale model.
+### Deferred Claim
+
+A token-delivery model in which purchased GFC becomes claimable only after a later state transition or successful finalization.
+
+Deferred claim is not the current intended GFC presale distribution model.
+
+### Claim
+
+The action through which a participant receives tokens or assets that were previously recorded as claimable.
+
+A claim phase is therefore not required where the applicable presale uses immediate distribution.
+
+### Claim Phase
+
+A state or period in which previously recorded entitlements can be claimed.
+
+A claim phase applies only if the applicable presale specification uses deferred or otherwise claim-based delivery.
+
+### Immutable Presale Logic
+
+A presale design in which material participant-facing sale rules cannot be changed through an upgrade mechanism after production deployment.
+
+The current intended presale design direction is immutable.
+
+Exact production immutability and any unavoidable administrative surfaces MUST be established by the applicable implementation and deployment record.
 
 ### Soft Cap
 
@@ -798,8 +938,7 @@ The condition in which recorded accepted contributions equal or exceed the soft 
 Reaching the soft cap does not by itself mean that:
 
 - the presale has ended;
-- funds are withdrawable;
-- token claims are active;
+- contribution proceeds are withdrawable by the project;
 - or finalization has completed.
 
 ### Hard Cap
@@ -1297,7 +1436,19 @@ A mechanism in which tokens are deposited or committed under defined conditions 
 
 ### Hybrid Staking
 
-A staking model combining token rewards with governance-related or community-related benefits.
+The current intended GFC staking design direction.
+
+It combines token-based staking rewards with additional governance-related or community-related benefits where separately specified.
+
+The design remains Draft and no production GFC staking system is currently operational.
+
+### Non-Inflationary Staking
+
+A staking design in which staking rewards do not increase the fixed GFC total supply.
+
+Rewards MUST originate from tokens already included within the fixed supply or from another explicitly specified non-minting economic source.
+
+`Non-inflationary` does not mean that rewards are guaranteed, perpetual, or economically risk-free.
 
 ### Staking Position
 
@@ -1355,6 +1506,26 @@ A public interface aggregating and explaining relevant on-chain and off-chain in
 
 The portal is not the primary source of actual blockchain execution.
 
+### Transparency Registry
+
+The planned GFC registry model for maintaining reviewable, versioned records concerning disclosures, evidence, governance, claims, status changes, corrections, and related accountability information.
+
+The Transparency Registry is intended to function as a historical record rather than a permanent approval badge.
+
+Its planned status does not imply that a complete production registry is currently deployed.
+
+### Versioned Accountability
+
+An approach in which material disclosures, evidence, policies, governance conditions, claims, corrections, and status changes remain attributable to identifiable versions over time.
+
+The purpose is to make historical context reconstructable rather than replacing prior states with a single permanent approval label.
+
+### Verification Badge
+
+A simplified label indicating approval or verification.
+
+A badge MUST NOT be treated as equivalent to a versioned historical record where underlying evidence, governance, policy, or claim status can change over time.
+
 ### Transparency Claim
 
 A statement concerning the visibility, verifiability, reviewability, evidence, or accountability of a system or activity.
@@ -1375,7 +1546,16 @@ The ability to follow an asset, decision, claim, record, or authority across con
 
 ### Accountability
 
-The ability to identify responsible authority, applicable rules, actions, evidence, and consequences.
+The ability to reconstruct material relationships between:
+
+- funds;
+- authority;
+- rules;
+- decisions;
+- outcomes;
+- and evidence.
+
+Accountability requires more than visibility alone.
 
 ### Public On-Chain
 
@@ -1977,41 +2157,105 @@ A classification describing the potential or actual impact of an incident.
 
 ## 28. Implementation Status
 
+The following terms describe distinct states and MUST NOT be used interchangeably.
+
+### Draft
+
+A document, design, requirement, parameter, or specification under development and subject to revision.
+
+### Proposed
+
+A design, parameter, behavior, or decision that has been put forward but has not necessarily been finally adopted or implemented.
+
 ### Planned
 
-A component or behavior under consideration or described in a Draft specification.
+A component, activity, or behavior intended for future work.
+
+Planned does not mean implemented.
 
 ### Specified
 
 A component or behavior defined by a specification.
 
+Specified does not mean implemented.
+
 ### Implemented
 
-A component for which working code or operational processes exist.
+A component for which relevant working code or operational processes exist.
+
+Implemented does not mean tested or deployed.
 
 ### Tested
 
-A component evaluated through documented tests.
+A component evaluated through defined tests against an identified implementation or environment.
+
+Tested does not mean audited or production-deployed.
+
+### Experimental Implementation
+
+Code or an operational process used for experimentation without production guarantees.
+
+### Prototype
+
+A functional demonstration of selected intended behavior.
+
+### Test Deployment
+
+A deployment on a test network or another explicitly non-production environment.
+
+### Pilot
+
+A limited implementation or deployment used for experimentation, validation, demonstration, testing, or learning.
+
+Pilot does not mean production.
 
 ### Reviewed
 
-A component examined under a defined review scope.
+A component, specification, or evidence set examined under a defined review scope.
 
 ### Audited
 
-A component examined through a qualifying audit under a defined scope.
+A component examined through a qualifying audit under a defined scope and by an identified auditor.
+
+Audited does not mean risk-free.
+
+### Production Candidate
+
+A defined implementation considered for production deployment but not yet production-active.
 
 ### Deployed
 
-A component published to its intended technical environment.
+A component published to an identified technical environment or network.
+
+Deployment alone does not establish production authority.
+
+### Production Deployment
+
+A released deployment intended for production use.
+
+### Live
+
+A component currently accessible or available in its explicitly stated environment.
+
+`Live` MUST be qualified where omission of the environment could create ambiguity between testnet, pilot, staging, and production.
 
 ### Active
 
-A deployed component currently enabled for intended use.
+A deployed component intentionally enabled for its stated role.
 
 ### Operational
 
-A component functioning as part of an active production process.
+A component being operated for its stated production function.
+
+### Independently Verified
+
+A status indicating that an appropriately independent party has verified a specifically defined claim, component, record, or process under a documented scope.
+
+### Not Deployed
+
+No authenticated deployment for the stated environment or production role is represented.
+
+The term does not exclude the existence of a draft, implementation, test deployment, or pilot in another environment.
 
 ### Paused
 
@@ -2030,7 +2274,6 @@ A component intentionally removed from active use.
 Authenticated by the applicable GFC release and publication process.
 
 The term does not mean approved by a government or regulator.
-
 ---
 
 ## 29. Release Terms
@@ -2171,13 +2414,27 @@ Processes intended to prevent prohibited participation or transactions under app
 
 The following distinctions apply throughout the GFC specification set:
 
+> Draft does not mean deployed.
+
+> Proposed does not mean adopted.
+
+> Planned does not mean implemented.
+
 > Specified does not mean implemented.
 
-> Implemented does not mean audited.
+> Implemented does not mean tested.
+
+> Tested does not mean audited.
 
 > Audited does not mean risk-free.
 
 > Deployed does not mean active.
+
+> Live does not automatically mean production.
+
+> Pilot does not mean production.
+
+> Base Sepolia does not mean Base Mainnet.
 
 > Public does not automatically mean verified.
 
@@ -2193,9 +2450,9 @@ The following distinctions apply throughout the GFC specification set:
 
 > Reaching the soft cap does not equal successful finalization.
 
-> A token entitlement does not equal an immediately transferred token.
+> Immediate token distribution does not make refundable contribution assets project funds before the applicable success conditions are satisfied.
 
-> Participant funds are not project funds while refund rights remain active.
+> Participant contribution assets subject to refund rights are not unrestricted project proceeds.
 
 > Transaction verification does not equal use-of-funds verification.
 
@@ -2209,7 +2466,11 @@ The following distinctions apply throughout the GFC specification set:
 
 > The project name does not establish legal or charitable status.
 
+> A Transparency Registry record is not a permanent approval badge.
+
 > Different claims require different evidence.
+
+> Funds, Authority, Rules, Decisions, Outcomes, and Evidence are distinct accountability stages.
 
 ---
 
@@ -2221,7 +2482,10 @@ This glossary MUST NOT be marked Stable until:
 - the current project name has been corrected repository-wide;
 - deprecated historical terms have been identified;
 - token and fee terminology is finalized;
-- presale terminology is finalized;
+- Base Sepolia pilot and Base Mainnet production terminology are consistently separated;
+- allocation names are finalized and consistent;
+- presale terminology, including distribution and refund terminology, is finalized;
+- staking terminology is finalized;
 - governance role terminology is finalized;
 - evidence and claim status vocabularies are finalized;
 - impact terminology and methodology requirements are finalized;
@@ -2238,4 +2502,4 @@ GFC terminology must describe actual meaning and actual evidence strength.
 
 Terms must not be selected because they sound stronger, safer, more decentralized, more transparent, more charitable, or more final than the underlying system supports.
 
-Precise language is part of the GFC control and transparency architecture.
+Precise language is part of the GFC control, security, and accountability architecture.

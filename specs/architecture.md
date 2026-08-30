@@ -4,39 +4,58 @@
 **Maturity:** Draft  
 **Authority:** Normative  
 **Version:** Unreleased  
-**Implementation Status:** Pre-deployment  
-**Intended Network:** Base Mainnet  
-**Chain ID:** 8453  
-**Last Updated:** 2026-07-23
+**Implementation Status:** Pre-mainnet specification and pilot development  
+**Primary Product Focus:** GFC Token / Economic Layer  
+**Intended Production Network:** Base Mainnet  
+**Production Chain ID:** 8453  
+**Public Pilot Network:** Base Sepolia  
+**Pilot Chain ID:** 84532  
+**Last Updated:** 2026-08-30
 
 ---
 
 ## 1. Document Status
 
-This document defines the intended high-level architecture of the planned GFC infrastructure.
+This document defines the intended high-level architecture of the Global Foundation Coin (GFC) infrastructure.
 
-It is normative in the sense that it defines intended requirements, constraints, trust boundaries, and prohibited behavior. However, its maturity remains Draft. Requirements may therefore change before the first versioned release.
+It is normative because it defines intended requirements, constraints, trust boundaries, component relationships, and prohibited behavior. Its maturity remains Draft, and requirements may change before the first versioned release.
+
+GFC is currently in a **pre-mainnet development phase**.
+
+The current primary product focus is the **GFC Token / Economic Layer**.
+
+The broader long-term direction is an **Accountability Infrastructure** organized around the relationship:
+
+**Funds → Authority → Rules → Decisions → Outcomes → Evidence**
 
 At the time of publication:
 
-- no production GFC token contract is represented by this repository as deployed;
+- a public GFC pilot exists on **Base Sepolia**;
+- the Base Sepolia pilot token is identified as **tGFC**;
+- the pilot contract address is `0x7262Cca91938ede6bB6560F81104Aa410848e7f3`;
+- the pilot contract is represented as source-verified;
+- the pilot is a testnet deployment and has no Base Mainnet production authority;
+- no production GFC token is deployed on Base Mainnet;
 - no GFC presale is live;
-- no production treasury, staking, vesting, governance, or transparency contracts are represented as deployed;
-- no contract address should be treated as official unless it is published through an authenticated GFC release process;
-- no internal development or presale date is established or publicly confirmed by this document;
-- no implementation should be described as conforming until it identifies an applicable versioned specification release.
+- no production allocation, treasury, liquidity, staking, vesting, governance, or broader accountability infrastructure is represented as operational;
+- no production contract or wallet address is official merely because it appears in a Draft document;
+- no public presale launch date is established by this document;
+- and no implementation should be described as conforming production infrastructure until it identifies an applicable versioned specification release and authenticated deployment record.
 
 The presence of a component in this specification does not mean that the component has already been:
 
 - implemented;
 - tested;
-- independently reviewed;
+- reviewed;
 - audited;
 - deployed;
 - activated;
-- or made available to users.
+- made operational;
+- or made available for production use.
 
-The continuously changing `main` branch must not automatically be treated as the authoritative specification for any future production deployment.
+The public Base Sepolia pilot MUST remain clearly distinguished from future Base Mainnet production systems.
+
+The continuously changing `main` branch MUST NOT automatically be treated as the authoritative specification for a production deployment.
 
 ---
 
@@ -67,19 +86,42 @@ Those matters may be defined in separate specifications.
 
 ## 3. Project Context
 
-GFC is intended to combine:
+The current primary GFC product focus is the **GFC Token / Economic Layer**.
 
-1. a fixed-supply token ecosystem on Base;
-2. long-term allocation and vesting commitments;
-3. constrained treasury and governance processes;
-4. a transparency infrastructure for fund-flow and evidence reporting;
-5. a long-term framework for evaluating documented use of funds and resulting impact.
+This includes the intended token-centered system and the supporting requirements necessary for later presale and Base Mainnet readiness, including:
 
-The token, governance system, transparency infrastructure, and impact-evaluation process are related but distinct components.
+1. fixed-supply token behavior;
+2. allocation integrity;
+3. vesting and unlock constraints;
+4. economic-flow rules;
+5. staking design;
+6. presale mechanics and participant protections;
+7. governance and authority constraints;
+8. security requirements;
+9. transparency requirements;
+10. authenticated deployment and status records.
 
-The existence of a blockchain token does not by itself create a complete transparency or impact system.
+The current public Base Sepolia pilot demonstrates limited early technical execution. It does not establish production readiness or Mainnet deployment.
 
-The intended transparency architecture therefore extends beyond publishing wallet addresses or transaction records.
+The longer-term GFC direction expands beyond the token toward broader **Accountability Infrastructure** connecting:
+
+**Funds → Authority → Rules → Decisions → Outcomes → Evidence**
+
+The token and economic layer, governance controls, transparency records, evidence systems, and later accountability components are related but distinct.
+
+Their implementation and deployment status MUST be represented separately.
+
+The existence of a blockchain token, verified contract, public wallet, or transaction history does not by itself establish:
+
+- compliant authority;
+- documented rules;
+- valid decision processes;
+- documented use of funds;
+- successful outcomes;
+- verified impact;
+- or complete accountability.
+
+The architecture therefore treats transaction visibility as one evidence source within a wider accountability model rather than as a substitute for governance, evidence, or outcome verification.
 
 ---
 
@@ -138,8 +180,9 @@ This document does not independently define:
 - exact multisig signer identities;
 - exact multisig thresholds;
 - exact timelock durations;
-- final presale payment assets;
+- production addresses for ETH, USDC, or DAI used by a future presale;
 - final exchange-rate or oracle methodology;
+- the exact failed-presale settlement mechanism required when GFC has already been distributed immediately;
 - final staking reward parameters;
 - final staking reward source;
 - final governance voting mechanisms;
@@ -153,7 +196,9 @@ This document does not independently define:
 - final privacy and retention policies;
 - final production deployment addresses;
 - final audit providers;
-- final portal implementation.
+- or final portal and registry implementation.
+
+The current Draft presale direction does identify **ETH, USDC, and DAI on Base** as intended payment assets and **immediate token distribution** as the intended delivery model. Their production addresses, valuation rules, and implementation behavior remain subject to the applicable presale specification.
 
 These matters must be resolved in dedicated specifications, operating policies, legal documentation, or released implementation records before the relevant system becomes operational.
 
@@ -241,74 +286,164 @@ Material deviations must be disclosed and evaluated.
 
 GFC communications MUST distinguish between:
 
-- planned;
-- specified;
-- implemented;
-- tested;
-- reviewed;
-- audited;
-- deployed;
-- and operational.
+- Draft;
+- Proposed;
+- Planned;
+- Specified;
+- Implemented;
+- Tested;
+- Pilot;
+- Reviewed;
+- Audited;
+- Deployed;
+- Live;
+- Active;
+- Operational;
+- Independently Verified;
+- and Not Deployed.
 
 These states MUST NOT be presented as interchangeable.
+
+A testnet pilot MUST NOT be represented as a Mainnet production deployment.
 
 ---
 
 ## 8. Intended Deployment Environment
 
-### 8.1 Network
+### 8.1 Intended production network
 
-The intended initial execution network is Base Mainnet.
+The intended initial production execution network is Base Mainnet.
 
-- **Network:** Base
+- **Network:** Base Mainnet
 - **Chain ID:** 8453
 - **Token standard:** ERC-20-compatible
 - **Token decimals:** 18
+- **Production GFC status:** Not deployed
 
-The final deployment remains subject to:
+Any future production deployment remains subject to:
 
+- completed implementation;
+- defined testing;
 - technical review;
 - security review;
 - operational review;
-- legal and regulatory review;
+- applicable legal and regulatory review;
+- authenticated release records;
 - and final release approval.
 
-### 8.2 No separate GFC blockchain at launch
+### 8.2 Current public pilot
 
-A separate GFC Layer 1 or Layer 2 network is not part of the intended initial architecture.
+A separate public GFC pilot exists on Base Sepolia.
 
-The initial system is intended to use Base as its execution and public settlement layer.
+- **Environment:** Public testnet pilot
+- **Network:** Base Sepolia
+- **Chain ID:** 84532
+- **Pilot token:** tGFC
+- **Contract address:** `0x7262Cca91938ede6bB6560F81104Aa410848e7f3`
+- **Source verification:** Verified
+- **Production authority:** None
 
-No future separate blockchain, application-specific rollup, or cross-chain expansion is promised by this specification.
+The pilot is evidence of limited early technical execution only.
 
-### 8.3 Cross-chain systems
+It MUST NOT be interpreted as:
 
-Bridges, wrapped GFC representations, and cross-chain deployments are outside the initial architecture unless introduced through a separate versioned specification.
+- the production GFC token;
+- a Base Mainnet deployment;
+- a live presale;
+- a production allocation system;
+- a production staking system;
+- production treasury infrastructure;
+- production governance infrastructure;
+- or proof that future Mainnet code, parameters, addresses, roles, or authority structures will be identical.
 
-No bridged or wrapped representation may be described as official without:
+### 8.3 No separate GFC blockchain at initial launch
+
+A separate GFC Layer 1, Layer 2, application-specific rollup, or independent consensus network is not part of the intended initial production architecture.
+
+The intended initial production system uses Base Mainnet as its execution and public settlement layer.
+
+Later Base-aligned appchain, rollup, or other chain-specific development MAY be evaluated through future specifications and roadmap decisions.
+
+No such later system is committed, deployed, or production-authoritative through this architecture document.
+
+### 8.4 Cross-chain systems
+
+Bridges, wrapped GFC representations, and cross-chain deployments are outside the initial production architecture unless introduced through a separate versioned specification.
+
+No bridged, wrapped, copied, or third-party representation may be described as official without:
 
 - explicit release approval;
 - authenticated publication;
 - technical documentation;
 - contract verification;
 - risk disclosure;
-- and a defined relationship to the canonical Base deployment.
+- and a defined relationship to the canonical Base Mainnet deployment.
 
 ---
 
 ## 9. High-Level Architectural Model
 
-The GFC architecture is divided into three primary system layers:
+The architecture has two different views that MUST NOT be confused:
+
+1. the **current product architecture**, centered on the GFC Token / Economic Layer; and
+2. the **long-term accountability architecture**, which expands the system beyond the token.
+
+### 9.1 Current product architecture
+
+The current primary product architecture includes:
+
+- GFC token behavior;
+- token allocations;
+- vesting and unlocks;
+- economic flows;
+- staking;
+- presale mechanics;
+- custody;
+- authority controls;
+- security constraints;
+- transparency requirements;
+- and deployment authentication.
+
+These components support the objective of preparing the Token / Economic Layer for later production readiness.
+
+### 9.2 Long-term accountability architecture
+
+The broader architectural direction is:
+
+**Funds → Authority → Rules → Decisions → Outcomes → Evidence**
+
+Each stage represents a distinct accountability question.
+
+The architecture SHOULD make it possible, where applicable, to reconstruct:
+
+- what value moved;
+- who had authority;
+- which rules applied;
+- what decision was made;
+- what outcome followed;
+- and what evidence supports the record.
+
+### 9.3 Architectural views
+
+For design and review purposes, components may additionally be grouped into three interacting views:
 
 1. Technology
 2. Governance
 3. Impact and Evidence
 
-These layers interact but MUST remain conceptually distinguishable.
+These views are analytical groupings.
+
+They do not imply that all three are equally mature, equally deployed, or equal current product priorities.
+
+The current public implementation remains limited to the identified Base Sepolia pilot.
 
 ---
 
 ## 10. Technology Layer
+
+The Technology Layer contains the technical components of the current Token / Economic Layer and later accountability infrastructure.
+
+Planned production components MUST remain distinguished from the existing Base Sepolia pilot.
 
 The Technology Layer includes:
 
@@ -342,6 +477,8 @@ Technology cannot independently determine:
 
 ## 11. Governance Layer
 
+The Governance Layer defines authority and decision constraints supporting both the current Token / Economic Layer and later accountability infrastructure.
+
 The Governance Layer includes:
 
 - role definitions;
@@ -373,6 +510,8 @@ Governance participation MUST NOT be presented as complete decentralization wher
 
 ## 12. Impact and Evidence Layer
 
+The Impact and Evidence Layer represents the longer-term evidence and outcome side of the accountability architecture. It is not represented as a complete production system today.
+
 The Impact and Evidence Layer includes:
 
 - intended-use documentation;
@@ -395,7 +534,7 @@ This layer determines which claims can be supported beyond the existence of a bl
 
 ## 13. Verification Model
 
-GFC distinguishes between three separate verification questions.
+GFC separates claims according to what they actually establish.
 
 ### 13.1 Transaction verification
 
@@ -414,16 +553,17 @@ Relevant evidence may include:
 - block confirmations;
 - and verified contract state.
 
-Transaction verification can establish that a recorded transfer occurred.
+Transaction verification can establish that a recorded on-chain action occurred.
 
-Transaction verification does not by itself establish:
+It does not by itself establish:
 
 - the purpose of the payment;
 - the legitimacy of the recipient;
-- delivery of goods or services;
 - compliance with an approval process;
+- delivery of goods or services;
 - the quality of the funded activity;
-- or resulting impact.
+- a resulting outcome;
+- or impact.
 
 ### 13.2 Use-of-funds verification
 
@@ -447,34 +587,72 @@ Relevant evidence may include:
 
 A wallet label or transaction description MUST NOT be treated as sufficient proof of use.
 
-### 13.3 Impact verification
+### 13.3 Output verification
 
 **Question:**
 
-Did the documented use create a meaningful result?
+Was the documented activity, deliverable, or service produced?
 
 Relevant evidence may include:
 
-- output records;
-- outcome indicators;
-- beneficiary-level results where lawful and appropriate;
-- independent evaluation;
+- delivery records;
+- completion evidence;
+- project records;
+- measurements;
+- attestations;
+- and independent confirmation where appropriate.
+
+Output verification does not automatically establish a broader outcome.
+
+### 13.4 Outcome verification
+
+**Question:**
+
+Did the documented activity create the claimed result?
+
+Relevant evidence may include:
+
 - follow-up data;
-- comparative evidence;
+- defined indicators;
+- measurement methodology;
+- comparison data;
+- baseline information;
+- and independent review.
+
+An outcome claim requires evidence appropriate to the claimed change.
+
+### 13.5 Impact verification
+
+**Question:**
+
+Can a broader meaningful effect be supported by appropriate evidence and methodology?
+
+Relevant evidence may include:
+
+- outcome data;
+- attribution analysis;
+- longitudinal evidence;
 - methodology documentation;
+- independent evaluation;
 - limitations;
 - confidence assessments;
 - and uncertainty disclosures.
 
 A completed payment does not prove a positive result.
 
-A completed activity does not necessarily prove meaningful impact.
+A completed activity does not necessarily prove an outcome.
 
-### 13.4 Core distinction
+A documented outcome does not automatically establish broader impact.
 
-The following distinction is foundational:
+### 13.6 Core distinctions
 
-> TRANSACTION VERIFIED does not equal IMPACT VERIFIED.
+The following distinctions are foundational:
+
+> TRANSACTION VERIFIED does not equal USE OF FUNDS VERIFIED.
+
+> USE OF FUNDS VERIFIED does not equal OUTCOME VERIFIED.
+
+> OUTCOME VERIFIED does not automatically equal IMPACT VERIFIED.
 
 Different claims require different evidence.
 
@@ -725,11 +903,11 @@ The intended allocation of the total GFC supply is:
 | Allocation | Percentage | Token Amount |
 |---|---:|---:|
 | Impact Vault | 25% | 250,000,000 GFC |
-| Guardian Growth Fund | 20% | 200,000,000 GFC |
+| Guardian Growth | 20% | 200,000,000 GFC |
 | Presale Allocation | 15% | 150,000,000 GFC |
 | Treasury Reserve | 15% | 150,000,000 GFC |
 | Liquidity Reserve | 15% | 150,000,000 GFC |
-| Ecosystem Growth Fund | 5% | 50,000,000 GFC |
+| Ecosystem | 5% | 50,000,000 GFC |
 | Core Team | 5% | 50,000,000 GFC |
 | **Total** | **100%** | **1,000,000,000 GFC** |
 
@@ -889,9 +1067,9 @@ The public interface SHOULD distinguish between:
 
 ---
 
-## 21. Guardian Growth Fund
+## 21. Guardian Growth
 
-The Guardian Growth Fund is intended to receive:
+The Guardian Growth allocation is intended to receive:
 
 - **20% of total supply**
 - **200,000,000 GFC**
@@ -992,9 +1170,9 @@ Any authority to remove liquidity MUST be disclosed.
 
 ---
 
-## 25. Ecosystem Growth Fund
+## 25. Ecosystem
 
-The Ecosystem Growth Fund is intended to receive:
+The Ecosystem allocation is intended to receive:
 
 - **5% of total supply**
 - **50,000,000 GFC**
@@ -1022,98 +1200,127 @@ No GFC presale is currently live.
 
 No public start date is established by this specification.
 
-### 26.2 Intended parameters
+### 26.2 Current Draft parameters
 
 The current intended presale parameters are:
 
-- **Price:** €0.05 per GFC
-- **Duration:** 8 weeks
+- **Reference price:** €0.05 per GFC
+- **Intended duration:** 8 weeks
 - **Soft cap:** €250,000
-- **Hard cap:** No independent monetary hard cap
+- **Independent monetary hard cap:** None intended
 - **Token allocation:** Maximum 150,000,000 GFC
+- **Intended payment assets:** ETH, USDC, and DAI on Base
+- **Token delivery:** Immediate distribution
 - **Failure condition:** Refund if the soft cap is not reached
+- **Material sale logic:** Intended to be immutable after production deployment
 
 The finite Presale Allocation creates an absolute token-distribution limit even though no separate monetary hard cap is intended.
 
-### 26.3 Pricing
+These parameters remain Draft until incorporated into an applicable versioned presale specification and production implementation.
 
-Where payment is accepted in crypto assets rather than euros, the presale specification MUST define:
+### 26.3 Pricing and valuation
 
-- supported assets;
+Because the reference price is euro-denominated while intended payment assets include ETH, USDC, and DAI, the presale specification MUST define:
+
+- authenticated production asset addresses;
 - exchange-rate source;
 - rate timestamp;
 - rate update frequency;
 - rounding;
-- slippage handling;
-- oracle-failure behavior;
-- stale-price behavior;
-- and dispute handling.
+- stale-price limits;
+- oracle or pricing-source failure behavior;
+- decimal handling;
+- and dispute or correction treatment where applicable.
 
 Pricing MUST be deterministic and reviewable.
 
-### 26.4 Token delivery
+### 26.4 Immediate token distribution
 
-The exact delivery mechanism remains unresolved.
+The current intended delivery model is **immediate distribution**.
 
-The final presale specification MUST determine whether purchased tokens are:
+A successful purchase is intended to transfer the corresponding GFC amount to the participant as part of, or immediately following, the accepted purchase transaction.
 
-- transferred immediately;
-- claimable after purchase;
-- claimable after presale completion;
-- subject to vesting;
-- or released under another defined mechanism.
+The production specification MUST define:
 
-The public interface MUST accurately represent the actual delivery model.
+- exact delivery semantics;
+- transaction atomicity;
+- failure behavior;
+- rounding behavior;
+- allocation exhaustion behavior;
+- and accounting records.
 
-### 26.5 Fund custody
+The system MUST NOT describe a deferred claim phase as the current intended delivery model unless the applicable specification is formally changed.
 
-Presale contributions MUST NOT become freely withdrawable before the applicable success conditions and withdrawal rules are satisfied.
+### 26.5 Refund invariant and failed-sale settlement
 
-The implementation MUST preserve the ability to honor valid refunds where refunds remain available.
+The presale is intended to provide refunds if the applicable soft-cap success condition is not satisfied.
+
+Because the current Draft also uses immediate GFC distribution, the production presale specification MUST explicitly define how failed-sale refunds interact with GFC already distributed to participants.
+
+This architecture does **not** prescribe an unapproved return, clawback, burn, escrow, or other settlement mechanism.
+
+Before the presale specification can become Stable, it MUST define a mechanism that:
+
+- preserves enforceable refund rights;
+- defines the status of GFC already distributed;
+- prevents contradictory token and contribution accounting;
+- prevents project access to refundable contribution assets;
+- remains technically enforceable;
+- and is accurately represented to participants before purchase.
+
+No production presale may launch while this interaction remains ambiguous.
+
+### 26.6 Contribution custody
+
+Accepted contribution assets MUST NOT become unrestricted project proceeds while applicable refund rights remain active.
+
+The implementation MUST preserve the ability to honor valid refunds under the finalized settlement model.
 
 The final specification MUST define:
 
-- when contributions become withdrawable;
+- contribution custody;
+- when proceeds become withdrawable;
 - who may withdraw;
 - required approvals;
 - destination addresses;
 - treatment of payment-asset volatility;
-- refund deadlines;
+- refund timing;
 - partial-failure behavior;
-- and unclaimed refunds.
+- and treatment of unresolved or unclaimed refunds where applicable.
 
-### 26.6 Soft-cap failure
+### 26.7 Soft-cap failure
 
-If the soft cap is not reached under the final presale rules:
+If the soft cap is not reached under the finalized presale rules:
 
-- eligible contributors MUST be entitled to refunds;
-- the refund mechanism MUST be documented;
-- project operators MUST NOT redirect refundable assets for another purpose;
-- and failed-sale token allocation treatment MUST be disclosed.
+- eligible participants MUST have the defined refund right;
+- the refund mechanism MUST be technically and operationally documented;
+- project operators MUST NOT redirect refundable contribution assets for another purpose;
+- the treatment of already distributed GFC MUST follow the predeclared settlement mechanism;
+- and failed-sale Presale Allocation accounting MUST remain reconcilable.
 
-### 26.7 No discretionary alteration
+### 26.8 Immutability and administrative boundaries
 
-Once the production presale begins, no administrator may silently change:
+The current intended production presale design is immutable with respect to material participant-facing sale rules.
 
-- price;
+After production deployment and activation, the system MUST NOT provide an undisclosed or upgrade-based mechanism to alter:
+
+- reference price;
 - duration;
 - soft cap;
-- token allocation;
+- Presale Allocation;
 - supported payment assets;
+- token-delivery semantics;
 - refund rights;
-- purchase records;
+- participant purchase records;
 - or withdrawal conditions.
 
-Any technically permitted adjustment MUST be:
+Any pause or emergency capability, if included, MUST be separately specified and MUST NOT function as a hidden rule-changing mechanism.
 
-- defined in advance;
-- limited;
-- publicly disclosed;
-- and governed through the applicable specification.
+### 26.9 Off-chain contributions
 
-### 26.8 Off-chain contributions
+Off-chain contributions are not authorized by this architecture unless a later applicable specification explicitly introduces them.
 
-Where off-chain payment methods are permitted, they MUST NOT bypass:
+If introduced later, they MUST NOT bypass:
 
 - pricing rules;
 - allocation limits;
@@ -1122,11 +1329,9 @@ Where off-chain payment methods are permitted, they MUST NOT bypass:
 - accounting requirements;
 - or reporting obligations.
 
-Off-chain contributions MUST be reconciled with the presale allocation and publicly reported at an appropriate level.
+### 26.10 Legal and eligibility controls
 
-### 26.9 Legal and eligibility controls
-
-Participation requirements, identity checks, geographic restrictions, sanctions controls, and legal eligibility are outside this architecture document but MUST be resolved before launch.
+Participation requirements, identity checks, geographic restrictions, sanctions controls, and legal eligibility are outside this architecture document but MUST be resolved before production launch.
 
 Technical implementation MUST NOT be presented as replacing legal compliance.
 
@@ -1448,20 +1653,36 @@ Security-sensitive details MAY be delayed until disclosure no longer increases r
 
 ## 32. Staking Architecture
 
-### 32.1 Intended model
+### 32.1 Current intended model
 
-GFC may introduce a hybrid staking model providing:
+The current Draft direction is a **hybrid, non-inflationary staking model**.
 
-- moderate token rewards;
+The model MAY combine:
+
+- token rewards;
 - governance-related participation;
 - community-related benefits;
-- or other explicitly documented utility.
+- or other explicitly specified utility.
 
-### 32.2 No guaranteed return
+No production GFC staking system is currently operational.
+
+### 32.2 Non-inflationary requirement
+
+Staking MUST NOT increase the fixed GFC total supply.
+
+Any token-denominated staking rewards MUST originate from:
+
+- GFC already included within the fixed supply;
+- a predefined allocation;
+- or another explicitly specified non-minting economic source.
+
+A staking design MUST NOT introduce discretionary minting through upgrades, reward contracts, or replacement systems.
+
+### 32.3 No guaranteed return
 
 Staking MUST NOT be presented as providing guaranteed profit or guaranteed yield.
 
-Any displayed annual percentage rate or yield MUST identify:
+Any displayed reward rate, APR, APY, or estimate MUST identify:
 
 - calculation basis;
 - reward source;
@@ -1470,24 +1691,22 @@ Any displayed annual percentage rate or yield MUST identify:
 - variability;
 - and relevant risks.
 
-### 32.3 Reward sustainability
+### 32.4 Reward sustainability
 
 Before implementation, the staking specification MUST define:
 
 - reward source;
 - reward allocation;
-- emission duration;
+- emission or distribution duration;
 - maximum distribution;
 - staking period;
 - lock conditions;
 - early-exit conditions;
 - reward calculation;
-- governance rights;
+- governance or participation rights;
 - and long-term sustainability.
 
-The staking system MUST NOT create additional GFC beyond the fixed supply.
-
-### 32.4 Staking authority
+### 32.5 Staking authority
 
 Staking MUST NOT automatically grant:
 
@@ -1495,14 +1714,14 @@ Staking MUST NOT automatically grant:
 - unrestricted treasury control;
 - contract-upgrade authority;
 - access to protected evidence;
-- or authority to define impact as verified.
+- or authority to define an outcome or impact claim as verified.
 
-### 32.5 Contract risks
+### 32.6 Contract risks
 
 The public interface MUST disclose relevant staking risks, including:
 
 - smart-contract risk;
-- lock-up risk;
+- lock-up risk where applicable;
 - reward variability;
 - liquidity risk;
 - governance risk;
@@ -1512,9 +1731,11 @@ The public interface MUST disclose relevant staking risks, including:
 
 ## 33. Transparency Infrastructure
 
-### 33.1 Purpose
+### 33.1 Status and purpose
 
-The transparency infrastructure is intended to make claims, records, authority, and evidence more reviewable over time.
+The broader production transparency infrastructure is planned and is not represented as fully deployed today.
+
+The intended infrastructure is designed to make funds, authority, rules, decisions, claims, evidence, corrections, and historical status more reviewable over time.
 
 It may aggregate:
 
@@ -1526,25 +1747,41 @@ It may aggregate:
 - lock and vesting state;
 - governance approvals;
 - cryptographic evidence anchors;
-- fund-use records;
+- use-of-funds records;
 - protected-document references;
 - outcome information;
 - and impact evaluations.
 
-### 33.2 No execution authority
+### 33.2 Transparency Registry model
 
-The transparency portal SHOULD remain separate from custody and governance execution.
+The intended **Transparency Registry** is a versioned historical record rather than a permanent approval badge.
 
-The portal MUST NOT possess undisclosed authority to:
+Where a registry record exists, the system SHOULD make it possible to reconstruct material changes such as:
+
+- what was disclosed;
+- what evidence supported the record;
+- which policy or rule applied;
+- which governance or authority context applied;
+- which claim status was assigned;
+- what later changed;
+- and why a record was corrected, superseded, suspended, or otherwise updated.
+
+A one-time `verified` label MUST NOT be treated as permanent assurance where evidence, policy, governance, claims, or circumstances can change.
+
+### 33.3 No execution authority
+
+The transparency portal or registry interface SHOULD remain separate from custody and governance execution.
+
+It MUST NOT possess undisclosed authority to:
 
 - move funds;
 - change balances;
 - alter contract state;
 - approve treasury transfers;
-- modify evidence history;
+- silently modify evidence history;
 - or override governance decisions.
 
-### 33.3 Transaction preparation
+### 33.4 Transaction preparation
 
 The portal MAY help users prepare or submit blockchain transactions.
 
@@ -1555,9 +1792,9 @@ Where it does so:
 - destination contracts MUST be verifiable;
 - and the interface MUST NOT conceal privileged relayers or backend services.
 
-### 33.4 Data-source distinction
+### 33.5 Data-source distinction
 
-The portal MUST distinguish between:
+The system MUST distinguish between:
 
 - blockchain-derived data;
 - contract-derived data;
@@ -1567,7 +1804,7 @@ The portal MUST distinguish between:
 - reviewed evidence;
 - and independently verified findings.
 
-### 33.5 Historical integrity
+### 33.6 Historical integrity
 
 Material published records SHOULD retain:
 
@@ -1575,36 +1812,48 @@ Material published records SHOULD retain:
 - update time;
 - previous version;
 - evidence reference;
-- responsible publisher;
+- responsible publisher or authority category;
 - and reason for revision.
 
-Corrections MUST NOT silently erase the existence of materially incorrect earlier claims.
+Corrections MUST NOT silently erase the existence of materially relevant earlier claims or statuses.
+
+Privacy, legal, or security redactions MAY limit public detail, but the historical record SHOULD retain an appropriate indication that a material change occurred where lawful and safe.
 
 ---
 
 ## 34. Fund-Flow Lifecycle
 
-A material GFC-related fund flow SHOULD be reviewable across the following stages:
+A material GFC-related accountability record SHOULD, where applicable, be reconstructable across the canonical sequence:
 
-1. source of funds;
-2. applicable allocation;
-3. responsible authority;
-4. approval requirements;
-5. intended purpose;
-6. execution;
-7. on-chain transaction evidence;
-8. supporting use-of-funds evidence;
-9. reconciliation;
-10. delivered output;
-11. resulting outcome;
-12. impact evaluation where claimed;
-13. limitations;
-14. exceptions;
-15. final status.
+1. **Funds** — source, allocation, custody, and movement of value;
+2. **Authority** — role or mechanism permitted to act;
+3. **Rules** — applicable specification, policy, approval, contract logic, or constraint;
+4. **Decisions** — proposal, approval, rationale, and execution decision;
+5. **Outcomes** — resulting delivery, state change, or real-world result;
+6. **Evidence** — records supporting or challenging the preceding stages.
+
+For fund-use and impact contexts, this may include more detailed records such as:
+
+- source of funds;
+- applicable allocation;
+- responsible authority;
+- approval requirements;
+- intended purpose;
+- execution;
+- on-chain transaction evidence;
+- supporting use-of-funds evidence;
+- reconciliation;
+- delivered output;
+- resulting outcome;
+- impact evaluation where claimed;
+- limitations;
+- exceptions;
+- corrections;
+- and final status.
 
 Not every stage must be publicly disclosed in full.
 
-Where records are protected, the system SHOULD disclose:
+Where records are protected, the system SHOULD disclose, where appropriate and safe:
 
 - that supporting evidence exists;
 - its evidence category;
@@ -1612,6 +1861,8 @@ Where records are protected, the system SHOULD disclose:
 - review status;
 - responsible reviewer category;
 - and reason for restricted access.
+
+The model MUST NOT imply that evidence exists for a stage where it has not actually been collected or reviewed.
 
 ---
 
@@ -1781,6 +2032,7 @@ The architecture MUST account for at least the following threats:
 - stale pricing;
 - presale accounting errors;
 - insufficient refund reserves;
+- inconsistency between immediate token distribution and failed-sale refund settlement;
 - evidence fabrication;
 - evidence tampering;
 - privacy leakage;
@@ -1836,7 +2088,7 @@ Material contracts and wallets SHOULD be monitored for:
 
 ### 39.6 Disclosure
 
-Security vulnerabilities MUST be handled according to `SECURITY.md`.
+Security vulnerabilities MUST be handled according to [`../SECURITY.md`](../SECURITY.md).
 
 Sensitive vulnerabilities MUST NOT be disclosed publicly before reasonable remediation where premature disclosure would increase risk.
 
@@ -1844,19 +2096,19 @@ Sensitive vulnerabilities MUST NOT be disclosed publicly before reasonable remed
 
 ## 40. Deployment Requirements
 
-Before any production deployment is represented as official, GFC MUST publish:
+Before any Base Mainnet production deployment is represented as official, GFC MUST publish or authenticate, as applicable:
 
 - applicable specification version;
 - source-code repository;
 - source-code commit;
 - compiler version;
 - build configuration;
-- network;
+- production network;
 - chain ID;
 - deployer address;
 - contract addresses;
-- implementation addresses;
-- proxy addresses, where applicable;
+- implementation addresses where applicable;
+- proxy addresses where applicable;
 - administrator addresses;
 - role assignments;
 - initial token allocation transactions;
@@ -1864,11 +2116,16 @@ Before any production deployment is represented as official, GFC MUST publish:
 - audit or review status;
 - known deviations;
 - upgradeability status;
+- pause status or capability;
 - and deployment date.
 
-Official contract addresses MUST be published through an authenticated release process.
+Official production contract addresses MUST be published through an authenticated release process.
 
 A social-media post alone SHOULD NOT be treated as sufficient contract authentication.
+
+Testnet and pilot records MUST be listed separately from production records.
+
+The existing Base Sepolia pilot MUST NOT be reused as evidence of Base Mainnet production deployment.
 
 ---
 
@@ -1882,17 +2139,25 @@ An official production release SHOULD include:
 - checksums or hashes;
 - network information;
 - deployed addresses;
-- signed release statement;
+- authenticated release statement;
 - and known limitations.
 
 The release MUST distinguish between:
 
+- experimental implementation;
+- prototype;
 - test deployment;
+- pilot;
 - audit candidate;
 - production candidate;
+- production deployment;
 - active production deployment;
 - deprecated deployment;
-- and replaced deployment.
+- and replacement deployment.
+
+The current Base Sepolia pilot is not a production release.
+
+Current deployment status is tracked in [`../STATUS.md`](../STATUS.md).
 
 ---
 
@@ -2012,77 +2277,73 @@ Git history alone is not sufficient documentation for material architectural cha
 
 ## 45. System Diagram
 
+The following diagram distinguishes the existing public pilot from planned future production architecture.
+
 ```mermaid
 flowchart TB
-    Users[Users, Contributors and Stakeholders]
-    Portal[Public Transparency Portal]
-    Wallets[User Wallets]
+    Users["Users, Contributors and Stakeholders"]
 
-    subgraph Technology["Technology Layer"]
-        Token[GFC Token Contract]
-        Presale[Presale System]
-        Staking[Staking System]
-        Allocation[Allocation Contracts]
-        Locks[Impact Vault and Lock Contracts]
-        Vesting[Core Team Vesting]
-        Treasury[Treasury and Reserve Custody]
-        GovExecution[Governance Execution]
-        Anchor[Cryptographic Evidence Anchors]
+    subgraph Current["CURRENT PUBLIC IMPLEMENTATION"]
+        Pilot["tGFC Pilot<br/>Base Sepolia<br/>Chain ID 84532"]
     end
 
-    subgraph Governance["Governance Layer"]
-        Proposals[Proposals and Decisions]
-        Approvals[Approvals and Multisig Controls]
-        Admin[Administrative Roles]
-        Emergency[Emergency and Incident Controls]
+    subgraph Product["CURRENT PRIMARY PRODUCT FOCUS — TOKEN / ECONOMIC LAYER"]
+        Token["GFC Token<br/>Planned Base Mainnet"]
+        Allocation["Allocation Infrastructure<br/>Planned"]
+        Vesting["Vesting and Unlocks<br/>Planned"]
+        Presale["Presale<br/>Planned — Not Live"]
+        Staking["Hybrid Non-Inflationary Staking<br/>Planned"]
+        Treasury["Treasury / Liquidity Custody<br/>Planned"]
+        Gov["Authority and Governance Controls<br/>Planned"]
+        Security["Security and Deployment Controls<br/>Planned"]
     end
 
-    subgraph Evidence["Impact and Evidence Layer"]
-        UseRecords[Use-of-Funds Records]
-        Protected[Protected Off-chain Evidence]
-        Outcomes[Outcome Documentation]
-        Impact[Impact Evaluation]
-        Review[Internal or Independent Review]
+    subgraph Accountability["LONG-TERM ACCOUNTABILITY INFRASTRUCTURE"]
+        Funds["Funds"]
+        Authority["Authority"]
+        Rules["Rules"]
+        Decisions["Decisions"]
+        Outcomes["Outcomes"]
+        Evidence["Evidence"]
+        Registry["Versioned Transparency Registry<br/>Planned"]
     end
 
-    Base[(Base Mainnet)]
+    BaseSepolia[(Base Sepolia)]
+    BaseMainnet[(Base Mainnet)]
 
-    Users --> Portal
-    Users --> Wallets
+    Pilot --> BaseSepolia
 
-    Portal --> Wallets
-    Wallets --> Token
-    Wallets --> Presale
-    Wallets --> Staking
+    Users -. future interaction .-> Token
+    Users -. future participation .-> Presale
+    Users -. future participation .-> Staking
 
-    Token --> Base
-    Presale --> Base
-    Staking --> Base
-    Allocation --> Base
-    Locks --> Base
-    Vesting --> Base
-    Treasury --> Base
-    GovExecution --> Base
-    Anchor --> Base
+    Token --> BaseMainnet
+    Allocation --> BaseMainnet
+    Vesting --> BaseMainnet
+    Presale --> BaseMainnet
+    Staking --> BaseMainnet
+    Treasury --> BaseMainnet
+    Gov --> BaseMainnet
 
-    Proposals --> Approvals
-    Approvals --> GovExecution
-    Admin --> GovExecution
-    Emergency --> GovExecution
-    Approvals --> Treasury
+    Security --> Token
+    Security --> Presale
+    Security --> Staking
+    Gov --> Treasury
+    Gov --> Allocation
 
-    Protected --> Anchor
-    UseRecords --> Protected
-    UseRecords --> Review
-    Outcomes --> Review
-    Review --> Impact
-
-    Base --> Portal
-    Anchor --> Portal
-    UseRecords --> Portal
-    Outcomes --> Portal
-    Impact --> Portal
+    Funds --> Authority
+    Authority --> Rules
+    Rules --> Decisions
+    Decisions --> Outcomes
+    Outcomes --> Evidence
+    Evidence --> Registry
 ```
+
+The diagram is status-aware:
+
+- the Base Sepolia tGFC pilot is the only deployment represented here as currently existing;
+- Base Mainnet product components are planned or specified, not deployed;
+- the broader Accountability Infrastructure is a long-term architectural direction, not a claim of present operational completeness.
 
 ---
 
@@ -2090,34 +2351,40 @@ flowchart TB
 
 This architecture does not aim to:
 
+- treat the current Base Sepolia pilot as Base Mainnet production;
 - create a separate GFC blockchain at initial launch;
-- claim that blockchain visibility alone creates transparency;
+- claim that blockchain visibility alone creates accountability;
 - claim that transaction verification proves fund use;
-- claim that fund use automatically proves impact;
+- claim that fund use automatically proves an outcome or impact;
 - fully automate governance;
 - eliminate human responsibility;
 - grant unrestricted authority through token ownership;
 - expose protected personal or beneficiary data;
 - guarantee financial returns;
 - guarantee token appreciation;
-- guarantee charitable or social outcomes;
+- guarantee liquidity;
+- guarantee presale success;
+- guarantee charitable, social, environmental, or other impact;
 - optimize primarily for short-term speculation;
 - conceal administrative authority;
 - present a multisig as automatically decentralized;
 - treat a wallet label as an enforceable restriction;
+- treat a Transparency Registry entry as a permanent approval badge;
 - present planned functionality as deployed;
+- present `live` without identifying the relevant environment where ambiguity could result;
 - replace legal, regulatory, accounting, security, or impact review;
 - or imply that the project name establishes a legal foundation.
 
-The purpose of the architecture is to make trust:
+The architecture is intended to make trust and responsibility:
 
 - bounded;
 - visible;
 - reviewable;
 - constrained;
-- and accountable.
+- attributable;
+- and historically reconstructable.
 
-The architecture does not claim that trust can be eliminated entirely.
+It does not claim that trust, uncertainty, or human responsibility can be eliminated entirely.
 
 ---
 
@@ -2143,60 +2410,77 @@ Technical architecture MUST NOT be used to imply legal status that has not been 
 
 This architecture must be read together with:
 
+- `README.md`
 - `glossary.md`
 - `non-goals.md`
+- `roles-and-authority.md`
 - `governance-constraints.md`
-- `transparency-model.md`
+- `security-model.md`
+- `token.md`
+- `allocations.md`
+- `vesting-and-unlocks.md`
+- `economic-flows.md`
+- `staking.md`
 - `presale.md`
-- `SECURITY.md`
+- `transparency-model.md`
+- `../STATUS.md`
+- `../SECURITY.md`
 
-Additional specifications SHOULD be introduced for:
+Where a referenced specification has not yet been created, its subject remains governed only by the currently applicable existing specifications and explicit Draft decisions.
 
-- token and fee logic;
-- allocation and treasury controls;
-- Impact Vault;
-- vesting;
-- staking;
-- deployment;
-- evidence management;
-- privacy;
-- governance execution;
-- incident response;
-- and contract migration.
+No missing future specification may be assumed to contain unstated functionality or authority.
 
-Where another specification conflicts with this document, the conflict must be resolved before either document is marked Stable.
+Where another specification conflicts with this document, the conflict MUST be documented and resolved before the affected documents are marked Stable.
 
 ---
 
 ## 49. Unresolved Architectural Decisions
 
-The following matters remain unresolved and MUST be completed before this document can become Stable:
+The following matters remain unresolved and MUST be completed before this document can become Stable.
+
+This list does not imply that every unresolved item requires the same implementation mechanism.
 
 ### Token
 
-- final contract upgradeability;
+- final contract upgradeability or immutability classification;
 - final fee-classification logic;
 - final fee destination;
-- fee exemption authority;
-- transfer pause policy;
-- burn behavior;
+- fee exemption authority, if any;
+- transfer pause policy, if any;
+- burn behavior, if any;
 - deployment method;
 - and temporary deployment roles.
 
 ### Presale
 
-- supported payment assets;
-- token-delivery method;
-- exchange-rate methodology;
-- withdrawal timing;
-- refund implementation;
-- off-chain contribution handling;
+The current Draft already establishes:
+
+- ETH, USDC, and DAI on Base as intended payment assets;
+- €0.05 per GFC reference price;
+- intended eight-week duration;
+- €250,000 soft cap;
+- no independent monetary hard cap;
+- maximum 150,000,000 GFC Presale Allocation;
+- immediate token distribution;
+- refund requirement if the soft cap is not reached;
+- and intended immutability of material sale logic.
+
+Still unresolved are:
+
+- authenticated production payment-asset addresses;
+- euro valuation and exchange-rate methodology;
+- exact purchase accounting and rounding;
+- exact immediate-distribution transaction semantics;
+- failed-sale settlement of already distributed GFC;
+- contribution custody;
+- proceeds withdrawal timing and authority;
+- refund implementation details;
 - eligibility requirements;
 - and unused allocation treatment.
 
 ### Custody
 
-- multisig platform;
+- multisig platform or equivalent custody mechanism;
 - signer categories;
 - signer identities or disclosure model;
 - approval thresholds;
@@ -2204,27 +2488,32 @@ The following matters remain unresolved and MUST be completed before this docume
 - recovery procedures;
 - and key-compromise response.
 
-### Governance
+### Governance and authority
 
+- final production role set;
 - governance participation model;
-- voting rights;
-- proposal thresholds;
-- quorum;
+- voting rights, if any;
+- proposal thresholds, if any;
+- quorum, if any;
 - execution delays;
-- veto rights;
+- veto rights, if any;
 - emergency authority;
 - and role-removal process.
 
 ### Locks and vesting
 
 - exact start timestamps;
-- claim frequency;
+- release or claim frequency;
 - migration logic;
 - succession;
 - reassignment;
 - and final beneficiary structures.
 
 ### Staking
+
+The current Draft direction is hybrid and non-inflationary.
+
+Still unresolved are:
 
 - reward source;
 - reward amount;
@@ -2234,8 +2523,9 @@ The following matters remain unresolved and MUST be completed before this docume
 - withdrawal rules;
 - and sustainability analysis.
 
-### Transparency
+### Transparency and accountability
 
+- final Transparency Registry schema;
 - evidence schema;
 - evidence-status taxonomy;
 - cryptographic anchoring method;
@@ -2247,11 +2537,11 @@ The following matters remain unresolved and MUST be completed before this docume
 
 ### Security
 
-- audit scope;
+- final audit scope;
 - monitoring infrastructure;
 - incident severity model;
 - public-disclosure process;
-- emergency pause design;
+- emergency pause design where applicable;
 - and migration procedure.
 
 ### Legal and operational structure
@@ -2270,17 +2560,23 @@ The following matters remain unresolved and MUST be completed before this docume
 
 This document MUST NOT be marked Stable until:
 
+- the current product architecture and long-term accountability architecture are mutually consistent;
+- Base Sepolia pilot status and Base Mainnet production status are consistently separated;
 - all unresolved critical authority surfaces are defined;
+- production role definitions are finalized;
 - token behavior is finalized;
 - fee behavior is finalized;
 - token allocations are contractually mapped;
 - lock and vesting implementations are specified;
 - presale mechanics are finalized;
+- immediate-distribution behavior is technically defined;
+- failed-sale treatment of already distributed GFC is technically and operationally defined;
 - refund behavior is technically and operationally defined;
 - treasury custody is finalized;
-- multisig thresholds are approved;
+- production approval thresholds are approved;
 - governance boundaries are finalized;
-- staking economics are documented;
+- staking economics and non-inflationary reward sourcing are documented;
+- transparency and registry architecture are documented;
 - evidence architecture is documented;
 - privacy controls are documented;
 - upgrade and pause authority are defined;
@@ -2296,30 +2592,59 @@ This document MUST NOT be marked Stable until:
 
 ## 51. Final Architectural Principle
 
-GFC transparency requires the combined operation of:
+The current primary GFC product architecture is the **GFC Token / Economic Layer**.
 
-- technology;
-- governance;
-- and impact evidence.
+Its supporting architecture must make token behavior, allocations, economic flows, participant protections, authority, security, and deployment status explicit before production reliance.
 
-Technology can verify execution.
+The broader long-term GFC architecture extends this principle into:
 
-Governance can establish authority and accountability.
+**Funds → Authority → Rules → Decisions → Outcomes → Evidence**
 
-Evidence can support claims about purpose, use, outcomes, and impact.
+Technology can establish technical execution.
 
-None of these layers is sufficient alone.
+Authority records can establish who was permitted to act.
+
+Rules can establish the constraints under which action should occur.
+
+Decision records can establish what was approved or chosen.
+
+Outcome records can document what followed.
+
+Evidence can support, limit, challenge, or correct claims about the preceding stages.
+
+None of these elements is sufficient alone.
 
 The GFC architecture must therefore preserve the following distinctions:
+
+> Pilot is not production.
+
+> Base Sepolia is not Base Mainnet.
+
+> Specified is not implemented.
+
+> Implemented is not tested.
+
+> Tested is not audited.
+
+> Deployed is not automatically active or conforming.
 
 > Visibility is not the same as verifiability.
 
 > Transaction verification is not the same as use-of-funds verification.
 
-> Use-of-funds verification is not the same as impact verification.
+> Use-of-funds verification is not the same as outcome verification.
 
-> Cryptographic anchoring proves record integrity, not factual truth.
+> Outcome verification does not automatically equal impact verification.
 
-> Public wallets expose movements, not motives, authority, or outcomes.
+> Cryptographic anchoring can support record integrity; it does not establish factual truth.
+
+> Public wallets expose movements; they do not independently establish purpose, authority, rules, outcomes, or impact.
+
+> A versioned registry record is not a permanent approval badge.
 
 > Different claims require different evidence.
+
+The architecture is intended to make responsibility reconstructable without claiming that code, transparency, or cryptography eliminates uncertainty or human accountability.
+
+---
+

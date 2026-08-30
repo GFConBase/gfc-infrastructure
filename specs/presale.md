@@ -4,355 +4,487 @@
 **Maturity:** Draft  
 **Authority:** Normative  
 **Version:** Unreleased  
-**Implementation Status:** Pre-deployment  
-**Intended Network:** Base Mainnet  
-**Chain ID:** 8453  
-**Last Updated:** 2026-07-23
+**Implementation Status:** Pre-mainnet specification and pilot development  
+**Primary Product Focus:** GFC Token / Economic Layer  
+**Intended Production Network:** Base Mainnet  
+**Production Chain ID:** 8453  
+**Public Pilot Network:** Base Sepolia  
+**Pilot Chain ID:** 84532  
+**Last Updated:** 2026-08-30
 
 ---
 
 ## 1. Document Status
 
-This document defines the intended behavior, constraints, participant rights, authority boundaries, and transparency requirements of the planned GFC presale.
+This document defines the current intended behavior, participant protections, economic constraints, authority boundaries, and transparency requirements for the planned Global Foundation Coin (GFC) presale.
 
 It is normative because it defines intended requirements and prohibited behavior.
 
-Its maturity remains Draft. The requirements may change before the first versioned release.
+Its maturity remains Draft.
 
-At the time of publication:
+At the current repository state:
 
+- the **GFC Token / Economic Layer** is the current primary product focus;
 - no GFC presale is live;
-- no production presale contract is represented as deployed;
-- no production presale address has been published;
-- no public presale start date is established by this document;
-- no supported payment asset has been finalized;
-- no oracle or conversion mechanism has been finalized;
-- no production purchase, claim, refund, or withdrawal mechanism has been activated;
-- this document does not constitute an offer, invitation, or confirmation that participation is available;
-- no implementation is governed by this document unless it explicitly identifies an applicable versioned release.
+- no production presale contract is deployed;
+- no production presale address is established as official;
+- no public presale launch date is established by this document;
+- the current Draft design intends to support **ETH, USDC, and DAI on Base**;
+- exact production payment-asset identifiers and implementation details remain subject to authentication before launch;
+- no production pricing implementation is finalized;
+- no production refund mechanism is finalized;
+- no production withdrawal destination is established as official;
+- no production presale authority is established as official by this document;
+- no production presale security audit is represented as completed;
+- and no production presale implementation is designated as conforming.
 
-The presence of a parameter or mechanism in this document does not mean that it has already been implemented, tested, reviewed, audited, deployed, or activated.
+The current Draft design direction uses **immediate GFC distribution**.
+
+The current Draft design also requires refunds where the applicable soft-cap success condition is not satisfied.
+
+The exact technically enforceable relationship between:
+
+- GFC already distributed to a participant; and
+- the participant's refund right after failed finalization
+
+remains unresolved.
+
+A production presale MUST NOT activate while that interaction remains undefined.
+
+This document does not constitute an offer, invitation, confirmation of availability, or proof that participation is currently possible.
+
+Current implementation and deployment status is maintained in [`../STATUS.md`](../STATUS.md).
 
 ---
 
 ## 2. Purpose
 
-This document defines the planned GFC presale architecture.
+The purpose of this specification is to define a presale model that is:
 
-Its purpose is to establish:
+- finite;
+- deterministic;
+- participant-protective;
+- economically reconcilable;
+- authority-bounded;
+- security-reviewable;
+- and accurately represented.
 
-- fixed and reviewable pricing rules;
-- a finite token allocation;
+The specification is intended to establish:
+
+- a fixed GFC reference price;
+- a finite Presale allocation;
+- supported payment-asset requirements;
 - deterministic purchase accounting;
+- immediate token distribution as the current design direction;
 - clear success and failure conditions;
-- protected participant refund rights;
-- controlled custody of contributed assets;
+- protected refund rights;
+- controlled contribution custody;
 - constrained administrative authority;
-- transparent token-claim mechanics;
-- predictable handling of unsold tokens;
-- accurate communication of presale status;
-- and verifiable linkage between presale records and the wider GFC transparency infrastructure.
+- predictable finalization;
+- predefined unsold-token treatment;
+- transparent status reporting;
+- and linkage to the wider GFC accountability model.
 
-The presale must not rely on informal promises or front-end behavior where contract-level enforcement is technically required.
-
----
-
-## 3. Relationship to Other Specifications
-
-This document must be read together with:
-
-- `architecture.md`;
-- `governance-constraints.md`;
-- `transparency-model.md`;
-- `non-goals.md`;
-- `glossary.md`;
-- and the repository-level `SECURITY.md`.
-
-A future token specification must additionally define:
-
-- the production GFC token contract;
-- transfer behavior;
-- fees;
-- administrative authority;
-- and token allocation implementation.
-
-Where specifications conflict, the conflict must be resolved before the presale specification is marked Stable or a production presale begins.
+The presale MUST NOT rely on frontend behavior alone where participant-facing financial rules require technical enforcement.
 
 ---
 
-## 4. Normative Language
+## 3. Relationship to the GFC Accountability Model
+
+The long-term GFC accountability model is:
+
+**Funds → Authority → Rules → Decisions → Outcomes → Evidence**
+
+The presale directly involves each stage.
+
+### Funds
+
+What payment assets were contributed, what GFC was distributed, what assets remain refundable, and what assets later become valid proceeds?
+
+### Authority
+
+Who may configure, activate, pause, finalize, withdraw, migrate, or otherwise influence the presale?
+
+### Rules
+
+What price, duration, soft cap, allocation ceiling, payment assets, distribution rules, refund rights, and withdrawal conditions apply?
+
+### Decisions
+
+Which authorized actions activate, pause, cancel, finalize, migrate, or withdraw?
+
+### Outcomes
+
+What GFC was distributed, what contributions were accepted, whether the soft cap was reached, and whether finalization succeeded or failed?
+
+### Evidence
+
+What on-chain records, deployment records, pricing records, accounting records, and public status records support those claims?
+
+A purchase transaction does not by itself prove:
+
+- successful finalization;
+- unrestricted project ownership of the contribution;
+- liquidity;
+- future market value;
+- project completion;
+- or impact.
+
+---
+
+## 4. Relationship to Other Specifications
+
+This document MUST be interpreted together with:
+
+- [`README.md`](README.md);
+- [`glossary.md`](glossary.md);
+- [`non-goals.md`](non-goals.md);
+- [`architecture.md`](architecture.md);
+- [`roles-and-authority.md`](roles-and-authority.md);
+- [`governance-constraints.md`](governance-constraints.md);
+- [`security-model.md`](security-model.md);
+- [`token.md`](token.md);
+- [`allocations.md`](allocations.md);
+- [`vesting-and-unlocks.md`](vesting-and-unlocks.md);
+- [`economic-flows.md`](economic-flows.md);
+- [`staking.md`](staking.md);
+- [`transparency-model.md`](transparency-model.md);
+- repository-level [`../STATUS.md`](../STATUS.md);
+- and repository-level [`../SECURITY.md`](../SECURITY.md).
+
+Where another Draft specification conflicts with this document, the conflict MUST be resolved explicitly before Stable status and before production activation.
+
+---
+
+## 5. Normative Language
 
 The terms **MUST**, **MUST NOT**, **REQUIRED**, **SHALL**, **SHALL NOT**, **SHOULD**, **SHOULD NOT**, **RECOMMENDED**, **NOT RECOMMENDED**, **MAY**, and **OPTIONAL** express requirement levels.
 
 These terms are normative only when:
 
 - they appear in uppercase;
-- the document declares `Authority: Normative`;
-- and the document version applies to the implementation being evaluated.
+- the containing document declares `Authority: Normative`;
+- and the applicable version governs the implementation, process, or communication being evaluated.
 
-Because this document is currently Draft, its requirements describe the intended presale model but remain subject to review and versioned release.
+Because this document is Draft, these requirements remain subject to formal review and versioned release.
 
 ---
 
-## 5. Scope
+## 6. Scope
 
 This specification covers:
 
-- presale token allocation;
+- Presale allocation;
 - reference price;
-- contribution-value calculation;
-- supported payment assets;
-- purchase accounting;
-- soft-cap calculation;
 - sale duration;
-- sale-state transitions;
-- token entitlement;
-- token claiming;
+- supported payment assets;
+- contribution valuation;
+- purchase accounting;
+- immediate GFC distribution;
+- allocation exhaustion;
+- soft-cap accounting;
 - contribution custody;
-- presale finalization;
-- successful-sale withdrawals;
+- finalization;
+- successful-sale proceeds;
 - failed-sale refunds;
 - cancellation;
-- pausing;
-- unsold-token handling;
-- administrative authority;
-- upgradeability;
+- pause behavior;
+- unsold GFC;
+- presale authority;
+- immutability and configuration boundaries;
+- migration;
 - participant-facing disclosures;
-- on-chain records;
-- transparency requirements;
+- public records;
 - privacy boundaries;
 - security requirements;
+- monitoring;
 - incident handling;
 - conformance;
 - and unresolved pre-launch decisions.
 
 ---
 
-## 6. Out of Scope
+## 7. Out of Scope
 
 This document does not independently define:
 
-- final legal terms of participation;
-- jurisdiction-specific eligibility;
-- identity-verification requirements;
-- sanctions controls;
+- final legal participation terms;
+- final jurisdiction-specific eligibility;
+- final identity-verification requirements;
+- final sanctions controls;
 - tax treatment;
 - accounting treatment;
-- consumer-protection classification;
 - securities or financial-instrument classification;
-- final supported payment assets;
-- final oracle provider;
-- final contract source code;
-- final contract addresses;
+- final production contract source code;
+- final production contract addresses;
+- exact production USDC and DAI contract addresses;
+- final pricing provider or oracle architecture;
 - final user-interface design;
 - final marketing strategy;
 - exchange listing;
 - market price after the presale;
 - guaranteed liquidity;
 - guaranteed token value;
-- guaranteed returns;
+- guaranteed return;
 - or guaranteed project impact.
 
-These matters require separate legal, technical, operational, or public documentation before launch.
+These matters require separate legal, technical, operational, or authenticated production records before production reliance.
 
 ---
 
-## 7. Presale Principles
+## 8. Presale Principles
 
-The GFC presale follows the principles below.
+### 8.1 Contract-enforced material rules
 
-### 7.1 Contract-enforced rules
+Material participant rights and financial constraints MUST be enforced by the presale contract or another equally verifiable settlement mechanism.
 
-Material participant rights and financial constraints MUST be enforced by the presale contract or an equally verifiable mechanism.
-
-A user interface MUST NOT be the sole enforcement layer for:
+A frontend MUST NOT be the sole enforcement layer for:
 
 - price;
-- token allocation;
-- contribution limits;
-- soft-cap calculation;
+- allocation ceiling;
+- contribution acceptance;
+- participant accounting;
+- GFC distribution;
+- soft-cap accounting;
 - refund rights;
-- token entitlement;
-- or withdrawal conditions.
+- or proceeds-withdrawal conditions.
 
-### 7.2 Participant protection before fund access
+### 8.2 Participant protection before unrestricted project access
 
-Contributed assets MUST remain unavailable for discretionary project use until the presale has ended and has been successfully finalized.
+Accepted contribution assets MUST remain unavailable for unrestricted project use while valid refund rights require those assets to remain available.
 
-### 7.3 No token creation through the presale
+### 8.3 No token creation through presale
 
-The presale MUST distribute tokens only from the predefined Presale Allocation.
+The presale MUST distribute GFC only from the predefined Presale allocation.
 
 The presale MUST NOT mint additional GFC.
 
-### 7.4 Deterministic accounting
+### 8.4 Deterministic accounting
 
-Every accepted contribution MUST produce a deterministic and reviewable record of:
+Every accepted contribution MUST produce deterministic and reviewable accounting.
 
-- payment asset;
-- accepted payment amount;
-- reference value;
-- applicable conversion rate;
-- GFC entitlement;
-- contributor address;
-- transaction time;
-- and transaction identifier.
+### 8.5 Immediate distribution as current design direction
 
-### 7.5 Refund integrity
+The current Draft design direction is to distribute the purchased GFC amount immediately as part of, or immediately following, a valid purchase.
 
-Where the presale fails or is validly cancelled, eligible participants MUST be able to recover their accepted contributions according to the applicable refund rules.
+### 8.6 Refund integrity
 
-### 7.6 No retrospective rule changes
+If the applicable success condition is not satisfied, valid refund rights MUST remain enforceable according to the finalized production rules.
 
-Presale rules MUST NOT be changed after launch merely because the actual result differs from project expectations.
+### 8.7 No retrospective rule rewriting
 
-### 7.7 Accurate status communication
+Presale rules MUST NOT be changed after activation merely because actual sale results differ from expectations.
 
-Public communication MUST distinguish between:
+### 8.8 Accurate status communication
 
-- planned presale;
-- configured presale;
-- active presale;
-- paused presale;
-- ended presale;
-- successful presale;
-- failed presale;
-- refund phase;
-- claim phase;
-- and completed presale.
+Public communication MUST accurately distinguish between Draft, Planned, Configured, Active, Paused, Ended, Successful, Failed, Refunding, Completed, and other applicable states.
 
 ---
 
-## 8. Current Intended Parameters
+## 9. Current Intended Parameters
 
-The current intended presale parameters are:
+The current Draft presale parameters are:
 
-| Parameter | Intended Value |
+| Parameter | Current Draft Value |
 |---|---:|
 | GFC reference price | €0.05 per GFC |
-| Presale duration | 8 weeks |
+| Intended duration | 8 weeks |
 | Soft cap | €250,000 reference value |
-| Presale Allocation | 150,000,000 GFC |
+| Presale allocation | 150,000,000 GFC |
 | Allocation percentage | 15% of total GFC supply |
 | Separate monetary hard cap | None |
-| Maximum token distribution | 150,000,000 GFC |
-| Maximum reference value at full allocation | €7,500,000 |
-| Failure condition | Soft cap not reached by the presale end |
-| Token delivery | Claimable after successful finalization |
-| Inflation through presale | Prohibited |
+| Maximum GFC distribution | 150,000,000 GFC |
+| Maximum gross reference value at full allocation | €7,500,000 |
+| Intended payment assets | ETH, USDC, DAI on Base |
+| Current token-delivery direction | Immediate distribution |
+| Failure condition | Applicable soft-cap success condition not satisfied |
+| Failed-sale participant protection | Refund right |
+| Additional inflation through presale | Prohibited |
+| Current material-logic direction | Immutable after production deployment |
+
+These values are Draft specification parameters.
+
+They MUST NOT be represented as evidence that a production presale is deployed or active.
 
 The absence of a separate monetary hard cap MUST NOT be communicated as unlimited fundraising capacity.
 
-The finite Presale Allocation creates an absolute distribution limit of 150,000,000 GFC.
-
-At the intended fixed reference price, this corresponds to a maximum gross reference value of €7,500,000.
+The finite Presale allocation creates an absolute GFC distribution ceiling.
 
 ---
 
-## 9. Presale Token Allocation
+## 10. Presale Allocation
 
-### 9.1 Maximum allocation
+The Presale allocation is:
 
-The presale is intended to distribute no more than:
+```text
+150,000,000 GFC
+```
 
-**150,000,000 GFC**
+representing:
 
-This represents:
+```text
+15% of the fixed total supply of 1,000,000,000 GFC
+```
 
-**15% of the fixed total supply of 1,000,000,000 GFC**
+The presale MUST NOT distribute more than:
 
-### 9.2 Contract funding
-
-Before activation, the production presale contract MUST have verifiable access to the complete configured sale allocation.
-
-The contract MUST NOT accept contributions for tokens that it cannot distribute.
-
-### 9.3 No over-allocation
+```text
+150,000,000 GFC
+```
 
 The presale MUST NOT:
 
-- allocate more than 150,000,000 GFC;
-- create additional GFC;
-- borrow tokens from another allocation without prior specification changes;
-- or issue undocumented replacement entitlements.
+- mint additional GFC;
+- borrow GFC from another allocation without an applicable breaking specification change;
+- create duplicate participant entitlement;
+- or create an undocumented replacement claim.
 
-### 9.4 Allocation exhaustion
-
-A purchase that would exceed the remaining Presale Allocation MUST either:
-
-- revert completely; or
-- use a predefined partial-fill mechanism that automatically returns the unused contribution amount.
-
-The production specification MUST select one behavior before launch.
-
-Silent retention of excess payment is prohibited.
-
-The recommended initial behavior is full transaction reversion because it is simpler to audit and reduces partial-fill ambiguity.
+Presale allocation rules MUST remain consistent with [`allocations.md`](allocations.md).
 
 ---
 
-## 10. Reference Price
+## 11. Presale Funding
 
-The intended reference price is:
+Before production activation, the presale mechanism MUST have verifiable access to the GFC required to satisfy valid purchase distribution.
 
-**€0.05 per GFC**
+The implementation MUST NOT accept a contribution for GFC that it cannot distribute according to the applicable transaction rules.
 
-The reference price MUST remain fixed throughout the active presale.
+The final technical funding model remains unresolved.
 
-The reference price MUST NOT be changed after activation.
+Possible implementation structures MAY include:
 
-Any public interface MUST clearly identify:
+- pre-funded presale contract;
+- tightly constrained distribution contract;
+- or another explicitly specified mechanism.
 
-- the euro-denominated reference price;
-- the payment asset being used;
-- the applicable conversion rate;
-- the expected payment amount;
-- and the resulting GFC entitlement.
+Any privileged funding or transfer authority MUST be disclosed.
 
 ---
 
-## 11. Payment-Asset Conversion
+## 12. Reference Price
 
-### 11.1 Contract-level enforcement
+The current intended reference price is:
 
-Where contributions are accepted in assets other than a euro-denominated asset, conversion MUST be enforced by the contract or another verifiable settlement mechanism.
+```text
+€0.05 per GFC
+```
+
+The production presale MUST enforce the applicable reference price through the settlement mechanism.
+
+The reference price MUST NOT be presented as:
+
+- fair market value;
+- future market value;
+- a future price floor;
+- guaranteed appreciation;
+- or guaranteed liquidity.
+
+The current design direction is that the reference price remains fixed throughout the active presale.
+
+A production system MUST NOT permit an undocumented administrator to alter the price after activation.
+
+---
+
+## 13. Intended Payment Assets
+
+The current Draft design intends to support:
+
+- **ETH**
+- **USDC**
+- **DAI**
+
+on Base.
+
+Before production activation, the applicable release MUST authenticate:
+
+- network;
+- payment-asset type;
+- exact token contract address where applicable;
+- decimals;
+- accepted transfer behavior;
+- pricing methodology;
+- and refund treatment.
+
+A symbol alone is insufficient to authenticate a supported token.
+
+A token with the same symbol on another network or at another contract address MUST NOT be accepted solely by name.
+
+---
+
+## 14. Native ETH
+
+If native ETH is accepted, the production implementation MUST define:
+
+- how ETH contributions are received;
+- how euro-reference valuation is calculated;
+- handling of excess native value where applicable;
+- refund behavior;
+- reentrancy protections;
+- and transfer-failure behavior.
+
+Native ETH acceptance MUST remain reconcilable with participant accounting.
+
+---
+
+## 15. USDC and DAI
+
+If USDC and DAI are accepted as intended, the production implementation MUST authenticate the exact Base contract addresses and expected token behavior.
+
+The implementation MUST account for:
+
+- token decimals;
+- transfer return behavior;
+- allowance handling;
+- transfer failure;
+- and any relevant non-standard behavior.
+
+The production presale SHOULD NOT rely on symbol matching.
+
+---
+
+## 16. Payment-Asset Conversion
+
+Where payment assets require conversion to the euro-denominated reference value, the conversion MUST be enforced by the contract or another verifiable settlement mechanism.
 
 Frontend-only conversion is prohibited.
 
-A participant can interact with a contract without using the official interface. Therefore, interface calculations cannot define the actual accepted price.
-
-### 11.2 Conversion requirements
-
 For each supported payment asset, the production implementation MUST define:
 
-- asset contract address;
-- asset decimals;
+- pricing source;
+- asset identifier;
 - reference currency;
-- conversion source;
 - conversion direction;
-- rate-update method;
+- update method;
 - maximum price age;
-- rounding behavior;
-- minimum valid price;
-- failure behavior;
-- and fallback behavior.
+- decimals;
+- rounding;
+- invalid-price behavior;
+- stale-price behavior;
+- unavailable-price behavior;
+- and any fallback behavior.
 
-### 11.3 Purchase-time valuation
+The final production pricing architecture remains unresolved.
 
-The euro reference value of a contribution MUST be recorded at the time the contribution is accepted.
+---
 
-The recorded purchase-time value MUST be used for:
+## 17. Purchase-Time Reference Value
 
+The euro reference value assigned when a valid contribution is accepted MUST be deterministically recorded or derivable.
+
+The purchase-time reference value is intended to determine:
+
+- applicable GFC amount;
 - soft-cap accounting;
-- GFC entitlement;
-- purchase records;
-- and presale reporting.
+- participant purchase record;
+- and public presale accounting.
 
-Later market-price movements MUST NOT retroactively change the participant’s GFC entitlement.
+Later market-price movements MUST NOT retroactively change the GFC amount distributed for a completed valid purchase unless the finalized specification explicitly defines a correction for an invalid transaction.
 
-### 11.4 Oracle failure
+---
 
-A purchase MUST revert where the required conversion data is:
+## 18. Pricing Failure
+
+A purchase MUST fail safely where required pricing information is:
 
 - unavailable;
 - stale;
@@ -360,1392 +492,1572 @@ A purchase MUST revert where the required conversion data is:
 - zero;
 - negative;
 - outside defined safety limits;
-- or otherwise unreliable under the production rules.
+- or otherwise unusable under the production rules.
 
-The contract MUST NOT silently substitute an undocumented rate.
-
-### 11.5 Volatile payment assets
-
-Acceptance of volatile assets introduces:
-
-- exchange-rate risk;
-- refund-value risk;
-- treasury-value risk;
-- oracle risk;
-- and soft-cap interpretation risk.
-
-The initial production presale SHOULD minimize the number of accepted assets.
-
-Volatile assets SHOULD NOT be accepted unless their custody, valuation, refund, and risk-treatment rules are fully defined.
-
-### 11.6 Unsupported token behavior
-
-The presale SHOULD NOT accept payment tokens with:
-
-- transfer fees;
-- rebasing;
-- reflection mechanics;
-- non-standard balance accounting;
-- transfer hooks that can alter settlement;
-- or unreliable redemption assumptions.
-
-Any exception requires explicit technical review and documentation.
+The presale MUST NOT silently substitute an undocumented conversion rate.
 
 ---
 
-## 12. Rounding and Precision
+## 19. Rounding and Precision
 
-The production implementation MUST define rounding at every conversion stage.
+The production implementation MUST define rounding at every material conversion stage.
 
 At minimum:
 
-- GFC entitlement MUST NOT be rounded upward beyond the paid reference value;
-- the contract MUST NOT allocate more than the remaining sale allocation;
+- GFC distribution MUST NOT exceed the amount supported by the accepted purchase reference value;
+- Presale distribution MUST NOT exceed the remaining Presale allocation;
 - decimal conversions MUST be deterministic;
 - rounding MUST be reproducible off-chain;
-- and material payment excess MUST be reverted or returned.
+- and material excess contribution value MUST be rejected, reverted, or otherwise handled according to a predefined rule.
 
-Small rounding differences MUST NOT be retained without disclosure.
-
-The applicable formula and test vectors MUST be published before launch.
+The applicable formulas and test vectors MUST be published before production activation.
 
 ---
 
-## 13. Supported Payment Assets
+## 20. Presale Duration
 
-No payment asset is finalized by this Draft specification.
+The current intended presale duration is:
 
-Before Stable status, each supported asset MUST be published with:
+```text
+8 weeks
+```
 
-- name;
-- symbol;
-- contract address;
-- network;
-- decimals;
-- conversion methodology;
-- oracle or pricing source;
-- risk disclosure;
-- refund treatment;
-- and deprecation procedure.
+No public start date is established by this document.
 
-A symbol alone is not sufficient identification.
-
-The contract address and network determine the accepted asset.
-
-Fake or unsupported assets MUST NOT be accepted merely because they share a symbol with an approved asset.
-
----
-
-## 14. Presale Duration
-
-The intended presale duration is:
-
-**8 weeks**
-
-The production release MUST publish:
+Before production activation, the authenticated release MUST identify:
 
 - exact start timestamp;
 - exact end timestamp;
-- applicable timezone for human-readable communication;
-- block-timestamp interpretation;
-- and any pre-launch activation condition.
+- human-readable presentation;
+- applicable timezone for human communication;
+- contract timestamp semantics;
+- and activation conditions.
 
-The contract-level timestamps are authoritative for execution.
-
-Human-readable dates MUST accurately correspond to the on-chain timestamps.
-
----
-
-## 15. Start Conditions
-
-The presale MUST NOT become active until:
-
-- the production contract is deployed;
-- source code is verified;
-- the applicable specification release is published;
-- the configured token allocation is available;
-- supported payment assets are configured;
-- pricing mechanisms are operational;
-- privileged roles are published;
-- refund behavior is tested;
-- claim behavior is tested;
-- withdrawal destinations are published;
-- security review requirements are satisfied;
-- and required legal and operational approvals are complete.
-
-Activation MUST be a publicly observable state transition.
+The production contract-level state is authoritative for execution.
 
 ---
 
-## 16. Presale State Model
+## 21. Activation Requirements
 
-The production presale MUST use explicit and externally observable states.
+The presale MUST NOT become production-active until all material activation prerequisites are satisfied.
 
-The state model SHOULD include:
+At minimum, before activation:
 
-### 16.1 Configured
+- the production presale implementation MUST exist;
+- production network and addresses MUST be authenticated;
+- the applicable versioned presale specification MUST be published;
+- the production GFC token MUST be authenticated;
+- Presale allocation funding or distribution capacity MUST be verified;
+- intended payment assets MUST be authenticated;
+- pricing behavior MUST be finalized;
+- purchase accounting MUST be finalized;
+- immediate-distribution behavior MUST be finalized;
+- failed-finalization refund treatment MUST be finalized;
+- contribution custody MUST be finalized;
+- withdrawal conditions MUST be finalized;
+- unsold-GFC treatment MUST be finalized;
+- privileged roles MUST be defined;
+- authority registry entries MUST be prepared;
+- security requirements MUST be satisfied;
+- and applicable legal and operational prerequisites MUST be addressed.
 
-The contract is deployed and configured but purchases are not yet accepted.
-
-### 16.2 Active
-
-The presale accepts valid contributions.
-
-### 16.3 Paused
-
-New contributions are temporarily disabled due to a defined incident or operational condition.
-
-### 16.4 Ended
-
-The configured end timestamp has been reached and new contributions are no longer accepted.
-
-### 16.5 Successful
-
-The presale has ended, the soft cap has been reached, and successful finalization has occurred.
-
-### 16.6 Failed
-
-The presale has ended without reaching the soft cap or has been cancelled under rules requiring refunds.
-
-### 16.7 Claiming
-
-Participants may claim purchased GFC following successful finalization.
-
-### 16.8 Refunding
-
-Participants may reclaim accepted contributions following failure or cancellation.
-
-### 16.9 Completed
-
-The presale remains historically reviewable, while all continuing participant rights remain preserved according to the applicable rules.
-
-State transitions MUST produce public contract events.
+The unresolved interaction between immediate GFC distribution and failed-sale refunds is an activation blocker.
 
 ---
 
-## 17. Purchase Eligibility
+## 22. Presale State Model
 
-The final production rules MUST define:
+The production presale MUST use explicit and externally reviewable states.
+
+The final exact state machine remains implementation-dependent, but the model SHOULD distinguish at least:
+
+### 22.1 Configured
+
+The system is deployed or prepared but does not accept purchases.
+
+### 22.2 Active
+
+Valid purchases may be accepted.
+
+### 22.3 Paused
+
+Defined functions are temporarily restricted under a specified safety condition.
+
+### 22.4 Ended
+
+The configured sale period has ended and new purchases are no longer accepted.
+
+### 22.5 Successful
+
+Applicable success conditions have been satisfied and successful finalization has occurred.
+
+### 22.6 Failed
+
+Applicable success conditions were not satisfied or a refundable cancellation has resulted in failure.
+
+### 22.7 Refunding
+
+Valid participants may exercise applicable refund rights.
+
+### 22.8 Completed
+
+The active sale process is complete while historical records and any continuing participant rights remain preserved.
+
+Because the current design direction uses immediate distribution, a separate post-success `Claiming` state is not part of the current intended model unless a later versioned specification explicitly reintroduces claim-based delivery.
+
+---
+
+## 23. Purchase Eligibility
+
+Final legal and operational purchase eligibility remains unresolved.
+
+The production model MUST define, where applicable:
 
 - eligible jurisdictions;
 - prohibited jurisdictions;
-- minimum age;
+- age requirements;
 - sanctions restrictions;
-- identity-verification requirements;
-- wallet eligibility;
+- identity requirements;
+- wallet requirements;
 - participant representations;
 - and applicable legal terms.
 
-The technical presale contract MUST NOT be represented as independently resolving all legal eligibility questions.
+Technical contract execution MUST NOT be represented as independently resolving all legal eligibility requirements.
 
-Where an allowlist or eligibility credential is required, its authority, privacy implications, revocation rules, and failure behavior MUST be documented.
+If an allowlist or credential mechanism is used, its authority, privacy implications, revocation rules, and failure behavior MUST be specified.
 
 ---
 
-## 18. Purchase Process
+## 24. Valid Purchase
 
 A valid purchase MUST:
 
-1. occur while the presale is Active;
-2. use a supported payment asset;
-3. use valid conversion information;
-4. satisfy any applicable minimum or maximum;
-5. satisfy any applicable eligibility controls;
-6. remain within the available Presale Allocation;
-7. transfer or securely reserve the accepted contribution;
-8. record the participant’s GFC entitlement;
-9. update the soft-cap reference total;
-10. emit a public purchase event.
+1. occur while purchases are permitted;
+2. use a supported authenticated payment asset;
+3. use valid pricing information where conversion is required;
+4. satisfy applicable eligibility requirements;
+5. satisfy any finalized minimum or maximum contribution rules;
+6. remain within the remaining Presale allocation;
+7. produce deterministic participant accounting;
+8. account for the accepted contribution;
+9. account for the applicable GFC amount;
+10. distribute GFC according to the immediate-distribution rule;
+11. update soft-cap accounting;
+12. and emit or otherwise create publicly reviewable transaction evidence.
 
-The purchase event SHOULD include or allow derivation of:
+No sensitive personal information SHOULD be emitted on-chain.
 
-- contributor;
+---
+
+## 25. Immediate GFC Distribution
+
+The current Draft token-delivery direction is **immediate distribution**.
+
+For a valid purchase, the production economic flow is intended to include:
+
+1. acceptance of the payment asset;
+2. purchase-time reference valuation;
+3. GFC amount calculation;
+4. purchase accounting;
+5. immediate transfer of the applicable GFC amount to the participant;
+6. reduction of remaining Presale distribution capacity;
+7. update of soft-cap accounting;
+8. and creation of reviewable transaction records.
+
+The exact atomicity and technical ordering remain implementation decisions.
+
+A production implementation MUST ensure that failure in a required part of the purchase flow does not leave inconsistent participant accounting.
+
+---
+
+## 26. No Deferred Claim as Current Model
+
+Deferred post-success claiming is **not** the current intended GFC presale delivery model.
+
+The current model MUST NOT describe purchased GFC as merely claimable after successful finalization unless the applicable specification is changed through a versioned process before production activation.
+
+The following legacy design statements are therefore not current:
+
+- purchased GFC becomes claimable only after successful finalization;
+- no token transfer occurs during the active sale;
+- a successful sale activates the initial delivery of purchased GFC.
+
+Historical documents MAY retain such wording for archival accuracy but current technical specifications MUST use the immediate-distribution model.
+
+---
+
+## 27. Presale Vesting
+
+The current Draft does not establish an additional vesting schedule for GFC purchased in the presale.
+
+Under the current design direction, valid purchased GFC is intended to be distributed immediately.
+
+Any future presale vesting, lock, delayed claim, or delayed transfer model would constitute a material change and MUST be specified before production activation.
+
+---
+
+## 28. Allocation Exhaustion
+
+A purchase that would exceed the remaining Presale allocation MUST use predefined behavior.
+
+The final production choice between:
+
+- full transaction reversion; or
+- deterministic partial fill
+
+remains unresolved.
+
+If partial fill is used, the implementation MUST define:
+
+- accepted contribution portion;
+- excess contribution treatment;
+- rounding;
+- GFC distribution;
+- accounting;
+- and failure behavior.
+
+Silent retention of excess payment is prohibited.
+
+---
+
+## 29. Purchase Accounting
+
+Every accepted purchase MUST be reconcilable to:
+
+- participant address;
 - payment asset;
 - accepted payment amount;
-- reference value;
-- GFC entitlement;
-- and cumulative tokens allocated.
+- purchase-time euro reference value;
+- GFC amount distributed;
+- transaction identifier;
+- timestamp;
+- cumulative GFC distributed;
+- cumulative soft-cap reference value;
+- and remaining Presale allocation.
 
-No sensitive personal information may be emitted on-chain.
+The implementation MUST prevent:
 
----
-
-## 19. Purchase Entitlement
-
-A successful contribution creates a contractual token entitlement within the presale system.
-
-It does not immediately prove that:
-
-- the presale will succeed;
-- the participant can immediately transfer GFC;
-- liquidity will exist;
-- the token will have a particular market value;
-- or the project will achieve a particular outcome.
-
-The entitlement MUST remain associated with the participant address unless an explicitly documented transfer or recipient mechanism exists.
-
-No entitlement-transfer mechanism should be introduced without addressing:
-
-- eligibility;
-- sanctions;
-- accounting;
-- refund rights;
-- and double-claim prevention.
+- duplicate purchase accounting;
+- distribution without corresponding accepted contribution;
+- accepted contribution without corresponding valid distribution unless the transaction fails atomically or a specifically defined exception applies;
+- and distribution exceeding remaining allocation.
 
 ---
 
-## 20. Token Delivery Model
+## 30. Presale Allocation Reconciliation
 
-### 20.1 Deferred claim
+The production accounting SHOULD satisfy:
 
-Purchased GFC MUST become claimable only after:
+```text
+150,000,000 GFC
+=
+GFC distributed
++
+remaining Presale GFC
++
+any explicitly specified exceptional state
+```
+
+Any exceptional state MUST be predefined.
+
+It MUST NOT create duplicate entitlement or additional canonical supply.
+
+---
+
+## 31. Soft Cap
+
+The current intended soft cap is:
+
+```text
+€250,000 reference value
+```
+
+The final production implementation MUST define exactly which accepted contributions count toward the soft cap.
+
+Soft-cap accounting MUST be deterministic and reviewable.
+
+Rejected or reverted transactions MUST NOT count.
+
+Treatment of refunded contributions in final accounting MUST be explicitly specified.
+
+---
+
+## 32. Reaching the Soft Cap
+
+Reaching the soft cap during the active sale means that the quantitative threshold has been reached under the current accounting.
+
+It does not by itself mean:
 
 - the presale has ended;
-- the soft cap has been reached;
 - successful finalization has occurred;
-- and the claim function has been activated according to the contract rules.
-
-### 20.2 No instant distribution
-
-The production presale MUST NOT transfer final purchased GFC immediately during the Active state.
-
-This prevents participants from simultaneously retaining distributed tokens and claiming refunds after a failed presale.
-
-### 20.3 No post-success discretion
-
-Once a participant has a valid entitlement and the presale has successfully finalized, the project MUST NOT possess discretionary authority to cancel that entitlement.
-
-### 20.4 Presale vesting
-
-The current intended model does not impose an additional presale vesting schedule.
-
-Following successful finalization, the full purchased entitlement is intended to become claimable.
-
-Any future introduction of presale vesting would constitute a material change and must be defined before launch.
-
-### 20.5 Claim destination
-
-Claims SHOULD be delivered to the entitled wallet.
-
-Any ability to redirect claims to another wallet MUST be explicitly defined and protected against unauthorized redirection.
+- contribution assets have become unrestricted project proceeds;
+- all participant refund rights have ended;
+- or all legal or operational conditions have been satisfied.
 
 ---
 
-## 21. Token Claims
+## 33. No Separate Monetary Hard Cap
 
-### 21.1 Claim rights
-
-Following successful finalization, eligible participants MUST be able to claim their recorded GFC entitlement.
-
-### 21.2 Claim accounting
-
-The contract MUST prevent:
-
-- double claims;
-- claims above recorded entitlement;
-- claims during an unsuccessful presale;
-- claims before successful finalization;
-- and claims from unauthorized addresses.
-
-### 21.3 Claim availability
-
-Valid token claims SHOULD NOT expire solely because a participant does not immediately claim.
-
-Where migration becomes necessary, remaining claim rights MUST be preserved through a documented successor mechanism.
-
-### 21.4 Partial claims
-
-The production implementation MUST explicitly define whether:
-
-- only full claims are permitted; or
-- partial claims are permitted.
-
-The recommended initial implementation is a full single claim because it reduces accounting complexity.
-
-### 21.5 Claim failure
-
-A temporary technical failure MUST NOT extinguish a valid claim entitlement.
-
----
-
-## 22. Soft Cap
-
-The intended soft cap is:
-
-**€250,000 reference value**
-
-### 22.1 Calculation
-
-The soft cap MUST be calculated using the sum of accepted purchase-time euro reference values.
-
-Rejected, reverted, cancelled, or refunded contributions MUST NOT count toward the final successful total.
-
-### 22.2 Reaching the soft cap
-
-Reaching the soft cap during the Active state means that the quantitative success condition has been satisfied.
-
-It does not immediately:
-
-- end the presale;
-- make participant contributions withdrawable;
-- remove all cancellation protections;
-- activate token claims;
-- or complete finalization.
-
-### 22.3 Final success determination
-
-The presale becomes successful only after:
-
-- the configured end timestamp has been reached;
-- no unresolved cancellation condition prevents success;
-- the recorded soft-cap total is at least €250,000;
-- and the contract has been successfully finalized.
-
-### 22.4 No early withdrawal
-
-Presale funds MUST NOT become withdrawable merely because the soft cap has been reached before the presale end.
-
----
-
-## 23. No Separate Monetary Hard Cap
-
-The intended model has no separate monetary hard cap.
+The current Draft design has no separate monetary hard cap.
 
 However:
 
-- the token price is fixed;
-- the Presale Allocation is finite;
-- and the presale cannot distribute more than 150,000,000 GFC.
+- GFC reference price is fixed under the current design;
+- Presale distribution is limited to 150,000,000 GFC;
+- and the sale therefore has finite token-distribution capacity.
 
-The maximum gross reference value at full allocation is therefore:
+At the current €0.05 reference price, full Presale allocation corresponds to:
 
-**€7,500,000**
+```text
+€7,500,000
+```
 
-Public communication MUST disclose the finite allocation and resulting maximum reference value whenever the absence of a monetary hard cap is discussed.
+gross reference value.
+
+This calculation is not a fundraising guarantee.
 
 ---
 
-## 24. Finalization
+## 34. Contribution Custody
 
-### 24.1 Finalization timing
+Accepted payment assets remain subject to the applicable success, finalization, refund, and withdrawal rules.
 
-Finalization may occur only after the configured presale end or after a valid cancellation that requires failure processing.
+The exact production custody architecture remains unresolved.
 
-### 24.2 Permissionless finalization
+The production model MUST define:
 
-Where technically feasible, finalization SHOULD be callable by any address once objective finalization conditions are satisfied.
+- where accepted ETH is held;
+- where accepted USDC is held;
+- where accepted DAI is held;
+- who has technical authority over those assets;
+- whether any escrow or segregated custody mechanism is used;
+- how refund availability is protected;
+- and when assets become withdrawable as valid proceeds.
 
-Final success or failure SHOULD NOT depend indefinitely on discretionary administrator action.
+Project operators MUST NOT have unrestricted access to assets required to satisfy valid refund rights.
 
-### 24.3 Successful finalization
+---
 
-Successful finalization MUST:
+## 35. Contribution-Asset Preservation
 
-- confirm that the soft cap was reached;
-- prevent new purchases;
-- preserve participant entitlements;
-- activate token claims;
-- permit only authorized proceeds handling;
-- determine the applicable unsold-token treatment;
-- and emit a public finalization event.
+Assets subject to potential refund obligations MUST NOT be exposed to avoidable risk that could prevent valid refunds.
 
-### 24.4 Failed finalization
+Before successful finalization or another explicitly specified release condition, refundable assets MUST NOT be used for:
+
+- development expenditure;
+- marketing expenditure;
+- liquidity deployment;
+- staking;
+- lending;
+- speculative trading;
+- pledging;
+- or other discretionary project use.
+
+---
+
+## 36. Finalization
+
+The production model MUST define deterministic finalization.
+
+Finalization MUST NOT rely indefinitely on discretionary project action where objective conditions can be evaluated automatically.
+
+The final implementation MUST define:
+
+- earliest finalization time;
+- success condition;
+- failure condition;
+- authorized or permissionless caller;
+- state transitions;
+- contribution-asset implications;
+- refund implications;
+- unsold-GFC implications;
+- and emitted records.
+
+---
+
+## 37. Successful Finalization
+
+Successful finalization MUST confirm that all applicable success conditions have been satisfied.
+
+At minimum, the final model MUST address:
+
+- sale end;
+- soft-cap status;
+- any unresolved cancellation state;
+- contribution accounting;
+- GFC distribution accounting;
+- proceeds-withdrawal eligibility;
+- and unsold-GFC treatment.
+
+Because GFC is distributed immediately under the current design direction, successful finalization does not create the initial participant token delivery.
+
+It instead resolves the final sale status and applicable contribution-proceeds rights.
+
+---
+
+## 38. Failed Finalization
 
 Failed finalization MUST:
 
-- confirm that the soft cap was not reached or that a refundable cancellation occurred;
-- prevent new purchases;
-- disable token claims;
-- activate refunds;
-- preserve sufficient assets for all valid refunds;
-- and emit a public failure event.
+- prevent further purchases;
+- preserve participant accounting;
+- establish applicable refund rights;
+- preserve sufficient contribution assets for valid refunds;
+- define unsold-GFC status;
+- and produce reviewable failure records.
 
-### 24.5 Irreversibility
-
-A successfully finalized presale MUST NOT later be changed into a failed presale through ordinary administrative discretion.
-
-A failed presale MUST NOT later be changed into a successful presale merely to avoid refunds.
+Failed finalization MUST NOT permit project operators to redirect refundable contribution assets to another purpose.
 
 ---
 
-## 25. Contribution Custody
+## 39. Immediate Distribution and Refund Invariant
 
-### 25.1 Escrow requirement
+The current Draft contains two required design directions:
 
-Accepted on-chain contributions MUST remain under presale-contract or dedicated escrow control until successful finalization.
+1. valid purchased GFC is distributed immediately; and
+2. participants receive refunds if the applicable soft-cap success condition is not satisfied.
 
-### 25.2 No discretionary use before finalization
+This combination creates a critical unresolved economic and security question.
 
-Before successful finalization, contributed assets MUST NOT be:
+Before production activation, the final presale specification and implementation MUST define the treatment of GFC already distributed to a participant if finalization fails.
 
-- transferred to the operating treasury;
-- used for marketing;
-- used for development;
-- added to liquidity;
-- lent;
-- staked;
-- exchanged;
-- pledged;
-- or otherwise exposed to discretionary project use.
+The final solution MUST be:
 
-### 25.3 Asset preservation
+- technically enforceable;
+- economically reconcilable;
+- compatible with participant rights;
+- compatible with fixed supply;
+- compatible with the Presale allocation ceiling;
+- disclosed before participation;
+- and tested before production activation.
 
-The presale MUST preserve the ability to satisfy all valid refund rights.
+This Draft does not select or authorize any particular mechanism.
 
-Assets subject to refund rights MUST NOT be placed into strategies that introduce avoidable loss, lock-up, or counterparty risk.
+In particular, it does not currently authorize:
 
-### 25.4 Payment-asset custody
+- clawback;
+- forced token transfer;
+- administrator seizure;
+- forced burn;
+- mandatory participant token return;
+- token invalidation;
+- blacklist-based immobilization;
+- negative balance;
+- replacement token;
+- or another equivalent mechanism.
 
-Where multiple assets are accepted, custody and refund obligations MUST remain separately identifiable by asset.
-
----
-
-## 26. Successful-Sale Proceeds
-
-### 26.1 Withdrawal condition
-
-Presale proceeds may become withdrawable only after successful finalization.
-
-### 26.2 Predefined destination
-
-Withdrawals MUST be directed only to addresses or contracts published before launch.
-
-The destination SHOULD be a dedicated Presale Proceeds Vault or treasury structure governed according to `governance-constraints.md`.
-
-### 26.3 No unrestricted administrator destination
-
-An administrator MUST NOT be able to redirect proceeds to an arbitrary address after contributions have been accepted.
-
-### 26.4 Withdrawal authority
-
-The production specification MUST define:
-
-- authorized withdrawal role;
-- approval threshold;
-- destination;
-- whether withdrawals are partial or complete;
-- transaction limits;
-- timelock, if any;
-- and reporting obligations.
-
-### 26.5 Documentation
-
-Each material withdrawal MUST be accompanied by:
-
-- transaction record;
-- amount;
-- asset;
-- destination;
-- responsible authority;
-- applicable approval;
-- and stated purpose or treasury classification.
-
-Post-action documentation does not replace required prior authorization.
+A production presale MUST NOT activate while this matter remains unresolved.
 
 ---
 
-## 27. Refund Rights
+## 40. Refund Rights
 
-### 27.1 Refund conditions
+If the final presale rules create a refund right, that right MUST be enforceable.
 
-A participant is entitled to a refund where:
+The current Draft requires a refund where the applicable soft-cap success condition is not satisfied.
 
-- the presale ends below the soft cap;
-- the presale is validly cancelled under refundable conditions;
-- or another production rule explicitly creates a refund right.
+The final production rule MUST define:
 
-### 27.2 Refund amount
+- eligible participant;
+- refundable contribution;
+- refundable payment asset;
+- refund amount;
+- initiation mechanism;
+- timing;
+- accounting;
+- interaction with distributed GFC;
+- and continuing rights after migration or deprecation.
 
-A valid refund MUST return the participant’s recorded accepted amount in the same payment asset originally accepted.
+---
 
-The project MUST NOT deduct:
+## 41. Refund Asset
 
-- project expenses;
-- marketing expenses;
-- administrative expenses;
-- or unsuccessful presale costs
+The current intended refund model SHOULD preserve the participant's original accepted payment asset unless a later versioned specification defines another participant-protective rule.
 
-from the recorded refundable contribution.
+The production model MUST define refund treatment separately for:
 
-Normal blockchain transaction fees paid by the participant to execute the refund transaction are not controlled by the project.
+- ETH;
+- USDC;
+- DAI;
+- and any future permitted asset.
 
-### 27.3 No conversion-based substitution
+The project MUST NOT silently substitute a different asset merely for operational convenience.
 
-A participant who contributed one supported asset MUST NOT be forced to accept a different asset unless:
+---
 
-- the participant explicitly agrees;
-- or a predefined emergency migration process preserves equivalent rights and is legally and technically justified.
+## 42. Refund Amount
 
-### 27.4 Pull-based refunds
+The production refund calculation MUST be deterministic.
 
-Refunds SHOULD use a participant-initiated pull mechanism where technically appropriate.
+The final model MUST define whether the refundable amount is exactly the accepted contribution amount or another explicitly specified amount.
 
-This reduces reliance on bulk administrator payments and avoids sending assets to inaccessible or changed addresses without participant action.
+Any deduction from a valid refund MUST be defined before activation and must not be hidden.
 
-### 27.5 Refund accounting
+Project operating expenses MUST NOT be deducted from refundable participant assets merely because the presale failed.
 
-The contract MUST prevent:
+---
+
+## 43. Refund Mechanism
+
+The exact production refund implementation remains unresolved.
+
+A pull-based participant-initiated refund MAY be used where technically appropriate.
+
+If a pull model is used, the implementation MUST protect against:
 
 - double refunds;
-- refunds above the recorded amount;
-- refunds after the associated contribution has already been validly settled through another mechanism;
-- and unauthorized refund claims.
+- unauthorized refunds;
+- incorrect recipient;
+- reentrancy;
+- asset mismatch;
+- accounting divergence;
+- and exhaustion of required refund assets.
 
-### 27.6 Refund availability
-
-Valid refund rights MUST NOT expire solely because a participant does not claim immediately.
-
-Where the original contract must be migrated or deprecated, unclaimed refund rights MUST be preserved through a documented successor process.
-
-### 27.7 Project withdrawal prohibition
-
-No project-controlled role may withdraw assets required to satisfy active refund rights.
+No refund architecture is established as final by this Draft.
 
 ---
 
-## 28. Cancellation
+## 44. Refund Availability
 
-### 28.1 Pre-start cancellation
+A valid refund right SHOULD NOT disappear solely because a participant does not exercise it immediately unless the applicable legal and technical framework establishes an explicit, justified, participant-disclosed limitation.
 
-The presale MAY be cancelled before activation.
-
-A pre-start cancellation MUST NOT create participant refund obligations where no contributions have been accepted.
-
-### 28.2 Post-start cancellation
-
-After activation, cancellation MAY occur only under predefined circumstances, such as:
-
-- critical security vulnerability;
-- compromised contract or administrator authority;
-- material legal prohibition;
-- unrecoverable pricing failure;
-- or another severe condition defined before launch.
-
-### 28.3 Cancellation outcome
-
-A post-start cancellation MUST result in:
-
-- no further purchases;
-- no successful-sale proceeds withdrawal;
-- no GFC claims;
-- preserved participant contribution records;
-- and full refund rights for accepted contributions.
-
-### 28.4 No selective cancellation
-
-Cancellation MUST NOT selectively preserve some purchases while invalidating others unless a specific contribution was technically or legally invalid under rules published before purchase.
-
-### 28.5 Public disclosure
-
-A cancellation MUST be publicly documented with:
-
-- time;
-- authority;
-- reason;
-- affected contract;
-- participant impact;
-- refund process;
-- and continuing risks.
-
-Sensitive security details MAY be delayed where immediate publication would increase risk.
+If migration is required, unresolved refund rights MUST be preserved through the successor process.
 
 ---
 
-## 29. Pausing
+## 45. Successful-Sale Proceeds
 
-### 29.1 Permitted purpose
+Accepted contribution assets MUST NOT become unrestricted project proceeds until the applicable successful-finalization and withdrawal rules permit it.
 
-The presale MAY include narrowly scoped pause functionality for:
+The final production specification MUST define:
 
-- security incidents;
-- oracle failures;
-- payment-asset failures;
-- eligibility-system failures;
-- or other predefined emergencies.
-
-### 29.2 Pause scope
-
-A standard pause SHOULD disable new purchases.
-
-Refunds in a failed state and claims in a successful state SHOULD remain available unless the affected function itself is unsafe.
-
-### 29.3 No silent duration change
-
-Pausing MUST NOT silently extend the eight-week presale duration.
-
-Any permitted extension mechanism would need to be:
-
-- defined before launch;
-- strictly limited;
-- publicly disclosed;
-- and consistently applied.
-
-The recommended initial design is that the end timestamp remains fixed.
-
-### 29.4 No pause-based confiscation
-
-Pause authority MUST NOT be used to:
-
-- seize contributions;
-- invalidate entitlements;
-- remove refund rights;
-- redirect proceeds;
-- or modify pricing.
-
----
-
-## 30. Administrative Authority
-
-Potential presale roles may include:
-
-- configuration administrator;
-- activation authority;
-- pauser;
-- finalization caller;
-- proceeds-withdrawal authority;
-- eligibility administrator;
-- and migration authority.
-
-Each actual role MUST be:
-
-- documented;
-- narrowly scoped;
-- technically identifiable;
-- assigned before launch;
-- included in the authority registry;
-- and removable or constrained through a defined process.
-
-No undocumented presale role is permitted.
-
----
-
-## 31. Parameter Mutability
-
-### 31.1 Before activation
-
-Before activation, authorized roles MAY configure parameters that remain unresolved during development.
-
-The final values MUST be publicly verified before the presale begins.
-
-### 31.2 After activation
-
-After activation, the following parameters MUST NOT be changed through ordinary administration:
-
-- GFC reference price;
-- Presale Allocation;
-- soft cap;
-- start timestamp;
-- end timestamp;
-- purchase accounting formula;
-- refund conditions;
-- token-delivery model;
-- successful-withdrawal conditions;
-- and participant entitlement records.
-
-### 31.3 Supported assets
-
-The production release MUST define whether supported payment assets can be added or removed after activation.
-
-The recommended initial design is that the supported-asset set is immutable after activation.
-
-Disabling a compromised asset MAY be permitted as an emergency safety action, but MUST NOT invalidate previously accepted contribution records.
-
----
-
-## 32. Upgradeability
-
-### 32.1 Recommended architecture
-
-The production presale contract SHOULD be non-upgradeable after activation.
-
-A one-time presale benefits from reduced administrative complexity and a smaller upgrade control surface.
-
-### 32.2 Upgradeable deployment
-
-Where an upgradeable architecture is used during development, upgrade authority SHOULD be permanently disabled or transferred to a strictly constrained process before activation.
-
-### 32.3 Prohibited upgrade effects
-
-An upgrade MUST NOT silently:
-
-- change price;
-- increase the allocation;
-- reduce the soft cap after launch;
-- remove refund rights;
-- modify participant entitlements;
-- permit early withdrawals;
-- introduce additional minting;
-- or redirect contribution custody.
-
-### 32.4 Migration
-
-Where a critical issue requires migration, the process MUST preserve:
-
-- contribution records;
-- GFC entitlements;
-- refund rights;
-- supported-asset balances;
-- and public auditability.
-
-Migration MUST NOT require participants to surrender rights without an equivalent replacement.
-
----
-
-## 33. Unsold Tokens
-
-### 33.1 Definition
-
-Unsold tokens are Presale Allocation tokens that were not assigned to participant entitlements when the presale ended.
-
-### 33.2 Mandatory pre-launch rule
-
-The exact treatment of unsold tokens MUST be defined and published before presale activation.
-
-The production presale MUST NOT begin while unsold-token treatment remains discretionary.
-
-### 33.3 Permitted design requirements
-
-Whatever model is selected MUST define:
-
-- destination;
-- timing;
-- authority;
-- lock or vesting conditions;
-- whether the tokens remain part of the Presale Allocation;
-- whether they move to another allocation;
-- whether they are burned;
-- and how the movement affects circulating supply.
-
-### 33.4 No arbitrary post-result decision
-
-Governance MUST NOT wait until the presale result is known before choosing the treatment that is most favorable to project insiders or market conditions.
-
-### 33.5 One-time execution
-
-Where unsold tokens are transferred, burned, or locked after finalization, the operation SHOULD be:
-
-- deterministic;
-- publicly observable;
-- executed once;
-- and incapable of repeated discretionary use.
-
-### 33.6 Current unresolved status
-
-The final unsold-token destination is not established by this Draft specification.
-
-This issue MUST be resolved before Stable status and before launch.
-
----
-
-## 34. Contribution Limits
-
-The production specification MUST define whether the presale includes:
-
-- minimum contribution;
-- maximum contribution per transaction;
-- maximum contribution per wallet;
-- maximum contribution per verified participant;
-- or no participant-specific cap.
-
-Any cap MUST define:
-
-- measurement currency;
-- aggregation method;
-- treatment of multiple wallets;
-- rounding;
-- and enforcement mechanism.
-
-Contribution limits MUST NOT be applied only through the official frontend.
-
----
-
-## 35. Off-Chain Contributions
-
-Off-chain or fiat contributions are not authorized by this Draft specification.
-
-Where such contributions are introduced, a separate specification MUST define:
-
-- payment method;
-- participant identification;
-- settlement confirmation;
-- pricing timestamp;
-- token entitlement creation;
-- soft-cap accounting;
-- refund process;
-- reconciliation;
-- custody;
-- and public reporting.
-
-Off-chain contributions MUST NOT bypass:
-
-- price;
-- eligibility;
-- allocation;
-- contribution limits;
-- refund rights;
-- or accounting requirements.
-
----
-
-## 36. Participant Interface Requirements
-
-The official presale interface MUST display:
-
-- current presale state;
-- verified contract address;
-- network;
-- reference price;
-- selected payment asset;
-- applicable conversion rate;
-- rate timestamp or freshness;
-- expected contribution amount;
-- expected GFC entitlement;
-- remaining Presale Allocation;
-- cumulative reference value;
-- soft-cap progress;
-- start and end times;
-- claim status;
-- refund status;
-- transaction risks;
-- and applicable terms.
-
-The interface MUST NOT display a purchase as completed before the blockchain transaction has achieved the required confirmation status.
-
----
-
-## 37. User Confirmation
-
-Before submitting a purchase, the interface SHOULD require the participant to review:
-
-- payment asset;
-- payment amount;
-- GFC entitlement;
-- contract address;
-- network;
-- transaction destination;
-- soft-cap condition;
-- refund condition;
-- token-claim timing;
-- and principal risks.
-
-The participant MUST retain final control over wallet signing.
-
-The interface MUST NOT conceal or rewrite material wallet transaction details.
-
----
-
-## 38. Public Presale Records
-
-The production presale SHOULD make the following publicly reviewable:
-
-- official contract address;
-- verified source code;
-- specification version;
-- start and end timestamps;
-- reference price;
-- supported payment assets;
-- pricing mechanism;
-- configured soft cap;
-- configured Presale Allocation;
-- total allocated GFC;
-- total recorded euro reference value;
-- sale state;
-- pause state;
-- finalization result;
-- amount of each payment asset held;
-- amount withdrawn after success;
-- amount refunded after failure;
-- unclaimed token entitlement;
-- unclaimed refunds;
-- and unsold-token treatment.
-
----
-
-## 39. Transparency Classification
-
-Presale information MUST distinguish between:
-
-### 39.1 Directly verified on-chain
-
-Examples:
-
-- contribution transactions;
-- contract balances;
-- purchase events;
-- token entitlements;
-- claims;
-- refunds;
-- withdrawals;
-- and finalization state.
-
-### 39.2 Project-authored information
-
-Examples:
-
-- intended use of proceeds;
-- operational explanations;
-- expected milestones;
-- and public rationale.
-
-### 39.3 Externally supplied information
-
-Examples:
-
-- oracle data;
-- compliance results;
-- payment-provider records;
-- and external reviews.
-
-### 39.4 Independently reviewed information
-
-Information must not be described as independently reviewed unless the reviewer, scope, and limitations are documented.
-
----
-
-## 40. Use of Proceeds
-
-Before launch, GFC MUST publish a clear intended-use framework for successful presale proceeds.
-
-The framework SHOULD identify:
-
-- use categories;
-- prohibited uses;
-- custody;
+- when proceeds become withdrawable;
+- which assets are withdrawable;
+- authorized withdrawal role;
 - approval requirements;
-- reporting cadence;
-- and treatment of material deviations.
+- destination;
+- partial versus full withdrawal;
+- and public records.
 
-A stated intended use does not prove actual use.
+This document does not establish a production proceeds destination.
+
+---
+
+## 46. Withdrawal Destination
+
+No production withdrawal destination is established by this Draft.
+
+Before activation, the applicable release MUST authenticate any destination permitted to receive successful presale proceeds.
+
+An administrator MUST NOT be able to redirect proceeds to an arbitrary undisclosed address after participant contributions have been accepted.
+
+---
+
+## 47. Use of Proceeds
+
+The detailed intended-use framework for successful presale proceeds remains outside the finalized scope of this Draft unless separately defined.
+
+Before launch, public communication SHOULD explain the applicable intended-use framework without representing intended use as completed use.
 
 Actual use requires:
 
 - transaction evidence;
+- authority;
+- purpose;
 - supporting documentation;
 - reconciliation;
 - and appropriate transparency status.
 
-The successful completion of the presale does not by itself prove that proceeds were used effectively or created impact.
+Successful fundraising does not itself establish successful execution or impact.
 
 ---
 
-## 41. No Guaranteed Outcomes
+## 48. Cancellation
 
-The presale MUST NOT be communicated as guaranteeing:
+### 48.1 Pre-activation cancellation
 
-- token appreciation;
-- market liquidity;
-- exchange listing;
-- staking returns;
-- governance influence;
-- project completion;
-- charitable results;
-- social impact;
-- tax treatment;
-- or regulatory approval.
+The presale MAY be cancelled before activation.
 
-The soft cap indicates only that a predefined contribution threshold was reached.
+If no contribution has been accepted, such cancellation does not create contribution refund obligations.
 
-It does not prove that all project objectives can or will be completed.
+### 48.2 Post-activation cancellation
+
+Any post-activation cancellation authority MUST be defined before launch.
+
+Qualifying reasons MAY include:
+
+- critical security vulnerability;
+- compromised authority;
+- material legal prohibition;
+- unrecoverable pricing failure;
+- or another predefined severe condition.
+
+### 48.3 Refund consequences
+
+A refundable post-activation cancellation MUST preserve the applicable refund rights.
+
+### 48.4 Distributed-GFC consequence
+
+Because the current design uses immediate distribution, the final specification MUST also define how post-activation cancellation affects GFC already distributed.
+
+This interaction is part of the unresolved immediate-distribution/refund problem and MUST NOT be improvised after launch.
 
 ---
 
-## 42. Privacy
+## 49. Pause Functionality
 
-### 42.1 On-chain exposure
+Pause functionality MAY exist only where justified.
 
-Participants must be informed that blockchain activity may publicly expose:
+The final production model MUST define:
 
-- wallet addresses;
-- contribution amounts;
-- payment assets;
-- timestamps;
-- claims;
-- and refunds.
+- functions affected;
+- functions unaffected;
+- authorized role;
+- activation condition;
+- unpause condition;
+- effect on sale duration;
+- effect on refunds;
+- effect on contribution custody;
+- and effect on participant accounting.
 
-### 42.2 Personal data
+A pause MUST NOT silently:
+
+- change price;
+- erase purchase records;
+- remove refund rights;
+- redirect assets;
+- increase Presale allocation;
+- or authorize new GFC minting.
+
+---
+
+## 50. Sale-Duration Effects of Pause
+
+Whether a pause extends the eight-week sale duration remains unresolved.
+
+The production rule MUST be finalized before activation.
+
+A pause MUST NOT silently extend the sale.
+
+Any extension model MUST define:
+
+- qualifying pause;
+- extension calculation;
+- maximum extension;
+- authority;
+- public notice;
+- and contract-level enforcement.
+
+---
+
+## 51. Administrative Authority
+
+Any production presale authority MUST be consistent with [`roles-and-authority.md`](roles-and-authority.md).
+
+Potential functional authorities MAY include:
+
+- pre-activation configuration;
+- activation;
+- pause;
+- cancellation;
+- finalization;
+- proceeds withdrawal;
+- pricing-source administration;
+- supported-asset administration;
+- migration;
+- and recovery.
+
+Not every role need exist.
+
+Every actual material role MUST be:
+
+- explicit;
+- narrowly scoped;
+- technically identifiable;
+- authenticated;
+- included in the authority registry;
+- and subject to defined revocation or replacement.
+
+No undocumented material presale authority is permitted.
+
+---
+
+## 52. Immutability Direction
+
+The current presale design direction is that **material participant-facing sale logic is immutable after production deployment**.
+
+At minimum, the final production architecture SHOULD prevent privileged modification of:
+
+- GFC reference price;
+- Presale allocation ceiling;
+- soft cap;
+- participant accounting rules;
+- immediate-distribution rules;
+- refund rights;
+- finalization rules;
+- and successful-proceeds withdrawal conditions.
+
+If any of these remain configurable, the presale MUST NOT be described as fully immutable.
+
+---
+
+## 53. Pre-Activation Configuration
+
+A deployment MAY require pre-activation configuration.
+
+Any configurable pre-activation parameters MUST be finalized and publicly authenticated before the first accepted purchase.
+
+After activation, material parameters MUST NOT remain silently mutable.
+
+---
+
+## 54. Supported-Asset Changes
+
+The final production model MUST define whether the supported payment-asset set can change after activation.
+
+The current design SHOULD minimize post-activation mutability.
+
+If emergency disabling of a compromised asset is permitted:
+
+- previously accepted contributions MUST remain accounted for;
+- participant refund rights MUST remain preserved;
+- historical support status MUST remain reviewable;
+- and disabling MUST NOT alter the treatment of unrelated supported assets.
+
+---
+
+## 55. Pricing-Source Changes
+
+If the pricing mechanism permits source replacement, the authority and conditions MUST be explicitly defined.
+
+A pricing-source change MUST NOT be used to manipulate participant value.
+
+The production model MUST define:
+
+- trigger;
+- authority;
+- approval;
+- delay where applicable;
+- validation;
+- public notice;
+- and historical record.
+
+---
+
+## 56. Migration
+
+Migration MAY be required only under a separately defined process.
+
+A migration MUST preserve or explicitly resolve:
+
+- accepted contribution records;
+- GFC distribution records;
+- remaining Presale allocation;
+- soft-cap accounting;
+- refund rights;
+- contribution-asset custody;
+- unsold-GFC status;
+- and historical transaction linkage.
+
+Migration MUST NOT:
+
+- create duplicate GFC claims;
+- create duplicate refund claims;
+- increase Presale distribution capacity;
+- erase participant rights;
+- or weaken accounting integrity.
+
+---
+
+## 57. Recovery
+
+Presale recovery authority remains unresolved.
+
+If recovery functionality exists, the production model MUST define:
+
+- recoverable asset;
+- non-recoverable asset;
+- triggering condition;
+- authority;
+- destination;
+- participant impact;
+- and record requirements.
+
+Recovery MUST NOT become a hidden path for withdrawing refundable participant assets.
+
+---
+
+## 58. Unsold GFC
+
+Unsold GFC means GFC remaining within the Presale allocation after the applicable sale process concludes.
+
+The final treatment remains unresolved.
+
+Before production activation, the applicable specification MUST define:
+
+- final destination or continued allocation status;
+- custody;
+- authority;
+- timing;
+- whether any lock applies;
+- whether any burn applies;
+- supply impact;
+- and public reporting.
+
+Unsold-GFC treatment MUST NOT be chosen opportunistically after the sale result becomes known.
+
+---
+
+## 59. Contribution Limits
+
+The final production specification MUST define whether the presale uses:
+
+- minimum contribution;
+- maximum contribution per transaction;
+- maximum contribution per wallet;
+- maximum contribution per eligible participant;
+- or no participant-specific limit.
+
+Any limit MUST be technically enforceable beyond the frontend where circumvention through direct contract interaction would otherwise be possible.
+
+---
+
+## 60. Off-Chain Contributions
+
+Off-chain contributions are not established as part of the current intended presale design.
+
+They MUST NOT be treated as authorized unless introduced through a separate applicable specification that defines:
+
+- payment method;
+- participant identification;
+- valuation;
+- GFC distribution;
+- soft-cap accounting;
+- refund rights;
+- custody;
+- reconciliation;
+- and reporting.
+
+Off-chain participation MUST NOT bypass the economic rules applicable to on-chain participants without explicit justification.
+
+---
+
+## 61. Participant Interface
+
+The official production interface SHOULD display, where applicable:
+
+- current presale state;
+- network;
+- authenticated presale address;
+- authenticated GFC token address;
+- reference price;
+- selected payment asset;
+- applicable conversion rate;
+- rate freshness;
+- expected payment amount;
+- expected GFC distribution;
+- remaining Presale allocation;
+- cumulative soft-cap reference value;
+- start and end times;
+- refund status;
+- pause status;
+- known limitations;
+- and material risks.
+
+The interface MUST NOT display a purchase as completed before the underlying transaction satisfies the applicable confirmation rule.
+
+---
+
+## 62. Wallet Confirmation
+
+Participants SHOULD be able to review material transaction details before signing.
+
+The interface MUST NOT conceal:
+
+- network;
+- destination;
+- payment asset;
+- payment amount;
+- or material contract interaction details.
+
+The participant wallet SHOULD remain the final signer for participant-originated purchases.
+
+---
+
+## 63. Public Presale Records
+
+A production presale SHOULD make the following publicly reviewable:
+
+- official presale address;
+- official GFC token address;
+- network and chain ID;
+- verified source status;
+- applicable specification version;
+- start and end timestamps;
+- reference price;
+- supported payment assets;
+- pricing mechanism;
+- soft cap;
+- Presale allocation;
+- cumulative GFC distributed;
+- remaining Presale GFC;
+- cumulative accepted reference value;
+- current state;
+- pause state;
+- finalization result;
+- contribution-asset balances;
+- proceeds withdrawn after success;
+- refunds executed after failure;
+- unresolved refund obligations;
+- unsold-GFC treatment;
+- material authority;
+- and known deviations.
+
+---
+
+## 64. Transparency Classification
+
+Presale information MUST distinguish among:
+
+### 64.1 Directly verified on-chain information
+
+Examples may include:
+
+- contribution transactions;
+- contract balances;
+- GFC distribution;
+- refund transactions;
+- withdrawals;
+- state transitions;
+- and authenticated contract state.
+
+### 64.2 Project-authored information
+
+Examples may include:
+
+- intended use of proceeds;
+- operational explanation;
+- expected milestones;
+- and public rationale.
+
+### 64.3 Externally supplied information
+
+Examples may include:
+
+- pricing data;
+- eligibility-provider records;
+- payment-provider records;
+- and external reviews.
+
+### 64.4 Independently reviewed information
+
+Information MUST NOT be described as independently reviewed unless reviewer identity or organization, scope, methodology, and limitations are documented.
+
+---
+
+## 65. Transparency Registry Relationship
+
+The planned Transparency Registry MAY later record:
+
+- presale specification versions;
+- deployment identity;
+- supported-asset history;
+- pricing-source history;
+- authority changes;
+- pause events;
+- cancellation;
+- finalization;
+- refund status;
+- migration;
+- incidents;
+- corrections;
+- and known deviations.
+
+The Registry is intended to operate as a versioned historical record rather than a permanent approval badge.
+
+No complete production Transparency Registry is currently deployed.
+
+A Registry record MUST NOT override authenticated on-chain settlement state.
+
+---
+
+## 66. Privacy
+
+Participants MUST be informed that blockchain activity may reveal:
+
+- wallet address;
+- payment asset;
+- contribution amount;
+- GFC distribution;
+- timestamp;
+- refund transaction;
+- and other public transaction data.
 
 Personal data MUST NOT be placed directly on-chain merely to demonstrate eligibility or transparency.
 
-### 42.3 Eligibility records
-
-Where off-chain eligibility checks are required, records MUST be:
+Where off-chain eligibility checks are required, related records MUST be:
 
 - access-controlled;
 - purpose-limited;
 - protected;
 - retained according to applicable requirements;
-- and separated from public blockchain records where possible.
-
-### 42.4 Address linkage
-
-GFC MUST NOT publicly link wallet addresses to participant identities without lawful basis and appropriate disclosure.
+- and separated from public blockchain data where appropriate.
 
 ---
 
-## 43. Security Requirements
+## 67. Security Requirements
 
-Before production activation:
+The production presale MUST satisfy security requirements appropriate to the final architecture.
 
-- contract source code MUST be complete;
-- automated tests MUST cover purchase, claim, refund, finalization, pause, and withdrawal behavior;
-- accounting invariants MUST be tested;
-- supported-asset behavior MUST be tested;
-- oracle-failure cases MUST be tested;
-- allocation exhaustion MUST be tested;
-- rounding MUST be tested;
-- state transitions MUST be tested;
-- role boundaries MUST be tested;
-- and independent security review MUST be completed.
+Testing and review MUST cover, where applicable:
 
-Production source code MUST be publicly verifiable through an appropriate Base block explorer.
+- purchase accounting;
+- supported assets;
+- pricing failures;
+- decimals;
+- rounding;
+- immediate GFC distribution;
+- Presale allocation exhaustion;
+- soft-cap accounting;
+- contribution custody;
+- refund behavior;
+- failed finalization;
+- successful finalization;
+- pause;
+- cancellation;
+- proceeds withdrawal;
+- migration;
+- role boundaries;
+- and reentrancy.
 
----
-
-## 44. Required Presale Invariants
-
-The implementation MUST preserve at least the following invariants:
-
-1. Total participant entitlement never exceeds the configured Presale Allocation.
-2. The presale never creates additional GFC.
-3. A contribution is counted only once.
-4. A contribution cannot be both successfully refunded and used to claim GFC.
-5. A token entitlement cannot be claimed more than once.
-6. Funds required for valid refunds cannot be withdrawn.
-7. Proceeds cannot be withdrawn before successful finalization.
-8. Price cannot change after activation.
-9. Soft-cap accounting is deterministic.
-10. Failed-sale participants retain valid refund rights.
-11. Successful-sale participants retain valid claim rights.
-12. Unsold tokens cannot be distributed through undocumented discretion.
-13. Administrative roles cannot silently alter participant records.
-14. Contract balances and recorded obligations remain reconcilable.
-15. Supported payment assets cannot bypass allocation or price controls.
+Detailed security requirements are defined in [`security-model.md`](security-model.md).
 
 ---
 
-## 45. Monitoring
+## 68. Security Review and Audit Claims
 
-The production system SHOULD monitor:
+Material production presale code SHOULD undergo appropriately independent security review before production reliance.
+
+No audit is represented as completed by this Draft.
+
+Any future audit claim MUST identify:
+
+- auditor;
+- scope;
+- exact reviewed version;
+- date;
+- exclusions;
+- report reference;
+- and remediation status.
+
+Source verification MUST NOT be represented as an audit.
+
+---
+
+## 69. Required Presale Invariants
+
+The final production implementation MUST preserve at least the following invariants.
+
+### 69.1 Fixed supply
+
+The presale MUST NOT create additional GFC.
+
+### 69.2 Presale allocation ceiling
+
+Aggregate GFC distributed by the presale MUST NOT exceed:
+
+```text
+150,000,000 GFC
+```
+
+### 69.3 Single contribution accounting
+
+An accepted contribution MUST NOT be counted more than once toward economic accounting.
+
+### 69.4 Distribution accounting
+
+GFC distribution MUST remain reconcilable with accepted purchase accounting.
+
+### 69.5 Soft-cap accounting
+
+Soft-cap reference value MUST be deterministic and reconcilable.
+
+### 69.6 Refund availability
+
+Assets required to satisfy valid refund rights MUST remain available under the applicable rules.
+
+### 69.7 No premature unrestricted proceeds
+
+Refundable contribution assets MUST NOT become unrestricted project proceeds before applicable release conditions are satisfied.
+
+### 69.8 No silent participant-record changes
+
+Privileged roles MUST NOT arbitrarily rewrite valid purchase records.
+
+### 69.9 No undocumented parameter change
+
+Material participant-facing rules MUST NOT change through undocumented authority.
+
+### 69.10 Immediate-distribution/refund consistency
+
+The final production model MUST ensure that immediate GFC distribution and failed-sale refund rights cannot create unreconciled duplicate economic benefit, broken participant rights, or inconsistent Presale allocation accounting.
+
+The exact mechanism remains unresolved in this Draft.
+
+---
+
+## 70. Monitoring
+
+Production monitoring SHOULD include, where applicable:
 
 - activation;
 - purchases;
-- unusual contribution patterns;
-- allocation exhaustion;
-- oracle freshness;
-- oracle deviation;
+- abnormal contribution patterns;
+- pricing-source health;
+- stale pricing;
+- Presale allocation exhaustion;
+- cumulative GFC distributed;
+- soft-cap progress;
 - pauses;
-- role changes;
+- authority changes;
+- cancellations;
 - finalization;
-- claims;
 - refunds;
-- withdrawals;
-- unsold-token movement;
-- and contract-balance discrepancies.
+- proceeds withdrawals;
+- migration;
+- unsold-GFC movement;
+- and contribution-balance discrepancies.
 
-Material alerts SHOULD be reviewed by defined operational and security roles.
-
-Monitoring infrastructure does not replace contract-level enforcement.
+Monitoring does not replace contract-level enforcement.
 
 ---
 
-## 46. Incident Handling
+## 71. Incident Handling
 
 Potential presale incidents include:
 
-- contract exploit;
-- pricing failure;
-- stale oracle;
-- incorrect conversion;
+- smart-contract exploit;
+- incorrect pricing;
+- stale pricing;
+- wrong-asset acceptance;
 - contribution-accounting error;
-- token underfunding;
+- GFC distribution error;
+- Presale underfunding;
 - refund shortfall;
 - unauthorized withdrawal;
 - compromised administrator;
-- fake presale interface;
-- fake contract address;
+- fake presale address;
+- compromised frontend;
 - payment-asset failure;
-- privacy breach;
-- and specification deviation.
+- privacy incident;
+- and specification divergence.
 
-A material incident SHOULD be documented with:
-
-- incident identifier;
-- detection time;
-- affected component;
-- affected participants;
-- affected assets;
-- containment action;
-- authority used;
-- financial impact;
-- refund or claim impact;
-- remediation;
-- disclosure status;
-- and continuing risk.
+Incident handling MUST prioritize preservation of participant rights and economic accounting.
 
 ---
 
-## 47. Fake Contract and Interface Protection
+## 72. Fake Contract and Interface Protection
 
-Official presale addresses MUST be published through authenticated GFC channels and versioned repository releases.
+Official production presale addresses MUST be authenticated through the GFC release process.
 
-The official interface MUST display the verified contract address.
+The production interface SHOULD display the authenticated contract address.
 
-Participants SHOULD be directed to verify:
+Participants SHOULD be able to verify:
 
 - network;
-- contract address;
+- presale address;
+- GFC token address;
 - source verification;
 - and transaction destination.
 
-GFC MUST NOT rely solely on social-media posts to authenticate a production contract.
-
-A compromised frontend MUST NOT be able to redirect a valid participant transaction without the changed destination being visible in the wallet confirmation.
+A social-media post alone SHOULD NOT be the sole authentication mechanism for a production presale.
 
 ---
 
-## 48. Disputes and Corrections
+## 73. Disputes and Corrections
 
-The final operational process MUST define how participants may report:
+The final operational process SHOULD provide a method for reporting:
 
-- incorrect entitlement;
-- failed claim;
+- incorrect purchase accounting;
+- incorrect GFC distribution;
 - failed refund;
 - unsupported asset interaction;
-- conversion dispute;
+- pricing dispute;
 - duplicate record;
 - interface misrepresentation;
 - or suspected unauthorized activity.
 
-Corrections MUST NOT allow administrators to arbitrarily alter valid purchase records.
-
-Any manual correction process MUST be:
+Any correction mechanism MUST be:
 
 - narrowly scoped;
 - evidenced;
-- approved;
+- authorized;
 - logged;
-- and publicly reconcilable where possible.
+- and reconcilable.
+
+A correction role MUST NOT possess arbitrary authority to rewrite valid participant history.
 
 ---
 
-## 49. Conformance
+## 74. Public Communication Requirements
+
+Public presale communication MUST NOT:
+
+- state or imply that the presale is live when it is not;
+- publish an internal planning date as a confirmed public launch date unless formally released;
+- describe the Base Sepolia pilot as the production presale;
+- imply unlimited fundraising capacity;
+- imply guaranteed token appreciation;
+- imply guaranteed liquidity;
+- imply guaranteed listing;
+- imply guaranteed staking returns;
+- imply guaranteed project completion;
+- imply guaranteed impact;
+- describe contribution assets as unrestricted project funds while refund rights remain active;
+- describe the current model as deferred claiming;
+- or conceal the unresolved immediate-distribution/refund interaction before that interaction is finalized.
+
+---
+
+## 75. No Guaranteed Outcomes
+
+The presale MUST NOT be represented as guaranteeing:
+
+- token appreciation;
+- liquidity;
+- exchange listing;
+- staking income;
+- governance influence;
+- project completion;
+- charitable results;
+- impact;
+- tax treatment;
+- or regulatory approval.
+
+Reaching the soft cap is a quantitative sale condition.
+
+It is not proof of project success.
+
+---
+
+## 76. Pilot and Production Separation
+
+The public Base Sepolia pilot is not the production presale.
+
+No pilot contract, pilot wallet, pilot transaction, test distribution, demo interface, or testnet token MUST be represented as:
+
+- production presale contract;
+- production GFC distribution;
+- production participant contribution;
+- production refund;
+- production proceeds;
+- or production presale security evidence.
+
+Production presale status requires separately authenticated Base Mainnet implementation and records.
+
+---
+
+## 77. Conformance
 
 A presale implementation conforms to this specification only when:
 
-- it identifies an applicable versioned release;
+- it identifies an applicable versioned presale specification;
+- production status is authenticated;
 - no presale is represented as live before activation;
-- the price is enforced beyond the frontend;
-- total allocation does not exceed 150,000,000 GFC;
-- the presale cannot mint additional GFC;
-- contribution accounting is deterministic;
-- participant tokens are claimable only after successful finalization;
-- funds remain unavailable before successful finalization;
-- soft-cap failure creates enforceable refund rights;
-- successful finalization preserves valid token claims;
-- administrative authority is documented;
-- critical parameters cannot be silently changed after activation;
-- unsold-token treatment was defined before launch;
-- official addresses are authenticated;
+- the GFC reference price is enforced according to the applicable release;
+- the Presale distribution ceiling is enforced;
+- no additional GFC is minted;
+- ETH, USDC, DAI support matches the applicable production release;
+- purchase accounting is deterministic;
+- immediate GFC distribution matches the applicable specification;
+- soft-cap accounting is deterministic;
+- contribution custody preserves valid refund rights;
+- successful finalization and failed finalization are correctly distinguished;
+- the immediate-distribution/refund interaction is fully and correctly implemented;
+- administrative authority is disclosed;
+- material participant-facing rules are not silently mutable;
+- unsold-GFC treatment is predefined;
+- production addresses are authenticated;
+- pilot status is not misrepresented;
 - and material deviations are disclosed.
+
+A frontend, website, Draft specification, social-media post, or unauthenticated address does not establish conformance.
 
 ---
 
-## 50. Non-Conformance
+## 78. Presale Non-Conformance
 
 Presale non-conformance includes:
 
 - frontend-only price enforcement;
-- unauthorized parameter changes;
-- undisclosed payment assets;
-- allocation beyond the approved maximum;
-- additional minting;
-- premature proceeds withdrawal;
-- insufficient refund reserves;
+- GFC distribution exceeding 150,000,000 GFC;
+- additional GFC minting;
+- acceptance of unauthenticated payment assets;
+- unsupported pricing behavior;
+- incorrect purchase accounting;
+- incorrect immediate distribution;
+- premature unrestricted proceeds withdrawal;
+- insufficient assets to satisfy valid refunds;
 - removal of valid refund rights;
-- invalidation of valid claims;
-- manipulation of purchase records;
 - hidden administrator authority;
-- undocumented unsold-token movement;
-- false presale-status communication;
-- or concealment of a material implementation deviation.
+- undocumented material parameter change;
+- improvised post-launch treatment of distributed GFC after failed finalization;
+- undocumented unsold-GFC movement;
+- fake or unauthenticated production address;
+- pilot activity represented as production;
+- or public claims materially stronger than authenticated implementation supports.
 
 Material non-conformance MAY require:
 
-- pausing purchases;
-- cancelling the presale;
-- enabling refunds;
-- disabling proceeds withdrawal;
-- public disclosure;
+- pause;
+- cancellation;
+- refund remediation;
+- proceeds-withdrawal restriction;
+- authority revocation;
+- migration;
 - participant notification;
-- contract migration;
+- public correction;
+- security review;
+- governance review;
 - independent investigation;
-- or security-incident treatment.
+- or incident treatment.
 
-The specification MUST NOT be altered retrospectively merely to make non-conforming behavior appear compliant.
+A specification MUST NOT be rewritten retrospectively merely to conceal presale non-conformance.
 
 ---
 
-## 51. Presale Non-Goals
+## 79. Change Classification
+
+A material presale change includes a change to:
+
+- reference price;
+- sale duration;
+- soft cap;
+- Presale allocation;
+- supported payment assets;
+- pricing architecture;
+- immediate-distribution behavior;
+- refund rights;
+- failed-finalization treatment;
+- proceeds-withdrawal conditions;
+- unsold-GFC treatment;
+- administrative authority;
+- immutability;
+- pause behavior;
+- cancellation;
+- or migration.
+
+A breaking presale change requires:
+
+- explicit versioning;
+- rationale;
+- economic analysis;
+- security analysis;
+- governance analysis;
+- participant-rights analysis;
+- implementation analysis;
+- migration analysis where relevant;
+- and updated public communication.
+
+Material presale behavior MUST NOT be changed solely through frontend updates or informal statements.
+
+---
+
+## 80. Presale Non-Goals
 
 The presale does not aim to:
 
-- guarantee financial returns;
+- guarantee financial return;
 - guarantee token appreciation;
 - guarantee liquidity;
-- guarantee listing on an exchange;
+- guarantee exchange listing;
 - guarantee staking income;
-- create additional token supply;
-- allow unlimited fundraising;
-- provide project operators with early access to refundable funds;
-- use frontend behavior as a substitute for contract enforcement;
-- distribute tokens before failure risk has been resolved;
-- remove human or legal responsibility through automation;
-- treat blockchain transactions as proof of project impact;
-- or conceal administrative authority.
+- create additional GFC supply;
+- create unlimited fundraising capacity;
+- provide unrestricted early access to refundable participant assets;
+- use frontend behavior as a substitute for settlement enforcement;
+- remove legal or human responsibility through automation;
+- treat purchase activity as proof of impact;
+- or conceal material presale authority.
+
+The current design also does not use deferred claim as its intended token-delivery model.
 
 ---
 
-## 52. Unresolved Presale Decisions
+## 81. Current Unresolved Presale Decisions
 
-The following matters remain unresolved and MUST be completed before Stable status.
+The following matters remain unresolved unless separately established by a later versioned specification or authenticated production implementation.
 
-### 52.1 Payment assets
+### 81.1 Payment-asset implementation
 
-- supported assets;
-- asset addresses;
-- volatile asset policy;
-- stablecoin policy;
+- exact production USDC contract address;
+- exact production DAI contract address;
+- native ETH handling;
+- asset-specific transfer behavior;
 - asset failure policy;
-- and asset-removal authority.
+- and post-activation asset-change authority.
 
-### 52.2 Conversion
+### 81.2 Pricing
 
-- oracle or pricing source;
-- oracle contract addresses;
+- final pricing source or oracle architecture;
+- source addresses or identifiers;
 - update frequency;
 - stale-price threshold;
 - deviation limits;
 - fallback behavior;
-- and rounding formula.
+- and rounding formulas.
 
-### 52.3 Purchase limits
+### 81.3 Purchase limits
 
 - minimum contribution;
 - per-transaction maximum;
 - per-wallet maximum;
-- participant maximum;
-- and anti-circumvention policy.
+- per-participant maximum;
+- and anti-circumvention rules.
 
-### 52.4 Eligibility
+### 81.4 Eligibility
 
 - jurisdiction restrictions;
 - age requirements;
 - identity requirements;
-- allowlist mechanism;
+- allowlist or credential model;
 - sanctions controls;
-- and legal terms.
+- and participant legal terms.
 
-### 52.5 Contract architecture
+### 81.5 Contract architecture
 
-- immutable or upgradeable deployment;
+- final immutable/configurable boundary;
+- contract structure;
+- exact activation method;
 - pause scope;
-- administrative roles;
-- finalization implementation;
-- and migration procedure.
+- cancellation authority;
+- recovery;
+- migration;
+- and exact finalization implementation.
 
-### 52.6 Claims
+### 81.6 Immediate distribution
 
-- full or partial claiming;
-- claim activation;
-- claim interface;
-- successor handling;
-- and unclaimed entitlement reporting.
+- exact transaction ordering;
+- atomicity;
+- transfer-failure behavior;
+- partial-fill interaction;
+- and invalid-purchase correction behavior.
 
-### 52.7 Refunds
+### 81.7 Refunds
 
-- exact refund implementation;
-- emergency migration;
-- unsupported-token recovery;
-- and participant-support procedure.
+- exact refund mechanism;
+- exact refund amount rule;
+- exact refund timing;
+- refund-claim lifecycle;
+- treatment of already distributed GFC after failed finalization;
+- cancellation interaction;
+- and migration of unresolved refunds.
 
-### 52.8 Proceeds
+### 81.8 Contribution custody
 
-- proceeds-vault address;
+- exact custody architecture;
+- segregation model;
+- contract or vault structure;
+- refund-reserve accounting;
+- and custody authority.
+
+### 81.9 Successful proceeds
+
+- final proceeds destination;
 - custody model;
+- withdrawal authority;
 - withdrawal threshold;
-- withdrawal timing;
 - asset-conversion policy;
-- and reporting requirements.
+- and reporting.
 
-### 52.9 Unsold tokens
+### 81.10 Unsold GFC
 
 - final destination;
+- continued allocation status;
 - lock or burn treatment;
 - execution authority;
 - execution timing;
 - and circulating-supply effect.
 
-### 52.10 Security
+### 81.11 Security
 
-- audit scope;
-- test coverage;
+- final independent review scope;
+- audit requirements if any;
 - monitoring;
 - incident severity;
-- disclosure process;
+- public-disclosure process;
 - and emergency response.
+
+These unresolved matters MUST NOT be represented as finalized production decisions.
 
 ---
 
-## 53. Requirements Before Stable Status
+## 82. Requirements Before Stable Status
 
 This document MUST NOT be marked Stable until:
 
-- supported payment assets are finalized;
-- all payment-asset addresses are identified;
+- ETH, USDC, and DAI production handling is finalized;
+- all applicable payment-asset identifiers are authenticated;
 - pricing and conversion logic are finalized;
-- oracle-failure behavior is finalized;
-- rounding rules and test vectors are published;
-- minimum and maximum contribution rules are finalized;
+- pricing-failure behavior is finalized;
+- rounding rules and test vectors are finalized;
+- purchase limits are finalized or explicitly excluded;
 - eligibility requirements are resolved;
 - exact start and end behavior are defined;
-- contract state transitions are finalized;
-- token claim mechanics are finalized;
+- the state machine is finalized;
+- immediate GFC distribution mechanics are finalized;
+- the immediate-distribution and failed-sale refund interaction is technically, economically, and normatively resolved;
 - refund mechanics are finalized;
 - contribution custody is finalized;
-- proceeds destinations are finalized;
-- withdrawal authority is finalized;
-- unsold-token treatment is finalized;
-- administrative roles are documented;
-- authority-registry entries are prepared;
-- upgradeability is finalized;
-- pause behavior is finalized;
-- migration behavior is finalized;
-- off-chain contributions are explicitly excluded or fully specified;
-- participant terms are prepared;
+- successful-finalization behavior is finalized;
+- failed-finalization behavior is finalized;
+- proceeds destination and withdrawal authority are finalized;
+- unsold-GFC treatment is finalized;
+- administrative roles are defined;
+- authority-registry entries can be prepared;
+- immutability and configurability are finalized;
+- pause behavior is finalized or explicitly excluded;
+- cancellation behavior is finalized;
+- migration is finalized or explicitly excluded;
+- recovery is finalized or explicitly excluded;
+- off-chain contributions remain explicitly excluded or are separately specified;
+- participant-facing disclosures are finalized;
 - privacy processes are documented;
-- independent security review requirements are satisfied;
-- contract source code is complete;
-- test coverage is complete;
-- deployment and verification procedures are prepared;
-- public communication is consistent with the specification;
+- security requirements are mapped to the implementation;
+- independent review requirements are finalized;
+- production deployment and authentication procedures are defined;
+- Base Sepolia pilot and Base Mainnet production terminology are consistently separated;
+- public communication is consistent with the applicable release;
 - and all related specifications are mutually consistent.
 
 ---
 
-## 54. Final Presale Principles
+## 83. Final Presale Principles
 
-The presale must preserve the following distinctions:
+The GFC presale model preserves the following distinctions:
 
-> A fixed displayed price is not sufficient unless the settlement mechanism enforces it.
+> Draft does not mean live.
 
-> Reaching the soft cap is not the same as completing successful finalization.
+> A fixed displayed price is insufficient unless the settlement mechanism enforces it.
 
-> Participant funds are not project funds while refund rights remain active.
+> Immediate GFC distribution is the current design direction.
 
-> A purchase entitlement is not the same as an immediately transferable token.
+> Immediate distribution does not eliminate refund obligations.
 
-> A successful presale does not guarantee liquidity, returns, completion, or impact.
+> A failed-sale refund model must explicitly resolve the treatment of already distributed GFC.
 
-> Public on-chain records verify transactions, not the quality or outcome of subsequent spending.
+> Reaching the soft cap is not the same as successful finalization.
 
-The presale is credible only where price, allocation, custody, participant rights, authority, finalization, claims, refunds, and public communication remain consistent.
+> Participant contribution assets are not unrestricted project proceeds while valid refund rights remain active.
+
+> No separate monetary hard cap does not mean unlimited fundraising capacity.
+
+> Presale allocation does not mean additional token supply.
+
+> Transaction verification does not prove project execution or impact.
+
+> Source verification does not mean audit.
+
+> Pilot does not mean production.
+
+The production presale must make price, payment assets, allocation, distribution, custody, refund rights, authority, finalization, proceeds, and material limitations technically enforceable and publicly reviewable before production reliance.

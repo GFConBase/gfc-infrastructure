@@ -4,10 +4,13 @@
 **Maturity:** Draft  
 **Authority:** Normative  
 **Version:** Unreleased  
-**Implementation Status:** Pre-deployment  
-**Intended Network:** Base Mainnet  
-**Chain ID:** 8453  
-**Last Updated:** 2026-07-23
+**Implementation Status:** Pre-mainnet specification and pilot development  
+**Primary Product Focus:** GFC Token / Economic Layer  
+**Intended Production Network:** Base Mainnet  
+**Production Chain ID:** 8453  
+**Public Pilot Network:** Base Sepolia  
+**Pilot Chain ID:** 84532  
+**Last Updated:** 2026-08-30
 
 ---
 
@@ -21,15 +24,21 @@ Its maturity remains Draft. The requirements may change before the first version
 
 At the time of publication:
 
-- no production GFC governance system is represented as deployed;
-- no production governance contract is represented as active;
-- no production multisig configuration is established by this document;
-- no governance vote, proposal, signer group, or administrative role should be treated as official unless published through an authenticated GFC release;
-- exact thresholds, timelocks, role holders, and voting mechanisms remain unresolved;
+- the current primary product focus is the **GFC Token / Economic Layer**;
+- the broader long-term direction is a wider **Accountability Infrastructure**;
+- a public GFC pilot exists on **Base Sepolia**;
+- no production GFC governance system is deployed on Base Mainnet;
+- no production governance contract is active;
+- no production multisig configuration is established as official by this document;
+- no governance vote, proposal, signer group, administrative role, wallet, or contract becomes production-authoritative merely because it appears in a Draft document;
+- exact production thresholds, timelocks, role holders, signer sets, and voting mechanisms remain unresolved unless separately defined by an applicable specification or authenticated release record;
 - this document does not establish complete decentralization;
-- no implementation is governed by this document unless it explicitly identifies an applicable versioned release.
+- pilot authority MUST NOT be interpreted as production authority;
+- and no production implementation is governed by this document unless it identifies an applicable versioned specification release.
 
-The presence of a governance mechanism or role in this specification does not mean that it has already been implemented, assigned, reviewed, audited, or activated.
+The presence of a governance mechanism or role in this specification does not mean that it has already been implemented, assigned, reviewed, audited, deployed, activated, or made operational.
+
+Current project and deployment status is maintained in [`../STATUS.md`](../STATUS.md).
 
 ---
 
@@ -56,6 +65,14 @@ Its purpose is to ensure that:
 
 Governance is treated as a control and accountability system, not as a marketing claim.
 
+Within the long-term GFC accountability model:
+
+**Funds → Authority → Rules → Decisions → Outcomes → Evidence**
+
+this specification primarily constrains how **Authority**, **Rules**, and **Decisions** may interact.
+
+Governance credibility depends on making material authority attributable, bounded, reviewable, and historically reconstructable.
+
 ---
 
 ## 3. Scope
@@ -80,7 +97,7 @@ This specification applies to governance authority relating to:
 - staking administration;
 - signer appointment and removal;
 - evidence-policy administration;
-- transparency-record administration;
+- Transparency Registry administration;
 - protected-evidence access;
 - incident response;
 - emergency intervention;
@@ -119,6 +136,10 @@ This document does not independently define:
 - or final regulatory responsibilities.
 
 These matters require separate specifications, policies, legal documents, or release records.
+
+Role definitions, authority categories, assignment requirements, and authority-registry foundations are defined in [`roles-and-authority.md`](roles-and-authority.md).
+
+This document does not duplicate those definitions. It constrains how governance may exercise the authorities defined there.
 
 ---
 
@@ -196,10 +217,32 @@ Material governance actions SHOULD produce verifiable records covering:
 - proposal;
 - rationale;
 - authority;
+- applicable rule;
 - approval;
 - execution;
 - outcome;
+- evidence;
 - and any deviation.
+
+### 6.10 Pilot and production separation
+
+Governance associated with the public Base Sepolia pilot is non-production governance.
+
+Pilot roles, keys, deployers, owners, administrators, wallets, or processes MUST NOT automatically acquire or imply corresponding Base Mainnet production authority.
+
+Before production activation, all material production authority MUST be deliberately defined, instantiated, authenticated, and recorded separately.
+
+### 6.11 Responsibility follows authority
+
+A role with material governance power MUST have corresponding accountability obligations.
+
+Greater authority requires stronger:
+
+- disclosure;
+- approval;
+- security;
+- monitoring;
+- and historical-record requirements.
 
 ---
 
@@ -268,13 +311,14 @@ The applicable category MUST be disclosed for every material governance action.
 
 ## 9. Authority Registry
 
-Before production deployment, GFC MUST publish an authority registry.
+Before production reliance, GFC MUST maintain an authenticated authority record for all material production roles.
 
-For each privileged role, the registry MUST identify:
+For each privileged role, the authority registry MUST identify, where applicable:
 
-- role name;
-- controlling wallet or contract;
-- network;
+- canonical role name;
+- environment;
+- network and chain ID;
+- controlling wallet, multisig, contract, entity, or other authenticated holder;
 - affected component;
 - permitted actions;
 - prohibited actions;
@@ -285,19 +329,27 @@ For each privileged role, the registry MUST identify:
 - removal process;
 - replacement process;
 - emergency authority;
-- revocation status;
+- effective date or block;
+- assignment evidence;
+- revocation or supersession status;
 - and current operational status.
 
 The registry MUST distinguish between:
 
-- active authority;
+- proposed authority;
+- pilot authority;
+- active production authority;
 - inactive authority;
+- revoked authority;
 - renounced authority;
+- superseded authority;
 - deprecated authority;
 - emergency-only authority;
 - and temporary deployment authority.
 
-An undocumented role MUST be treated as a governance defect.
+Historical authority changes MUST remain reviewable.
+
+An undocumented material role MUST be treated as a governance defect.
 
 ---
 
@@ -352,7 +404,7 @@ Any transitional concentration MUST document:
 - maximum authority;
 - risk controls;
 - intended end state;
-- review date;
+- review conditions;
 - and conditions for termination.
 
 Transitional arrangements MUST NOT silently become permanent governance structures.
@@ -937,36 +989,56 @@ Any replacement MUST preserve the remaining vesting constraint unless an applica
 
 ## 27. Presale Governance
 
-### 27.1 Pre-launch authority
+### 27.1 Current Draft design
 
-Before launch, authorized governance may finalize:
+No GFC presale is currently live.
 
-- supported assets;
-- pricing implementation;
-- duration;
-- start conditions;
-- refund mechanics;
-- eligibility;
+The current Draft presale design includes:
+
+- a reference price of €0.05 per GFC;
+- an intended eight-week duration;
+- a €250,000 soft cap;
+- no separate monetary hard cap;
+- a maximum Presale Allocation of 150,000,000 GFC;
+- intended support for ETH, USDC, and DAI on Base;
+- immediate token distribution as the current design direction;
+- refund rights if the applicable soft-cap success condition is not satisfied;
+- and immutable material sale logic as the current design direction.
+
+These are Draft design parameters, not evidence of a live or deployed presale.
+
+### 27.2 Pre-launch authority
+
+Before production activation, authorized governance MAY finalize only matters that remain expressly unresolved by the applicable specifications, including where necessary:
+
+- exact supported-asset contract addresses;
+- pricing implementation details;
+- activation conditions;
+- refund implementation;
+- eligibility and legal controls;
 - payment routing;
-- token-delivery method;
-- and operational procedures.
+- operational procedures;
+- and deployment authentication.
 
-These decisions MUST be published before the presale begins.
+Governance MUST NOT use pre-launch authority to contradict the applicable versioned presale specification without first versioning and documenting the specification change.
 
-### 27.2 Post-launch constraints
+### 27.3 Post-launch constraints
 
 Once the production presale begins, governance MUST NOT silently change:
 
 - price;
-- eight-week duration;
+- intended eight-week duration;
 - €250,000 soft cap;
 - maximum Presale Allocation;
+- supported payment assets;
+- participant accounting;
+- immediate-distribution behavior;
 - refund rights;
 - purchase records;
 - accepted payment treatment;
 - or withdrawal conditions.
 
-### 27.3 Administrative correction
+### 27.4 Administrative correction
 
 A narrowly defined correction MAY be permitted for:
 
@@ -977,21 +1049,35 @@ A narrowly defined correction MAY be permitted for:
 
 Correction authority MUST NOT permit arbitrary purchase alteration.
 
-### 27.4 Presale proceeds
+### 27.5 Presale proceeds
 
 Presale proceeds MUST NOT become freely available before the applicable success and withdrawal conditions are satisfied.
 
 Governance MUST preserve valid refund claims.
 
-### 27.5 Failed presale
+### 27.6 Failed presale
 
 If the applicable soft cap is not reached, governance MUST NOT redirect refundable contributions to another purpose.
 
-### 27.6 Unused allocation
+Because the current Draft design direction uses immediate token distribution, the final presale specification MUST define the technically enforceable treatment of GFC already distributed to participants if finalization fails.
+
+This document does not invent or authorize a clawback, forced transfer, burn, return, replacement, or equivalent mechanism.
+
+Governance MUST NOT improvise such a mechanism after the presale has begun.
+
+### 27.7 Unused allocation
 
 Treatment of unused Presale Allocation MUST be defined before launch.
 
 Governance MUST NOT improvise its treatment after the result is known without disclosure and applicable authority.
+
+### 27.8 Presale immutability
+
+The current design direction is for material participant-facing presale logic to be immutable after production deployment.
+
+Any remaining administrative surface MUST be explicitly enumerated in [`presale.md`](presale.md).
+
+A production deployment MUST NOT be described as immutable if an undisclosed privileged path can materially alter sale behavior.
 
 ---
 
@@ -1071,7 +1157,7 @@ Governance MUST NOT use liquidity authority to perform undisclosed price manipul
 
 ---
 
-## 30. Guardian Growth Fund Governance
+## 30. Guardian Growth Governance
 
 Before production use, governance MUST define:
 
@@ -1097,7 +1183,7 @@ Any independent guardian role must have:
 
 ---
 
-## 31. Ecosystem Growth Fund Governance
+## 31. Ecosystem Governance
 
 Governance MUST define eligible use categories, including distinctions between:
 
@@ -1120,6 +1206,10 @@ Milestone-based distributions SHOULD be used where appropriate.
 
 ## 32. Staking Governance
 
+No production GFC staking system is currently operational.
+
+The current intended staking design direction is **hybrid and non-inflationary**.
+
 Before staking activation, governance MUST define:
 
 - reward source;
@@ -1128,7 +1218,8 @@ Before staking activation, governance MUST define:
 - maximum distribution;
 - lock conditions;
 - withdrawal conditions;
-- governance rights;
+- governance-related or community-related benefits;
+- governance rights, if any;
 - parameter mutability;
 - emergency controls;
 - and migration.
@@ -1136,11 +1227,15 @@ Before staking activation, governance MUST define:
 Governance MUST NOT:
 
 - create additional GFC beyond the fixed supply;
+- fund rewards through undocumented inflation;
 - present variable rewards as guaranteed;
 - silently increase reward obligations;
+- retroactively confiscate earned rewards;
 - or grant unrestricted treasury authority through staking.
 
 Material staking parameter changes SHOULD apply prospectively rather than retroactively.
+
+Detailed staking authority and economic constraints are defined in [`staking.md`](staking.md).
 
 ---
 
@@ -1201,6 +1296,35 @@ into independently verified evidence.
 Governance authority over evidence anchoring MUST NOT be represented as authority to determine factual truth.
 
 Anchoring establishes integrity of a record, not correctness of its contents.
+
+### 33.7 Transparency Registry governance
+
+The planned Transparency Registry is intended to operate as a **versioned historical record**, not as a permanent approval badge.
+
+Governance MAY define roles for:
+
+- record submission;
+- evidence linkage;
+- review;
+- publication;
+- correction;
+- supersession;
+- status change;
+- suspension;
+- downgrade;
+- and removal from current presentation.
+
+However:
+
+- material historical records MUST NOT be silently erased;
+- prior status MUST remain reconstructable where legally and technically appropriate;
+- a status change MUST identify its authority and rationale;
+- project-controlled status assignment MUST NOT be presented as independent verification;
+- and registry inclusion MUST NOT imply permanent endorsement.
+
+No complete production Transparency Registry is currently deployed.
+
+Detailed requirements are defined in [`transparency-model.md`](transparency-model.md).
 
 ---
 
@@ -1293,7 +1417,7 @@ Any backend capable of:
 - redirecting execution;
 - or controlling access
 
-MUST be included in the governance authority registry.
+MUST be included in the authority registry.
 
 ### 36.3 UI claims
 
@@ -1405,6 +1529,7 @@ Material disclosures include:
 - major allocation movements;
 - liquidity changes;
 - incidents;
+- Transparency Registry status changes where material;
 - migrations;
 - and deprecations.
 
@@ -1605,6 +1730,8 @@ Governance non-conformance includes:
 - improper emergency action;
 - retrospective authorization;
 - evidence-status manipulation;
+- pilot authority presented as production authority;
+- revoked authority that remains technically active;
 - or concealment of material control.
 
 Material non-conformance MAY require:
@@ -1646,11 +1773,34 @@ The purpose of governance is to bound and expose authority, not to deny that aut
 
 ---
 
-## 49. Unresolved Governance Decisions
+## 49. Dependencies on Other Specifications
+
+This document MUST be interpreted together with:
+
+- [`README.md`](README.md);
+- [`glossary.md`](glossary.md);
+- [`non-goals.md`](non-goals.md);
+- [`architecture.md`](architecture.md);
+- [`roles-and-authority.md`](roles-and-authority.md);
+- [`security-model.md`](security-model.md);
+- [`token.md`](token.md);
+- [`allocations.md`](allocations.md);
+- [`vesting-and-unlocks.md`](vesting-and-unlocks.md);
+- [`economic-flows.md`](economic-flows.md);
+- [`staking.md`](staking.md);
+- [`presale.md`](presale.md);
+- [`transparency-model.md`](transparency-model.md);
+- and repository-level [`../STATUS.md`](../STATUS.md).
+
+Where another Draft specification conflicts with this document, the conflict MUST be resolved explicitly before Stable status.
+
+---
+
+## 50. Unresolved Governance Decisions
 
 The following matters remain unresolved and MUST be completed before this document can become Stable.
 
-### 49.1 Governance structure
+### 50.1 Governance structure
 
 - final governance model;
 - role hierarchy;
@@ -1660,7 +1810,7 @@ The following matters remain unresolved and MUST be completed before this docume
 - guardian participation;
 - and execution model.
 
-### 49.2 Multisig
+### 50.2 Multisig
 
 - platform;
 - signer count;
@@ -1670,7 +1820,7 @@ The following matters remain unresolved and MUST be completed before this docume
 - signer disclosure;
 - and replacement process.
 
-### 49.3 Timelocks
+### 50.3 Timelocks
 
 - action categories;
 - standard delay;
@@ -1678,7 +1828,7 @@ The following matters remain unresolved and MUST be completed before this docume
 - emergency bypass;
 - and cancellation authority.
 
-### 49.4 Voting
+### 50.4 Voting
 
 - eligibility;
 - voting weight;
@@ -1691,7 +1841,7 @@ The following matters remain unresolved and MUST be completed before this docume
 - veto;
 - and execution.
 
-### 49.5 Treasury
+### 50.5 Treasury
 
 - transaction thresholds;
 - budget categories;
@@ -1700,7 +1850,7 @@ The following matters remain unresolved and MUST be completed before this docume
 - recurring-payment authority;
 - and related-party controls.
 
-### 49.6 Contracts
+### 50.6 Contracts
 
 - upgrade authority;
 - pause authority;
@@ -1709,24 +1859,27 @@ The following matters remain unresolved and MUST be completed before this docume
 - migration authority;
 - and role renunciation.
 
-### 49.7 Presale
+### 50.7 Presale
 
-- pre-launch administrator;
+- final administrative surface;
 - correction authority;
 - refund administration;
 - withdrawal approval;
-- and failed-sale governance.
+- failed-sale governance;
+- treatment of GFC already distributed under immediate distribution if finalization fails;
+- and final immutable/configurable boundary.
 
-### 49.8 Evidence
+### 50.8 Evidence
 
 - reviewer roles;
 - evidence-status authority;
+- Transparency Registry status authority;
 - protected-access authority;
 - correction process;
 - dispute process;
 - and independent verification standards.
 
-### 49.9 Impact
+### 50.9 Impact
 
 - evaluator appointment;
 - methodology approval;
@@ -1734,7 +1887,7 @@ The following matters remain unresolved and MUST be completed before this docume
 - review independence;
 - and impact-status challenge process.
 
-### 49.10 Incidents
+### 50.10 Incidents
 
 - severity model;
 - emergency authority;
@@ -1745,7 +1898,7 @@ The following matters remain unresolved and MUST be completed before this docume
 
 ---
 
-## 50. Requirements Before Stable Status
+## 51. Requirements Before Stable Status
 
 This document MUST NOT be marked Stable until:
 
@@ -1768,20 +1921,23 @@ This document MUST NOT be marked Stable until:
 - Impact Vault governance is finalized;
 - Core Team vesting governance is finalized;
 - presale governance is finalized;
+- the immediate-distribution and failed-sale refund interaction is technically and normatively resolved;
 - treasury governance is finalized;
 - liquidity governance is finalized;
 - evidence governance is finalized;
+- Transparency Registry governance is finalized;
 - protected-information governance is finalized;
 - impact-governance boundaries are finalized;
 - incident and dispute processes are defined;
 - public disclosure requirements are approved;
+- Base Sepolia pilot authority and Base Mainnet production authority are consistently separated;
 - security review is completed;
 - related specifications are mutually consistent;
 - and a versioned release process exists.
 
 ---
 
-## 51. Final Governance Principle
+## 52. Final Governance Principle
 
 GFC governance must make the complete control surface visible.
 
@@ -1799,4 +1955,8 @@ A public explanation does not replace prior authorization.
 
 An emergency does not create permanent authority.
 
-Governance is credible only where authority, limitations, approvals, execution, evidence, and accountability can be examined together.
+Pilot governance does not create production authority.
+
+A Transparency Registry status does not create permanent endorsement.
+
+Governance is credible only where funds, authority, rules, decisions, outcomes, evidence, limitations, approvals, and execution can be examined together.

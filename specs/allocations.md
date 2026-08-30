@@ -1,38 +1,128 @@
 # GFC Token Allocation Specification
 
-This document defines the current intended allocation of the fixed Global Foundation Coin (GFC) token supply and the associated allocation-level constraints.
+**Document ID:** GFC-ALC-001  
+**Maturity:** Draft  
+**Authority:** Normative  
+**Version:** Unreleased  
+**Implementation Status:** Pre-mainnet specification and pilot development  
+**Primary Product Focus:** GFC Token / Economic Layer  
+**Intended Production Network:** Base Mainnet  
+**Production Chain ID:** 8453  
+**Public Pilot Network:** Base Sepolia  
+**Pilot Chain ID:** 84532  
+**Total Intended Supply:** 1,000,000,000 GFC  
+**Last Updated:** 2026-08-30
 
 ---
 
-## Document Status
+## 1. Document Status
 
-| Property | Value |
-|---|---|
-| Maturity | Draft |
-| Authority | Normative |
-| Version | Unreleased |
-| Implementation status | Pre-deployment |
-| Total intended supply | 1,000,000,000 GFC |
+This document defines the current intended allocation of the fixed Global Foundation Coin (GFC) token supply and the associated allocation-level constraints.
 
-This document is normative but remains Draft.
+It is normative because it defines:
 
-It may change materially before a Stable specification release is approved.
+- allocation names;
+- allocation percentages;
+- allocation token amounts;
+- supply reconciliation requirements;
+- custody and authority boundaries;
+- lock and vesting requirements;
+- migration constraints;
+- and allocation-level disclosure requirements.
 
-It does not represent deployed allocation contracts, active custody arrangements, or funded production wallets.
+Its maturity remains Draft.
+
+At the current repository state:
+
+- the **GFC Token / Economic Layer** is the current primary product focus;
+- a public GFC pilot exists on **Base Sepolia**;
+- no production GFC token is deployed on Base Mainnet;
+- no production allocation contract is established as official;
+- no production allocation wallet is established as official by this document;
+- no production Impact Vault contract is established as official;
+- no production Core Team vesting contract is established as official;
+- no production allocation custody model is represented as active;
+- no production allocation balances are established as authoritative by this document;
+- and no allocation implementation is designated as conforming.
+
+The Base Sepolia pilot MUST NOT be interpreted as evidence that the production allocation structure has been deployed.
 
 Current implementation and deployment status is maintained in [`../STATUS.md`](../STATUS.md).
 
 ---
 
-## Normative Language
+## 2. Purpose
 
-The terms `must`, `must not`, `required`, `should`, `should not`, and `may` are used to distinguish requirements, recommendations, prohibitions, and permitted behavior.
+The purpose of this specification is to define how the complete intended fixed GFC supply is divided and what constraints apply to those allocations.
 
-A requirement remains subject to the maturity and version of the applicable specification release.
+The allocation model is designed to ensure that:
+
+- the complete fixed supply is accounted for;
+- no undisclosed initial allocation exists;
+- allocation names remain consistent;
+- allocation purpose does not become unrestricted ownership;
+- long-term commitments remain enforceable;
+- custody and authority are reviewable;
+- migration cannot silently weaken allocation restrictions;
+- and production records can reconcile intended allocation with actual on-chain state.
+
+This document defines allocation structure.
+
+It does not independently establish:
+
+- final wallet addresses;
+- final contract addresses;
+- final signer groups;
+- final treasury policies;
+- final liquidity strategy;
+- final presale implementation;
+- final staking economics;
+- or final legal ownership.
 
 ---
 
-## Scope
+## 3. Relationship to the GFC Accountability Model
+
+The long-term GFC accountability model is:
+
+**Funds → Authority → Rules → Decisions → Outcomes → Evidence**
+
+Allocations primarily define how **Funds** are initially categorized and which **Rules** and **Authority** constraints apply to them.
+
+An allocation label does not by itself establish:
+
+- who has legitimate authority;
+- whether movement is permitted;
+- whether spending is compliant;
+- whether an outcome occurred;
+- or whether impact was achieved.
+
+For a material allocation movement, it SHOULD be possible to reconstruct:
+
+1. the source allocation;
+2. the responsible authority;
+3. the applicable rules;
+4. the decision authorizing the movement;
+5. the resulting transaction or state change;
+6. and the evidence supporting the represented purpose.
+
+---
+
+## 4. Normative Language
+
+The terms **MUST**, **MUST NOT**, **REQUIRED**, **SHALL**, **SHALL NOT**, **SHOULD**, **SHOULD NOT**, **RECOMMENDED**, **NOT RECOMMENDED**, **MAY**, and **OPTIONAL** express requirement levels.
+
+These terms are normative only when:
+
+- they appear in uppercase;
+- the containing document declares `Authority: Normative`;
+- and the applicable version governs the implementation, process, or communication being evaluated.
+
+Because this document is Draft, these requirements remain subject to formal review and versioned release.
+
+---
+
+## 5. Scope
 
 This document defines:
 
@@ -42,60 +132,84 @@ This document defines:
 - total-supply reconciliation;
 - allocation integrity;
 - allocation custody requirements;
-- allocation-control requirements;
+- allocation authority requirements;
+- allocation transfer constraints;
 - long-term lock requirements;
 - vesting requirements;
 - allocation migration constraints;
-- and allocation-level disclosure requirements.
+- allocation disclosure;
+- and allocation-level conformance.
+
+---
+
+## 6. Out of Scope
 
 This document does not independently define:
 
 - token implementation;
-- transfer-fee behavior;
-- detailed treasury spending rules;
-- detailed liquidity strategy;
-- presale accounting;
-- staking design;
-- governance voting design;
+- buy or sell fee implementation;
+- detailed Treasury Reserve spending rules;
+- detailed Liquidity Reserve deployment strategy;
+- presale contribution accounting;
+- presale refund implementation;
+- staking reward calculations;
+- governance voting mechanics;
+- final Transparency Registry behavior;
 - impact-verification methodology;
-- or legal ownership.
+- legal ownership;
+- tax treatment;
+- or regulatory classification.
 
-The token-level supply model is defined in [`token.md`](token.md).
+Token-level supply requirements are defined in [`token.md`](token.md).
+
+Authority boundaries are defined in [`roles-and-authority.md`](roles-and-authority.md).
+
+Governance constraints are defined in [`governance-constraints.md`](governance-constraints.md).
+
+Security requirements are defined in [`security-model.md`](security-model.md).
 
 ---
 
-## Total Allocation
+## 7. Total Allocation
 
-The fixed intended supply is allocated as follows.
-
-| Allocation | Percentage | Token Amount |
-|---|---:|---:|
-| Impact Vault | 25% | 250,000,000 GFC |
-| Guardian Growth Fund | 20% | 200,000,000 GFC |
-| Presale Allocation | 15% | 150,000,000 GFC |
-| Treasury Reserve | 15% | 150,000,000 GFC |
-| Liquidity Reserve | 15% | 150,000,000 GFC |
-| Ecosystem Growth Fund | 5% | 50,000,000 GFC |
-| Core Team | 5% | 50,000,000 GFC |
-| **Total** | **100%** | **1,000,000,000 GFC** |
-
-A conforming initial allocation must reconcile exactly to:
+The intended fixed GFC supply is:
 
 ```text
 1,000,000,000 GFC
 ```
 
-No undisclosed allocation may exist outside this total.
+The current Draft allocation model is:
+
+| Allocation | Percentage | Token Amount |
+|---|---:|---:|
+| Impact Vault | 25% | 250,000,000 GFC |
+| Guardian Growth | 20% | 200,000,000 GFC |
+| Presale | 15% | 150,000,000 GFC |
+| Treasury Reserve | 15% | 150,000,000 GFC |
+| Liquidity Reserve | 15% | 150,000,000 GFC |
+| Ecosystem | 5% | 50,000,000 GFC |
+| Core Team | 5% | 50,000,000 GFC |
+| **Total** | **100%** | **1,000,000,000 GFC** |
+
+A conforming initial allocation MUST reconcile exactly to the complete fixed supply.
+
+No undisclosed initial allocation MAY exist outside this total.
+
+These values are Draft specification parameters.
+
+They are not evidence of deployed production allocation contracts, funded production wallets, or active custody arrangements.
 
 ---
 
-## Allocation Reconciliation
+## 8. Allocation Reconciliation
 
-The allocation model must satisfy both of the following conditions:
+The allocation model MUST satisfy:
 
 ```text
 25% + 20% + 15% + 15% + 15% + 5% + 5% = 100%
 ```
+
+and:
 
 ```text
 250,000,000
@@ -108,38 +222,51 @@ The allocation model must satisfy both of the following conditions:
 = 1,000,000,000 GFC
 ```
 
-Allocation calculations must use the token's configured decimals consistently.
+Allocation calculations MUST use the token's configured 18 decimals consistently.
 
-Rounding must not create:
+Deployment mechanics MUST NOT create:
 
-- excess tokens;
-- unassigned tokens;
-- duplicate claims;
-- or hidden residual balances.
+- excess supply;
+- hidden residual supply;
+- overlapping allocation claims;
+- duplicate allocation capacity;
+- or unaccounted canonical balances.
 
-Any residual balance created by deployment mechanics must be documented and assigned through the applicable versioned specification.
+If a deployment process produces a technical residual balance, the applicable release MUST document:
+
+- amount;
+- source;
+- address;
+- reason;
+- normative allocation classification;
+- and final treatment.
+
+A technical residual MUST NOT become an undisclosed eighth allocation.
 
 ---
 
-## Allocation Integrity
+## 9. Allocation Integrity
 
-Each allocation must be independently identifiable through:
+Each production allocation MUST be independently identifiable through an authenticated:
 
-- an authenticated wallet;
-- an authenticated contract;
-- an authenticated accounting record;
-- or another verifiable allocation mechanism defined by the production architecture.
+- wallet;
+- smart contract;
+- accounting record linked to authenticated on-chain state;
+- or another explicitly specified allocation mechanism.
 
-A production implementation should allow reviewers to determine:
+A production reviewer SHOULD be able to determine:
 
-- the original allocation amount;
-- the current balance;
+- initial allocation amount;
+- percentage of total supply;
+- authenticated custody address or contract;
+- current on-chain balance;
 - incoming transfers;
 - outgoing transfers;
 - applicable locks;
 - applicable vesting;
 - custody authority;
-- spending authority;
+- spending or release authority;
+- upgrade authority;
 - migration authority;
 - and known deviations.
 
@@ -148,85 +275,156 @@ An allocation label does not independently prove:
 - technical restriction;
 - legal restriction;
 - correct custody;
-- correct spending;
-- correct use of funds;
+- compliant use;
+- authorized spending;
+- correct beneficiary selection;
+- output;
+- outcome;
 - or impact.
 
 ---
 
-## Allocation Names
+## 10. Canonical Allocation Names
 
-The allocation names describe intended categories.
+The canonical allocation names are:
 
-They must not be represented as sufficient authorization for a transfer or expenditure.
+1. **Impact Vault**
+2. **Guardian Growth**
+3. **Presale**
+4. **Treasury Reserve**
+5. **Liquidity Reserve**
+6. **Ecosystem**
+7. **Core Team**
 
-The name of an allocation does not replace:
+Current technical specifications SHOULD use these exact names unless a more specific implementation label is required.
 
-- documented permitted uses;
-- approval requirements;
-- custody controls;
-- technical restrictions;
-- supporting evidence;
-- or governance authorization.
+Legacy or alternate labels such as:
 
-Before Stable status, each material allocation should have a defined purpose, control model, and permitted-use framework.
+- `Guardian Growth Fund`;
+- `Presale Allocation`;
+- `Ecosystem Growth Fund`;
+- or `Core Team Allocation`
+
+MAY remain in historical records where necessary for accurate archival context.
+
+They SHOULD NOT create ambiguity in current specifications or production records.
+
+An allocation name describes intended classification.
+
+It does not independently authorize transfer or spending.
 
 ---
 
-## General Custody Requirements
+## 11. General Custody Requirements
 
-Material allocation custody must be:
+Material allocation custody MUST be:
 
-- explicitly documented;
+- explicit;
 - attributable;
 - reviewable;
-- separated from unrelated authority where appropriate;
 - consistent with least privilege;
-- and protected against unilateral misuse where practical.
+- separated from unrelated authority where reasonably possible;
+- and protected against unilateral misuse appropriate to the allocation's risk.
 
-A production allocation record should identify:
+A production allocation record SHOULD identify, where applicable:
 
 - custody address;
 - custody mechanism;
-- authorized signers;
-- signature threshold;
-- signer appointment process;
-- signer removal process;
+- controlling role;
+- signer model;
+- approval threshold;
+- signer appointment;
+- signer removal;
 - emergency authority;
 - transfer authority;
 - spending authority;
+- upgrade authority;
 - migration authority;
+- recovery authority;
 - and applicable timelocks.
 
-A multisig does not independently prove signer independence, decentralization, or adequate separation of duties.
+No specific production signer, multisig, threshold, wallet, or custody platform is established by this document.
+
+A multisig does not independently prove:
+
+- decentralization;
+- signer independence;
+- appropriate custody;
+- or sufficient separation of duties.
 
 ---
 
-## General Transfer Requirements
+## 12. Allocation Authority
 
-Tokens must not be transferred between allocations merely for accounting convenience without:
+Authority over material allocations MUST be consistent with [`roles-and-authority.md`](roles-and-authority.md).
+
+Production records MUST distinguish, where applicable:
+
+- custody authority;
+- proposal authority;
+- approval authority;
+- execution authority;
+- release authority;
+- beneficiary authority;
+- migration authority;
+- upgrade authority;
+- and emergency authority.
+
+A role MUST NOT obtain unrestricted beneficial ownership merely because it controls the technical custody mechanism.
+
+If technical capability exceeds intended authority, that difference MUST be disclosed as a trust and security assumption.
+
+---
+
+## 13. General Transfer Requirements
+
+Tokens MUST NOT be moved between allocations merely for accounting convenience without:
 
 - documented authority;
-- an identified purpose;
-- an applicable approval process;
-- a reviewable transaction record;
+- identified purpose;
+- applicable approval;
+- reviewable transaction evidence;
 - updated allocation accounting;
 - and disclosure of the effect on the original allocation commitment.
 
-Transfers must not be used to:
+Transfers MUST NOT be used to:
 
 - bypass locks;
 - bypass vesting;
 - conceal treasury use;
-- duplicate allocation capacity;
-- avoid disclosure;
-- or retrospectively change the represented purpose of an allocation.
+- create duplicate allocation capacity;
+- avoid reporting;
+- reclassify tokens retrospectively without authority;
+- or weaken previously stated restrictions.
 
-A transfer does not automatically change the normative classification of the tokens.
+A transfer does not automatically change the normative allocation classification of the tokens.
+
+Where reclassification is permitted, the applicable specification MUST define the authority and conditions.
 
 ---
 
-## Impact Vault
+## 14. Cross-Allocation Reclassification
+
+A material reclassification between allocations is not an ordinary transfer.
+
+A reclassification MAY constitute a breaking normative change where it changes:
+
+- allocation percentage;
+- allocation amount;
+- participant expectations;
+- long-term constraints;
+- beneficiary rights;
+- or intended economic function.
+
+Reclassification MUST NOT be used to bypass allocation-specific rules.
+
+Where reclassification occurs before production deployment, it requires an updated applicable specification.
+
+Where a future production system permits reclassification, its authority, limits, accounting, and historical record MUST be explicitly defined.
+
+---
+
+## 15. Impact Vault
 
 The Impact Vault allocation is:
 
@@ -237,57 +435,79 @@ The Impact Vault allocation is:
 This equals:
 
 ```text
-25% of the total intended supply
+25% of total supply
 ```
 
-### Intended Long-Term Constraint
+### 15.1 Intended long-term constraint
 
-The Impact Vault allocation is intended to be subject to a:
+The Impact Vault is intended to be subject to a:
 
 ```text
 50-year lock
 ```
 
-The production architecture must define:
+The detailed lock and unlock requirements belong in [`vesting-and-unlocks.md`](vesting-and-unlocks.md).
 
-- the lock commencement event;
-- the lock commencement timestamp;
-- the exact unlock timestamp;
-- the time-calculation method;
-- whether partial unlocking is possible;
+Before production deployment, the applicable implementation MUST define:
+
+- lock commencement event;
+- lock commencement timestamp;
+- exact lock calculation;
+- unlock conditions;
+- whether release is full or staged;
 - whether transfers are technically blocked;
-- whether governance can modify the lock;
-- whether upgrades can modify the lock;
-- whether migration is possible;
-- whether emergency authority exists;
-- and what happens after expiration.
+- administrative authority;
+- upgradeability;
+- migration;
+- emergency behavior;
+- and post-lock behavior.
 
-A 50-year lock must not be represented as technically enforced until authenticated contract code and on-chain state support that claim.
+### 15.2 No premature enforcement claim
 
-### Bypass Prohibition
+A 50-year lock MUST NOT be represented as technically enforced until authenticated production contract code and state support that claim.
 
-Upgrade, migration, governance, emergency, recovery, or administrative mechanisms must not function as undocumented methods for bypassing the Impact Vault lock.
+### 15.3 Bypass prohibition
 
-Moving the allocation to a replacement contract does not preserve the commitment unless the replacement maintains an equivalent or stronger enforceable restriction.
+No:
 
-### Impact Claims
+- upgrade;
+- migration;
+- governance action;
+- emergency action;
+- recovery action;
+- administrator;
+- or alternate withdrawal path
+
+MAY function as an undocumented method for shortening or bypassing the Impact Vault restriction.
+
+### 15.4 Migration
+
+A migration MUST preserve or strengthen:
+
+- remaining locked amount;
+- remaining duration;
+- economic restriction;
+- and allocation identity.
+
+Migration MUST NOT function as disguised early release.
+
+### 15.5 Impact claims
 
 The existence, balance, or lock state of the Impact Vault does not independently prove:
 
-- compliant use;
 - charitable status;
-- charitable impact;
-- correct beneficiary selection;
-- correct expenditure;
-- or meaningful outcomes.
+- compliant use;
+- actual deployment of funds;
+- positive outcome;
+- or impact.
 
 Impact-related claims remain subject to [`transparency-model.md`](transparency-model.md).
 
 ---
 
-## Guardian Growth Fund
+## 16. Guardian Growth
 
-The Guardian Growth Fund allocation is:
+The Guardian Growth allocation is:
 
 ```text
 200,000,000 GFC
@@ -296,30 +516,34 @@ The Guardian Growth Fund allocation is:
 This equals:
 
 ```text
-20% of the total intended supply
+20% of total supply
 ```
 
-This Draft does not yet fully define:
+Its final production mandate remains unresolved.
 
-- permitted uses;
+Before production use, the applicable specification MUST define:
+
+- permitted purposes;
+- prohibited purposes;
 - custody structure;
-- spending authority;
-- distribution schedule;
-- recipient eligibility;
-- transfer limits;
-- lock requirements;
-- vesting requirements;
-- or reporting requirements.
+- release authority;
+- approval requirements;
+- transaction limits;
+- recipient criteria;
+- conflict-of-interest controls;
+- lock or vesting requirements, if any;
+- reporting requirements;
+- and migration rules.
 
-The allocation name must not be treated as unrestricted authorization.
+The term `Guardian` MUST NOT be represented as evidence of independent oversight unless such oversight actually exists and is documented.
 
-Before production use, the applicable specification must define the allocation's control surface and permitted-use framework.
+Guardian Growth MUST NOT be treated as unrestricted inventory.
 
 ---
 
-## Presale Allocation
+## 17. Presale
 
-The Presale Allocation is:
+The Presale allocation is:
 
 ```text
 150,000,000 GFC
@@ -328,31 +552,85 @@ The Presale Allocation is:
 This equals:
 
 ```text
-15% of the total intended supply
+15% of total supply
 ```
 
-The Presale Allocation must remain consistent with the applicable presale specification in [`presale.md`](presale.md).
+The Presale allocation MUST remain consistent with [`presale.md`](presale.md).
 
-Presale allocation controls should account for:
+No GFC presale is currently live.
 
-- participant entitlements;
-- successful finalization;
-- failed-sale refunds;
-- token claiming;
-- unsold tokens;
-- rounding;
-- invalid purchases;
-- duplicate claims;
-- migration;
-- and reconciliation.
+### 17.1 Current Draft relationship
 
-Presale tokens must not become claimable solely because the soft cap is reached before the presale end.
+The current Draft presale design includes:
 
-The Presale Allocation must not be used in a manner that creates participant claims exceeding the allocated amount.
+- reference price: €0.05 per GFC;
+- intended duration: eight weeks;
+- soft cap: €250,000;
+- no separate monetary hard cap;
+- intended support for ETH, USDC, and DAI on Base;
+- immediate token distribution as the current design direction;
+- refunds if the applicable soft-cap success condition is not satisfied;
+- and immutable material sale logic as the current design direction.
+
+These are Draft design parameters.
+
+### 17.2 Allocation ceiling
+
+The presale MUST NOT distribute more than:
+
+```text
+150,000,000 GFC
+```
+
+Participant token distribution and accounting MUST NOT create claims exceeding the Presale allocation.
+
+### 17.3 Immediate distribution
+
+Because the current design direction uses immediate token distribution, allocation accounting MUST distinguish:
+
+- total Presale allocation;
+- GFC already distributed;
+- remaining undistributed GFC;
+- invalid or reversed purchase accounting where applicable;
+- and final unsold GFC.
+
+### 17.4 Failed finalization and refunds
+
+The current Draft design also requires refunds where the applicable soft-cap success condition is not satisfied.
+
+The final presale specification MUST define the treatment of GFC already distributed if finalization fails.
+
+This document does not invent or authorize:
+
+- clawback;
+- forced transfer;
+- forced burn;
+- token invalidation;
+- mandatory participant return;
+- replacement token;
+- or another mechanism.
+
+A production presale MUST NOT activate while this interaction remains undefined.
+
+### 17.5 Soft-cap status
+
+Reaching the soft cap before the presale ends MUST NOT by itself be represented as:
+
+- completed finalization;
+- unrestricted access to contribution proceeds;
+- or final resolution of participant refund rights
+
+unless the applicable presale specification explicitly establishes such behavior.
+
+### 17.6 Unsold tokens
+
+Treatment of unsold Presale GFC remains unresolved.
+
+It MUST be finalized before production activation.
 
 ---
 
-## Treasury Reserve
+## 18. Treasury Reserve
 
 The Treasury Reserve allocation is:
 
@@ -363,28 +641,33 @@ The Treasury Reserve allocation is:
 This equals:
 
 ```text
-15% of the total intended supply
+15% of total supply
 ```
 
-This Draft does not yet fully define:
+The Treasury Reserve MUST NOT be treated as unrestricted administrative property.
 
-- permitted treasury uses;
-- approval thresholds;
-- spending limits;
-- custody architecture;
-- signer structure;
+Before production use, the applicable treasury and governance specifications MUST define:
+
+- permitted uses;
+- prohibited uses;
+- custody;
+- proposal authority;
+- approval authority;
+- execution authority;
+- transaction thresholds;
+- signer model;
 - timelocks;
-- reporting frequency;
-- conflict-of-interest controls;
-- or emergency spending authority.
+- emergency authority;
+- related-party controls;
+- reporting;
+- reconciliation;
+- and migration.
 
-The Treasury Reserve must not be treated as unrestricted administrative property.
-
-Production use must comply with the applicable governance and transparency requirements.
+On-chain traceability does not by itself establish compliant treasury use.
 
 ---
 
-## Liquidity Reserve
+## 19. Liquidity Reserve
 
 The Liquidity Reserve allocation is:
 
@@ -395,29 +678,42 @@ The Liquidity Reserve allocation is:
 This equals:
 
 ```text
-15% of the total intended supply
+15% of total supply
 ```
 
-This Draft does not yet fully define:
+Before production deployment of liquidity, the applicable specification MUST define:
 
-- supported liquidity venues;
+- approved venues;
+- approved pairs;
+- initial liquidity amount;
 - deployment schedule;
 - custody;
-- liquidity-position ownership;
-- liquidity withdrawal authority;
-- fee ownership;
+- liquidity-provider position ownership;
+- withdrawal authority;
 - rebalancing authority;
-- migration;
-- lock periods;
-- or reporting requirements.
+- lock status;
+- market-making arrangements;
+- fee ownership;
+- reporting;
+- and migration.
 
-Liquidity provisioning must not be represented as permanent, locked, protocol-owned, or non-withdrawable unless the applicable technical and governance controls support that claim.
+Liquidity provisioning MUST NOT be represented as:
+
+- permanently locked;
+- protocol-owned;
+- non-withdrawable;
+- guaranteed;
+- or permanent
+
+unless the actual technical and governance configuration supports the claim.
+
+Any authority capable of withdrawing or redirecting liquidity MUST be disclosed.
 
 ---
 
-## Ecosystem Growth Fund
+## 20. Ecosystem
 
-The Ecosystem Growth Fund allocation is:
+The Ecosystem allocation is:
 
 ```text
 50,000,000 GFC
@@ -426,26 +722,34 @@ The Ecosystem Growth Fund allocation is:
 This equals:
 
 ```text
-5% of the total intended supply
+5% of total supply
 ```
 
-This Draft does not yet fully define:
+Before production use, the applicable specification MUST define:
 
-- eligible recipients;
-- grant criteria;
-- incentive programs;
+- eligible use categories;
+- recipient criteria;
+- grants;
+- incentives;
+- development support;
+- partnerships;
+- infrastructure support;
+- marketing-related use where applicable;
 - approval requirements;
 - distribution limits;
-- vesting;
-- clawback rights;
+- milestone conditions;
+- vesting where applicable;
 - conflict-of-interest controls;
-- or reporting requirements.
+- reporting;
+- and migration.
 
-The allocation must not be used to create undisclosed insider distributions or unreviewable discretionary transfers.
+The Ecosystem allocation MUST NOT be used for undisclosed insider distributions or unreviewable discretionary transfers.
+
+Material categories SHOULD remain distinguishable in reporting.
 
 ---
 
-## Core Team Allocation
+## 21. Core Team
 
 The Core Team allocation is:
 
@@ -456,10 +760,10 @@ The Core Team allocation is:
 This equals:
 
 ```text
-5% of the total intended supply
+5% of total supply
 ```
 
-### Intended Vesting Constraint
+### 21.1 Intended vesting constraint
 
 The Core Team allocation is intended to be subject to:
 
@@ -467,68 +771,115 @@ The Core Team allocation is intended to be subject to:
 19-year linear vesting
 ```
 
-Before Stable status, the applicable specification and implementation must define:
+Detailed requirements belong in [`vesting-and-unlocks.md`](vesting-and-unlocks.md).
+
+### 21.2 Required production details
+
+Before Stable status and production deployment, the applicable specification MUST define:
 
 - vesting commencement event;
 - vesting commencement timestamp;
-- vesting end timestamp;
-- vesting frequency;
-- rounding behavior;
-- initial claimability;
-- whether a cliff exists;
-- beneficiary allocation;
+- vesting end;
+- linear calculation method;
+- release or claim interval;
+- rounding;
+- cliff, if any;
+- beneficiary structure;
 - beneficiary replacement;
-- revocability;
-- acceleration;
+- reassignment;
+- succession;
+- revocation;
+- treatment of vested but unclaimed tokens;
+- treatment of unvested tokens;
 - transferability;
-- treatment of unclaimed vested tokens;
-- treatment of terminated relationships;
 - migration;
 - recovery authority;
 - and administrative control.
 
-### Linear Vesting
+### 21.3 Linear vesting
 
-Linear vesting must not be represented as implemented unless the production mechanism releases claimable tokens proportionally over the documented 19-year period.
+Linear vesting MUST NOT be represented as implemented unless the authenticated production mechanism releases entitlement proportionally over the documented 19-year period.
 
-An implementation that permits the entire allocation to be transferred or claimed early through an administrative path does not provide meaningful 19-year vesting unless that path is explicitly disclosed and authorized by the applicable specification.
+### 21.4 Public status
 
-### Bypass Prohibition
+Where relevant, public records SHOULD distinguish between:
 
-Upgrade, migration, governance, emergency, recovery, or administrative mechanisms must not function as undocumented methods for accelerating or bypassing Core Team vesting.
+- total Core Team allocation;
+- unvested amount;
+- vested but unclaimed amount;
+- and claimed amount.
 
----
+### 21.5 Bypass prohibition
 
-## Unallocated and Unsold Tokens
+No:
 
-The current model assigns the full fixed supply to named allocations.
+- upgrade;
+- migration;
+- governance action;
+- emergency action;
+- recovery mechanism;
+- administrator;
+- or beneficiary action
 
-There is therefore no intended unallocated supply at initialization.
-
-The treatment of unsold Presale Allocation tokens remains subject to the final presale and allocation specifications.
-
-Before production deployment, the applicable release must define whether unsold tokens are:
-
-- retained within the Presale Allocation;
-- transferred to another allocation;
-- permanently locked;
-- burned;
-- reserved for a later sale;
-- or handled through another documented mechanism.
-
-Unsold-token treatment must not be decided retrospectively without an applicable authority and versioned record.
+MAY function as an undocumented method for accelerating or bypassing the Core Team vesting commitment.
 
 ---
 
-## Allocation Changes
+## 22. Unallocated Supply
 
-A change to any allocation percentage or token amount is a breaking normative change.
+The current allocation model assigns:
+
+```text
+100%
+```
+
+of the intended fixed supply.
+
+There is therefore no intended unallocated canonical GFC supply at initialization.
+
+Any production residual created by technical deployment mechanics MUST be explicitly reconciled to one of the canonical allocations or otherwise resolved by the applicable versioned specification.
+
+It MUST NOT remain as undocumented discretionary inventory.
+
+---
+
+## 23. Unsold Presale Tokens
+
+The final treatment of unsold Presale tokens remains unresolved.
+
+Before production presale activation, the applicable specification MUST define whether unsold tokens:
+
+- remain within the Presale allocation under defined restrictions;
+- move to another allocation through a predefined rule;
+- become locked;
+- are burned;
+- are reserved for a later explicitly specified distribution;
+- or receive another defined treatment.
+
+The final rule MUST specify:
+
+- authority;
+- timing;
+- custody;
+- supply impact;
+- economic classification;
+- reporting;
+- and historical record.
+
+Unsold-token treatment MUST NOT be improvised after the sale result is known.
+
+---
+
+## 24. Allocation Changes
+
+A change to any canonical allocation percentage or token amount is a breaking normative change.
 
 Such a change requires:
 
 - explicit versioning;
 - rationale;
 - supply reconciliation;
+- economic analysis;
 - participant-rights analysis;
 - governance analysis;
 - security analysis;
@@ -537,13 +888,15 @@ Such a change requires:
 - updated public communication;
 - and an updated change record.
 
-Allocation changes must not increase the total supply beyond the amount defined in [`token.md`](token.md).
+Allocation changes MUST NOT increase canonical GFC supply beyond the limit defined in [`token.md`](token.md).
+
+A reallocation MUST NOT silently eliminate or weaken an existing lock, vesting, or participant protection.
 
 ---
 
-## Upgradeability
+## 25. Upgradeability
 
-Allocation contracts must disclose whether they are:
+Any production allocation contract MUST declare whether it is:
 
 - immutable;
 - configurable within defined limits;
@@ -552,130 +905,395 @@ Allocation contracts must disclose whether they are:
 - recoverable;
 - or replaceable.
 
-Where upgradeability exists, the applicable documentation must identify:
+Where upgradeability exists, the applicable deployment record MUST identify:
 
 - upgrade authority;
 - approval threshold;
 - timelock;
 - emergency path;
 - implementation replacement process;
-- treatment of locked tokens;
-- treatment of vested tokens;
-- treatment of unvested tokens;
-- user or beneficiary notice;
+- treatment of locked GFC;
+- treatment of vested GFC;
+- treatment of unvested GFC;
+- beneficiary impact;
 - and historical upgrade records.
 
-Upgradeability must not be used to make a technically restricted allocation functionally unrestricted.
+Upgradeability MUST NOT make a represented restriction functionally meaningless.
 
 ---
 
-## Migration
+## 26. Migration
 
-Allocation migration must preserve:
+Allocation migration MUST preserve, where applicable:
 
 - supply reconciliation;
 - allocation identity;
-- applicable locks;
-- applicable vesting;
+- locked amount;
+- remaining lock duration;
+- vesting schedule;
 - beneficiary rights;
 - custody accountability;
-- historical transaction records;
-- and known-deviation records.
+- historical records;
+- and known deviations.
 
-A migration must identify:
+A migration record MUST identify:
 
 - source address or contract;
 - destination address or contract;
+- network;
 - migrated amount;
 - migration transaction;
 - authority;
 - approval record;
+- applicable specification;
 - preserved restrictions;
 - changed restrictions;
 - affected beneficiaries;
-- and applicable specification release.
+- and verification status.
 
-A migration must not create duplicate claims against both the source and destination allocation.
+Migration MUST NOT create duplicate claims against both source and destination systems.
+
+Migration MUST NOT be used as a disguised method to weaken the original allocation rules.
 
 ---
 
-## Allocation Disclosure
+## 27. Recovery
 
-A production allocation record should disclose:
+Allocation-specific recovery functionality is not finalized.
 
-- allocation name;
+If recovery authority exists, it MUST NOT become an unrestricted method to bypass:
+
+- custody constraints;
+- locks;
+- vesting;
+- allocation classification;
+- or beneficiary rights.
+
+A recovery mechanism MUST define:
+
+- trigger;
+- authority;
+- approvals;
+- scope;
+- destination;
+- preserved restrictions;
+- record requirements;
+- and security assumptions.
+
+Recovery authority is itself privileged authority.
+
+---
+
+## 28. Allocation Disclosure
+
+A production allocation record SHOULD disclose:
+
+- canonical allocation name;
 - intended purpose;
 - initial amount;
 - percentage of total supply;
-- authenticated address or contract;
+- authenticated wallet or contract;
+- network;
 - current balance;
 - lock status;
 - vesting status;
 - custody authority;
-- spending authority;
+- release or spending authority;
 - upgrade authority;
 - migration authority;
 - transfer history;
 - known deviations;
 - and evidence supporting material public claims.
 
-Protected or security-sensitive information may remain off-chain or non-public where justified.
+Protected or security-sensitive information MAY remain non-public where justified.
 
-Privacy protection must not be used as a blanket justification for withholding material authority, balance, or control-surface information.
+Privacy MUST NOT be used as a blanket justification for withholding material:
+
+- balance;
+- custody structure;
+- authority surface;
+- or restriction status.
 
 ---
 
-## Conformance
+## 29. Allocation Transparency
+
+Allocation transparency MUST distinguish between:
+
+- intended allocation;
+- authenticated initial allocation;
+- current balance;
+- transferred amount;
+- locked amount;
+- vested amount;
+- distributed amount;
+- spent amount where applicable;
+- and unresolved differences.
+
+A balance alone does not explain purpose or use.
+
+A transfer alone does not establish compliant spending.
+
+An impact-related allocation label does not establish impact.
+
+Detailed transparency requirements are defined in [`transparency-model.md`](transparency-model.md).
+
+---
+
+## 30. Allocation Security Invariants
+
+The following allocation-level security invariants apply.
+
+### 30.1 Supply reconciliation
+
+All canonical initial allocations MUST sum to:
+
+```text
+1,000,000,000 GFC
+```
+
+### 30.2 No duplicate allocation
+
+No canonical GFC amount may simultaneously be represented as belonging to multiple allocations without an explicit accounting model that prevents double counting.
+
+### 30.3 Impact Vault restriction
+
+The intended Impact Vault restriction MUST NOT be weakened through an undocumented privileged path.
+
+### 30.4 Core Team vesting restriction
+
+The intended Core Team vesting restriction MUST NOT be accelerated through an undocumented privileged path.
+
+### 30.5 Presale ceiling
+
+The Presale MUST NOT distribute more than:
+
+```text
+150,000,000 GFC
+```
+
+### 30.6 Environment separation
+
+Pilot allocation state MUST NOT be represented as production allocation state.
+
+### 30.7 Authority disclosure
+
+No material allocation authority may remain outside the disclosed authority surface.
+
+These invariants must be interpreted together with [`security-model.md`](security-model.md).
+
+---
+
+## 31. Pilot and Production Separation
+
+The public Base Sepolia pilot does not establish production allocations.
+
+Pilot token balances, test allocations, development wallets, or demonstration labels MUST NOT be represented as authenticated Base Mainnet production allocations.
+
+Before production status is claimed, allocation records MUST identify:
+
+- production network;
+- authenticated token contract;
+- authenticated allocation addresses or contracts;
+- initial allocation transactions;
+- applicable lock or vesting contracts;
+- custody authority;
+- and production status.
+
+A pilot wallet does not become a production wallet merely because it has existed publicly or been used for testing.
+
+---
+
+## 32. Public Communication Requirements
+
+Public communication concerning GFC allocations MUST accurately distinguish between:
+
+- Draft allocation design;
+- specified allocation;
+- pilot or test allocation;
+- implemented allocation;
+- authenticated production allocation;
+- locked allocation;
+- vested allocation;
+- distributed allocation;
+- and spent allocation.
+
+Public communication MUST NOT:
+
+- present Draft allocations as already funded production wallets;
+- describe pilot allocation state as production state;
+- describe an allocation as locked before technical enforcement exists;
+- describe vesting as enforced before authenticated production implementation exists;
+- imply independent oversight through an allocation name;
+- imply impact solely through the Impact Vault name;
+- or imply unrestricted availability of tokens subject to lock, vesting, or custody restrictions.
+
+---
+
+## 33. Conformance
 
 An allocation implementation conforms to this specification only where:
 
-- the total supply is fully reconciled;
-- each allocation amount matches the applicable release;
-- no undisclosed allocation exists;
+- it identifies an applicable versioned allocation specification;
+- the total production token supply is fully reconciled;
+- each canonical initial allocation matches the applicable specification;
+- no undisclosed initial allocation exists;
 - authenticated balances support the represented allocation state;
 - applicable locks and vesting are enforced as represented;
 - custody and authority are accurately disclosed;
-- migrations preserve applicable constraints;
-- known deviations are documented;
-- and the implementation is mapped to a versioned specification release.
+- migration preserves applicable constraints;
+- pilot status is not misrepresented as production status;
+- material deviations are documented;
+- and the implementation is linked to authenticated production deployment records.
 
-A wallet label, allocation name, user interface, informal statement, or marketing claim does not establish conformance.
+A wallet label, allocation name, user interface, informal statement, website, or marketing claim does not establish conformance.
 
 ---
 
-## Current Unresolved Requirements
+## 34. Allocation Non-Conformance
 
-The following areas remain unresolved in this Draft:
+Allocation non-conformance includes:
 
-- detailed permitted use for each allocation;
+- initial allocation totals not reconciling to fixed supply;
+- undisclosed allocation;
+- duplicate allocation accounting;
+- Impact Vault restriction bypass;
+- Core Team vesting acceleration;
+- Presale distribution exceeding 150,000,000 GFC;
+- undisclosed custody authority;
+- undisclosed reclassification;
+- migration into weaker restrictions;
+- pilot allocations presented as production allocations;
+- allocation label used to imply unsupported oversight or impact;
+- or public claims materially stronger than authenticated allocation state supports.
+
+Material non-conformance MAY require:
+
+- correction;
+- allocation reconciliation;
+- authority review;
+- custody migration;
+- contract pause where applicable;
+- public clarification;
+- specification update;
+- security review;
+- governance review;
+- or incident treatment.
+
+A specification MUST NOT be rewritten retrospectively merely to conceal allocation non-conformance.
+
+---
+
+## 35. Current Unresolved Requirements
+
+The following matters remain unresolved unless separately established by a later versioned specification or authenticated implementation record:
+
+- detailed permitted use for Guardian Growth;
+- detailed permitted use for Treasury Reserve;
+- detailed permitted use for Liquidity Reserve;
+- detailed permitted use for Ecosystem;
 - allocation-specific custody architecture;
+- production wallet or contract structure;
 - signer structures;
 - approval thresholds;
 - allocation-specific timelocks;
 - Impact Vault lock commencement;
-- Impact Vault post-unlock behavior;
+- Impact Vault unlock behavior;
+- Impact Vault post-lock behavior;
 - Core Team vesting commencement;
 - Core Team beneficiary structure;
-- Core Team cliff and acceleration rules;
-- treatment of unsold presale tokens;
+- Core Team cliff, if any;
+- Core Team succession and reassignment;
+- Core Team revocation rules;
+- treatment of unsold Presale tokens;
+- treatment of already distributed Presale GFC if failed finalization creates a refund right;
 - liquidity-position control;
-- ecosystem recipient criteria;
-- treasury spending framework;
+- allocation recovery architecture;
 - allocation migration architecture;
-- and production contract implementation.
+- and production allocation implementation.
 
-These unresolved areas must not be represented as completed or finalized.
+These unresolved areas MUST NOT be represented as completed or finalized.
 
 ---
 
-## Related Specifications
+## 36. Requirements Before Stable Status
 
-- [`README.md`](../README.md)
-- [`glossary.md`](glossary.md)
-- [`non-goals.md`](non-goals.md)
-- [`architecture.md`](architecture.md)
-- [`token.md`](token.md)
-- [`governance-constraints.md`](governance-constraints.md)
-- [`transparency-model.md`](transparency-model.md)
-- [`presale.md`](presale.md)
-- [`../STATUS.md`](../STATUS.md)
+This document MUST NOT be marked Stable until:
+
+- canonical allocation names are finalized;
+- allocation percentages and amounts are confirmed;
+- production supply reconciliation is finalized;
+- allocation-specific custody models are defined;
+- material allocation authority is mapped;
+- Impact Vault lock rules are finalized;
+- Core Team vesting rules are finalized;
+- Guardian Growth control rules are defined;
+- Treasury Reserve control rules are defined;
+- Liquidity Reserve control rules are defined;
+- Ecosystem control rules are defined;
+- Presale allocation accounting is finalized;
+- immediate-distribution and failed-sale refund treatment is resolved;
+- unsold Presale token treatment is finalized;
+- allocation migration requirements are finalized;
+- allocation recovery requirements are finalized or explicitly excluded;
+- allocation disclosure requirements are finalized;
+- allocation security invariants are mapped to the intended implementation;
+- Base Sepolia pilot and Base Mainnet production allocation terminology are consistently separated;
+- and related specifications are mutually consistent.
+
+---
+
+## 37. Related Specifications
+
+This document MUST be interpreted together with:
+
+- [`README.md`](README.md);
+- [`glossary.md`](glossary.md);
+- [`non-goals.md`](non-goals.md);
+- [`architecture.md`](architecture.md);
+- [`roles-and-authority.md`](roles-and-authority.md);
+- [`governance-constraints.md`](governance-constraints.md);
+- [`security-model.md`](security-model.md);
+- [`token.md`](token.md);
+- [`vesting-and-unlocks.md`](vesting-and-unlocks.md);
+- [`economic-flows.md`](economic-flows.md);
+- [`staking.md`](staking.md);
+- [`presale.md`](presale.md);
+- [`transparency-model.md`](transparency-model.md);
+- and repository-level [`../STATUS.md`](../STATUS.md).
+
+Where another Draft specification conflicts with this document, the conflict MUST be resolved explicitly before Stable status.
+
+---
+
+## 38. Final Allocation Principles
+
+The GFC allocation model preserves the following distinctions:
+
+> Allocation does not mean unrestricted ownership.
+
+> Allocation label does not mean technical restriction.
+
+> Allocation does not prove compliant use.
+
+> Impact Vault does not prove impact.
+
+> Guardian does not automatically mean independent oversight.
+
+> Treasury Reserve does not mean unrestricted treasury spending.
+
+> Liquidity Reserve does not guarantee liquidity.
+
+> Core Team allocation does not mean immediately transferable Core Team tokens.
+
+> Presale allocation does not mean a live presale.
+
+> Pilot allocation does not mean production allocation.
+
+> Migration must not weaken lock, vesting, or supply restrictions.
+
+> Public balance does not explain purpose.
+
+> Transaction visibility does not prove outcome or impact.
+
+The production allocation system must make supply reconciliation, custody, authority, restrictions, movements, and material deviations reviewable before production reliance.

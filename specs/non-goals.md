@@ -4,10 +4,13 @@
 **Maturity:** Draft  
 **Authority:** Normative  
 **Version:** Unreleased  
-**Implementation Status:** Pre-deployment  
-**Intended Network:** Base Mainnet  
-**Chain ID:** 8453  
-**Last Updated:** 2026-07-23
+**Implementation Status:** Pre-mainnet specification and pilot development  
+**Primary Product Focus:** GFC Token / Economic Layer  
+**Intended Production Network:** Base Mainnet  
+**Production Chain ID:** 8453  
+**Public Pilot Network:** Base Sepolia  
+**Pilot Chain ID:** 84532  
+**Last Updated:** 2026-08-30
 
 ---
 
@@ -21,15 +24,30 @@ Its maturity remains Draft. These boundaries may change before the first version
 
 At the time of publication:
 
-- no production GFC token contract is represented by this repository as deployed;
+- the current primary product focus is the **GFC Token / Economic Layer**;
+- the broader long-term direction is a wider **Accountability Infrastructure**;
+- a public GFC pilot exists on **Base Sepolia**;
+- no production GFC token is deployed on Base Mainnet;
 - no GFC presale is live;
-- no production treasury, governance, staking, vesting, evidence, or transparency infrastructure is represented as fully operational;
-- no public presale date is established by this document;
+- no production treasury, governance, staking, vesting, allocation, or broader accountability infrastructure is represented as operational;
+- no public presale launch date is established by this document;
 - no production contract address is established by this document;
 - no legal, charitable, tax-exempt, regulatory, or governmental status is established by this document;
-- no future feature should be treated as committed unless it is included in an applicable versioned specification.
+- and no future production feature should be treated as implemented or committed merely because it appears in a Draft specification, roadmap, concept, pilot, or public discussion.
 
-The presence of a concept in other Draft specifications does not mean that the concept has already been implemented, reviewed, audited, deployed, or activated.
+The Base Sepolia pilot is a non-production testnet deployment.
+
+It MUST NOT be presented as:
+
+- the production GFC token;
+- a Base Mainnet deployment;
+- a live presale;
+- production treasury infrastructure;
+- production staking infrastructure;
+- production governance infrastructure;
+- or the complete GFC accountability infrastructure.
+
+The presence of a concept in another Draft specification does not mean that the concept has already been implemented, reviewed, audited, deployed, activated, or made operational.
 
 ---
 
@@ -48,6 +66,12 @@ Defining non-goals is necessary to prevent:
 
 This document clarifies what GFC is intentionally not designed to do.
 
+The longer-term GFC accountability model is:
+
+**Funds → Authority → Rules → Decisions → Outcomes → Evidence**
+
+This model does not imply that every stage is currently implemented or that one stage proves another.
+
 It also defines what must not be inferred from:
 
 - the GFC token;
@@ -65,11 +89,18 @@ It also defines what must not be inferred from:
 
 This document must be read together with:
 
+- `glossary.md`;
 - `architecture.md`;
+- `roles-and-authority.md`;
 - `governance-constraints.md`;
+- `security-model.md`;
+- `token.md`;
+- `allocations.md`;
+- `vesting-and-unlocks.md`;
+- `economic-flows.md`;
+- `staking.md`;
 - `presale.md`;
 - `transparency-model.md`;
-- `glossary.md`;
 - and the repository-level `SECURITY.md`.
 
 Where another specification introduces behavior that conflicts with a non-goal in this document, the conflict MUST be resolved explicitly before either document becomes Stable.
@@ -96,6 +127,8 @@ Because this document is currently Draft, these requirements describe intended b
 
 This document defines non-goals concerning:
 
+- current product scope;
+- pilot and production separation;
 - token economics;
 - speculation;
 - price behavior;
@@ -265,18 +298,20 @@ A contract upgrade MUST NOT be used to introduce discretionary inflation silentl
 
 ---
 
-## 13. No Separate GFC Blockchain at Initial Launch
+## 13. No Separate GFC Blockchain at Initial Production Launch
 
-GFC is not intended to launch initially as:
+GFC is not currently specified to launch its initial production token as:
 
 - an independent Layer 1 blockchain;
 - an independent Layer 2 network;
 - an application-specific rollup;
 - or a separate consensus network.
 
-The intended initial execution environment is Base Mainnet.
+The intended initial production execution environment is **Base Mainnet**.
 
-Future cross-chain or independent-chain development is not promised by this specification.
+Future expansion to a dedicated chain, appchain, rollup, or other execution environment is not a current production commitment.
+
+Such expansion MAY be evaluated later, including within the Base ecosystem, but would require its own technical, security, governance, migration, and deployment specifications before it could be treated as an adopted architecture.
 
 ---
 
@@ -375,6 +410,8 @@ Human judgment remains necessary for matters involving:
 Automation MAY enforce clear constraints.
 
 Automation MUST NOT be presented as eliminating human responsibility where human authority remains relevant.
+
+Where automation executes a rule, the authority responsible for defining, approving, changing, or operating that rule MUST remain attributable.
 
 ---
 
@@ -703,6 +740,10 @@ Every transparency system has boundaries involving:
 
 Claims must remain limited to what the available evidence supports.
 
+A future Transparency Registry entry, verification status, or evidence record MUST NOT be presented as a permanent approval badge.
+
+Where status, evidence, governance, policy, or claims can change, the applicable record SHOULD preserve versioned historical context rather than imply permanent validity.
+
 ---
 
 ## 36. No Replacement for Independent Review
@@ -797,6 +838,8 @@ GFC does not guarantee that the planned presale will:
 
 A planned or internally considered date MUST NOT be presented as publicly confirmed unless formally released.
 
+Internal scheduling information does not become a public commitment merely because it exists in project planning.
+
 ---
 
 ## 42. No Early Access to Refundable Presale Funds
@@ -805,20 +848,27 @@ The presale is not designed to provide project operators with discretionary acce
 
 Reaching the soft cap before the sale end does not independently make contributions available for project use.
 
-Funds may become available only under the applicable successful-finalization and withdrawal rules.
+Contribution assets may become available for project use only under the applicable successful-finalization and withdrawal rules.
+
+Immediate distribution of purchased GFC, if implemented, MUST NOT be represented as eliminating participant refund rights or as converting refundable contribution assets into unrestricted project proceeds.
 
 ---
 
-## 43. No Immediate Presale Token Distribution Requirement
+## 43. No Deferred-Claim Assumption
 
-GFC is not committed to immediate token transfer during the active presale.
+The current Draft presale design direction uses **immediate GFC distribution** for valid purchases.
 
-The intended model uses token entitlement followed by claiming after successful finalization.
+A deferred-claim model MUST NOT be presented as the current intended presale design unless the applicable presale specification is formally changed.
 
-This protects the separation between:
+Immediate distribution does not independently determine the treatment of a failed presale.
 
-- successful token distribution;
-- and failed-sale refunds.
+Before Stable status, the applicable presale specification MUST define how already distributed GFC is treated if:
+
+- the soft cap is not reached;
+- the presale is cancelled under refundable conditions;
+- or another valid refund condition occurs.
+
+That failed-sale treatment MUST preserve the stated participant refund rights and MUST NOT rely on ambiguous or purely frontend-based behavior.
 
 ---
 
@@ -853,18 +903,23 @@ Material financial rules must remain enforceable through the contract or another
 
 ---
 
-## 46. No Guaranteed Staking Model
+## 46. No Guaranteed Staking Returns or Final Parameters
 
-GFC does not currently guarantee:
+The current Draft design direction is **hybrid, non-inflationary staking**.
 
-- that staking will launch;
+This does not guarantee:
+
+- production launch of a staking system;
 - a specific reward rate;
 - a specific staking duration;
 - a specific lock period;
 - a particular governance right;
+- a particular community benefit;
 - or permanent reward availability.
 
-Staking remains subject to a separate finalized specification and sustainability analysis.
+No production GFC staking system is currently operational.
+
+Final staking behavior remains subject to the applicable versioned staking specification, security review, economic sustainability analysis, implementation, and deployment.
 
 ---
 
@@ -872,7 +927,9 @@ Staking remains subject to a separate finalized specification and sustainability
 
 The intended GFC architecture does not use additional token inflation to fund staking rewards.
 
-Any staking system must use tokens already included within the fixed supply.
+Any staking reward denominated in newly distributed GFC MUST use tokens already included within the fixed supply or another explicitly specified non-minting source.
+
+Staking MUST NOT create additional GFC beyond the fixed total supply.
 
 ---
 
@@ -904,7 +961,9 @@ GFC does not commit to features solely because they have been:
 - included in an old roadmap;
 - or referenced in outdated documentation.
 
-A feature becomes part of the intended architecture only when it is included in an applicable current specification.
+A feature discussed outside the current specification set MUST NOT be represented as implemented or technically committed.
+
+Roadmap items, concepts, and future directions MAY be documented as planned or proposed, but their status MUST remain explicit until the applicable technical requirements are specified and adopted.
 
 ---
 
@@ -938,18 +997,29 @@ Production implementations should identify:
 
 ---
 
-## 52. No Specification-Equals-Implementation Assumption
+## 52. No Specification-, Pilot-, or Testnet-Equals-Production Assumption
 
 The existence of a specification does not prove that the described system has been:
 
 - implemented;
 - tested;
+- reviewed;
 - audited;
 - deployed;
 - activated;
 - or operated as described.
 
-Public communication must distinguish specified behavior from actual implementation status.
+Likewise, the existence of a prototype, test deployment, verified testnet contract, or public pilot does not establish production status.
+
+The current Base Sepolia tGFC pilot MUST NOT be represented as:
+
+- the production GFC token;
+- a Base Mainnet deployment;
+- a live presale;
+- production economic infrastructure;
+- or proof that future Mainnet code, parameters, addresses, or authority structures will be identical.
+
+Public communication MUST distinguish specified behavior, pilot behavior, and actual production implementation status.
 
 ---
 
@@ -1071,7 +1141,11 @@ GFC does not automatically endorse:
 - reviewers;
 - or external tools.
 
-A technical integration, grant, payment, or partnership does not imply unrestricted endorsement.
+A technical integration, grant, payment, partnership, registry entry, verification status, or evidence record does not imply unrestricted or permanent endorsement.
+
+Where a future Transparency Registry records external organizations or projects, inclusion MUST NOT be represented as an irrevocable approval.
+
+Status changes, suspensions, corrections, downgrades, or removals SHOULD remain historically reviewable where applicable.
 
 ---
 
@@ -1160,6 +1234,8 @@ Public records must permit statuses such as:
 
 Uncertainty is a valid transparency result.
 
+A versioned historical record MUST be able to preserve changes in evidence or claim status without silently rewriting earlier states.
+
 ---
 
 ## 64. No Elimination of Human Responsibility
@@ -1174,16 +1250,20 @@ GFC does not claim that:
 
 eliminate the responsibility of people and organizations making decisions.
 
-Responsibility remains with the actors who:
+Responsibility remains attributable to the actors who materially:
 
+- define rules;
 - design;
 - deploy;
 - control;
 - approve;
+- decide;
 - execute;
 - review;
 - communicate;
 - and evaluate the system.
+
+This reflects the GFC principle that responsibility follows material authority.
 
 ---
 
@@ -1212,9 +1292,13 @@ A GFC implementation or public communication conforms to this document only when
 - promise guaranteed price performance;
 - imply guaranteed liquidity or exchange listing;
 - imply unlimited presale capacity;
+- present the Base Sepolia pilot as Base Mainnet production;
+- present a Draft, testnet deployment, or pilot as active production;
+- present deferred claiming as the current presale distribution model without a versioned specification change;
 - present transaction verification as impact verification;
 - present cryptographic integrity as factual truth;
 - present project-authored evidence as independent evidence;
+- present a Transparency Registry record as a permanent approval badge;
 - imply complete decentralization without support;
 - grant undocumented authority;
 - expose protected information without justification;
@@ -1238,6 +1322,9 @@ Non-conformance includes:
 - unsupported charitable-status claims;
 - misuse of beneficiary data;
 - frontend-only enforcement presented as technical enforcement;
+- Base Sepolia or another testnet pilot presented as Mainnet production;
+- outdated deferred-claim presale behavior presented as the current Draft model;
+- a registry or verification record presented as permanent endorsement;
 - planned systems presented as operational;
 - or deliberate suppression of material limitations.
 
@@ -1263,11 +1350,15 @@ This document MUST NOT be marked Stable until:
 - current public terminology has been reviewed;
 - legal-status descriptions have been finalized;
 - charitable and impact terminology has been reviewed;
+- the current GFC Token / Economic Layer focus is represented consistently;
+- Base Sepolia pilot and Base Mainnet production status are consistently separated;
 - presale communications are consistent with `presale.md`;
-- governance claims are consistent with `governance-constraints.md`;
+- immediate distribution and failed-presale token treatment are unambiguous;
+- governance claims are consistent with `roles-and-authority.md` and `governance-constraints.md`;
+- security claims are consistent with `security-model.md`;
 - transparency claims are consistent with `transparency-model.md`;
 - token and allocation terminology is finalized;
-- staking claims are finalized or explicitly excluded;
+- staking claims are consistent with the current hybrid, non-inflationary Draft direction or are explicitly revised through the specification process;
 - privacy boundaries are documented;
 - unsupported future-feature references are removed;
 - repository-wide outdated naming is corrected;
@@ -1292,4 +1383,8 @@ GFC is not designed to replace governance constraints with token voting.
 
 GFC is not designed to guarantee price, profit, liquidity, completion, or impact.
 
-GFC is intended to make authority, execution, evidence, limitations, and responsibility more visible and reviewable without claiming that uncertainty or trust can be eliminated entirely.
+GFC is intended to make **Funds → Authority → Rules → Decisions → Outcomes → Evidence** more explicit, reconstructable, and reviewable without claiming that uncertainty, human judgment, or trust can be eliminated entirely.
+
+The current primary product focus is the GFC Token / Economic Layer.
+
+The broader Accountability Infrastructure remains a longer-term direction and MUST NOT be represented as fully deployed today.
