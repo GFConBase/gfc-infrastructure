@@ -1,38 +1,46 @@
 # Global Foundation Coin Security Policy
 
-**Document ID:** GFC-SEC-001  
+**Document ID:** GFC-SEC-POL-001  
 **Maturity:** Draft  
 **Authority:** Normative  
 **Version:** Unreleased  
-**Implementation Status:** Pre-deployment  
-**Last Updated:** 2026-07-23
+**Implementation Status:** Pre-mainnet specification and pilot development  
+**Primary Product Focus:** GFC Token / Economic Layer  
+**Public Pilot Network:** Base Sepolia  
+**Pilot Chain ID:** 84532  
+**Intended Production Network:** Base Mainnet  
+**Production Chain ID:** 8453  
+**Last Updated:** 2026-08-30
 
 ---
 
 ## 1. Document Status
 
-This document defines the current security-reporting, vulnerability-handling, coordinated-disclosure, and security-governance policy for the Global Foundation Coin (GFC) repository.
+This document defines the current security-reporting, vulnerability-handling, coordinated-disclosure, and repository-level security policy for Global Foundation Coin (GFC).
 
 It is normative because it establishes:
 
-- how suspected vulnerabilities must be reported;
+- how suspected vulnerabilities SHOULD be reported;
 - which issues are security-relevant;
 - how sensitive reports are handled;
 - which testing activities are prohibited;
-- how disclosure should be coordinated;
-- and which security requirements must be completed before production deployment.
+- how disclosure SHOULD be coordinated;
+- and which repository-level security controls are expected before production reliance.
 
 Its maturity remains Draft.
 
-At the time of publication:
+At the current repository state:
 
-- no production GFC token contract is represented by this repository as deployed;
+- the **GFC Token / Economic Layer** is the current primary product focus;
+- a public GFC pilot exists on **Base Sepolia**;
+- no production GFC token is deployed on Base Mainnet;
 - no GFC presale is live;
-- no production treasury, governance, staking, vesting, evidence, or transparency system is represented as operational;
+- no production treasury, liquidity, staking, vesting, governance, or complete Transparency Registry is operational;
 - no production contract or wallet address is established as official by this policy;
 - no formal bug-bounty program is active;
 - no guaranteed vulnerability-response service level is established;
-- and no production software version is currently declared supported.
+- no production software version is currently declared supported;
+- and no independent production security audit is represented as completed by this policy.
 
 Security-relevant issues may nevertheless exist within:
 
@@ -40,10 +48,19 @@ Security-relevant issues may nevertheless exist within:
 - repository configuration;
 - documentation;
 - release processes;
-- future implementation assumptions;
+- deployment records;
 - authority models;
 - custody designs;
+- future implementation assumptions;
+- public authentication channels;
 - and public security representations.
+
+Current implementation and deployment status is maintained in:
+
+- [`STATUS.md`](STATUS.md)
+- [`DEPLOYMENTS.md`](DEPLOYMENTS.md)
+
+Detailed technical security requirements are defined in [`specs/security-model.md`](specs/security-model.md).
 
 ---
 
@@ -60,15 +77,16 @@ The policy is intended to:
 - preserve participant rights;
 - protect confidential and personal information;
 - support coordinated remediation;
-- and maintain an accountable security history.
+- preserve historical accountability;
+- and keep public security claims aligned with actual evidence.
 
-Security is treated as a continuous architectural, implementation, operational, and governance responsibility.
+Security is treated as a continuous architectural, implementation, operational, governance, and communication responsibility.
 
 It is not treated as a one-time audit event.
 
 ---
 
-## 3. Current Project Name
+## 3. Current Project Identity
 
 The current project name is:
 
@@ -78,28 +96,34 @@ The abbreviation is:
 
 **GFC**
 
-The historical name `German Foundation Coin` is deprecated.
+The historical name:
 
-The current reporting address uses the historical project domain. Use of that domain as an operational contact does not change the current project name.
+**German Foundation Coin**
+
+is deprecated for current project and production naming.
 
 ---
 
 ## 4. Security Contact
 
-Security reports should be sent privately to:
+Security reports SHOULD be sent privately to:
 
-`info@germanfoundationcoin.org`
+```text
+info@globalfoundationcoin.org
+```
 
 Do not open a public GitHub issue for a suspected vulnerability that could:
 
 - expose users or participants to harm;
 - enable loss, theft, diversion, or freezing of assets;
 - expose private or protected information;
-- reveal exploitable authority;
-- compromise future deployments;
+- reveal exploitable privileged authority;
+- compromise future production deployments;
 - enable impersonation or phishing;
 - weaken presale refund rights;
 - bypass locks or vesting;
+- alter production authentication;
+- compromise evidence integrity;
 - or permit unauthorized system control.
 
 Before any production deployment, GFC MUST verify that the security mailbox is:
@@ -108,121 +132,156 @@ Before any production deployment, GFC MUST verify that the security mailbox is:
 - monitored regularly;
 - protected through strong authentication;
 - recoverable through a documented process;
-- and accessible to more than one appropriately authorized security responder.
+- and included in the applicable incident-response process.
 
-If the reporting address becomes unavailable, the repository MUST be updated before any production system is represented as active.
+This policy does not represent that multiple independent security responders currently exist.
+
+If the reporting address changes, this file SHOULD be updated promptly.
 
 ---
 
-## 5. No Public Disclosure Before Coordination
+## 5. Private Reporting First
 
 A reporter SHOULD NOT publicly disclose a suspected security issue before:
 
 - GFC has had a reasonable opportunity to assess the report;
 - affected users or systems have been protected where possible;
-- remediation has been prepared or deployed;
-- and disclosure timing has been coordinated.
+- remediation has been prepared or deployed where applicable;
+- and disclosure timing has been coordinated where reasonable.
 
-Sensitive details MUST NOT initially be submitted through:
+Sensitive vulnerability details SHOULD NOT initially be submitted through:
 
 - public GitHub issues;
 - public pull requests;
 - repository discussions;
 - social media;
 - public forums;
-- community chats;
+- Telegram or other public community chats;
 - or public blockchain messages.
 
-A security report may later be disclosed publicly where appropriate and safe.
+A security issue MAY later be disclosed publicly where appropriate and safe.
 
 ---
 
 ## 6. Scope
 
-This policy currently applies to security issues concerning:
+This policy applies to security-relevant issues concerning the authenticated GFC repository and, where later introduced, authenticated GFC production infrastructure.
 
 ### 6.1 Specifications
 
-Security-relevant defects in:
+Security-relevant defects in the current specification set include:
 
-- `specs/architecture.md`;
-- `specs/governance-constraints.md`;
-- `specs/presale.md`;
-- `specs/transparency-model.md`;
-- `specs/non-goals.md`;
-- `specs/glossary.md`;
-- and `specs/README.md`.
+- [`specs/README.md`](specs/README.md)
+- [`specs/glossary.md`](specs/glossary.md)
+- [`specs/non-goals.md`](specs/non-goals.md)
+- [`specs/architecture.md`](specs/architecture.md)
+- [`specs/roles-and-authority.md`](specs/roles-and-authority.md)
+- [`specs/governance-constraints.md`](specs/governance-constraints.md)
+- [`specs/security-model.md`](specs/security-model.md)
+- [`specs/token.md`](specs/token.md)
+- [`specs/allocations.md`](specs/allocations.md)
+- [`specs/vesting-and-unlocks.md`](specs/vesting-and-unlocks.md)
+- [`specs/economic-flows.md`](specs/economic-flows.md)
+- [`specs/staking.md`](specs/staking.md)
+- [`specs/presale.md`](specs/presale.md)
+- [`specs/transparency-model.md`](specs/transparency-model.md)
 
-### 6.2 Repository-Level Documentation
+### 6.2 Repository-Level Records
 
-Security-relevant defects in:
+Security-relevant defects may also affect:
 
-- `README.md`;
-- `SECURITY.md`;
-- `CHANGELOG.md`;
-- release records;
+- [`README.md`](README.md)
+- [`STATUS.md`](STATUS.md)
+- [`DEPLOYMENTS.md`](DEPLOYMENTS.md)
+- [`ROADMAP.md`](ROADMAP.md)
+- [`DECISIONS.md`](DECISIONS.md)
+- [`SECURITY.md`](SECURITY.md)
+- [`CHANGELOG.md`](CHANGELOG.md)
+- future release records;
 - deployment records;
 - authority registries;
-- known-deviation records;
-- and future contributor documentation.
+- and known-deviation records.
 
 ### 6.3 Repository Integrity
 
 Issues involving:
 
 - unauthorized repository changes;
-- malicious commits;
 - compromised maintainer accounts;
-- compromised release tags;
-- compromised branch protection;
+- malicious commits;
+- compromised branches or tags;
 - exposed repository secrets;
 - dependency manipulation;
-- or falsified release information.
+- falsified release information;
+- or unauthorized changes to deployment records.
 
-### 6.4 Future Official Implementations
+### 6.4 Public Base Sepolia Pilot
 
-Once introduced, this policy may apply to authenticated GFC:
+Security issues affecting the authenticated public Base Sepolia pilot MAY be reported.
+
+Current pilot record:
+
+```text
+Network: Base Sepolia
+Chain ID: 84532
+Token: tGFC
+Contract: 0x7262Cca91938ede6bB6560F81104Aa410848e7f3
+Status: Public Pilot / Non-Production
+Source: Verified
+```
+
+The pilot is non-production.
+
+A pilot issue MUST NOT automatically be represented as a vulnerability in future Base Mainnet code unless the affected logic is actually shared.
+
+### 6.5 Future Official Production Implementations
+
+Once authenticated and introduced, this policy MAY apply to GFC:
 
 - token contracts;
 - presale contracts;
-- lock contracts;
+- Impact Vault contracts;
 - vesting contracts;
 - treasury systems;
 - liquidity systems;
 - staking systems;
 - governance contracts;
-- transparency portals;
+- Transparency Registry components;
 - evidence systems;
+- portals;
 - backends;
 - indexers;
 - frontends;
 - deployment processes;
 - and operational infrastructure.
 
-### 6.5 Public Authentication Infrastructure
+### 6.6 Public Authentication Infrastructure
 
-Issues involving official GFC:
+Security issues involving official GFC:
 
 - domains;
 - DNS;
 - email;
 - repositories;
 - release channels;
+- deployment records;
 - contract registries;
 - wallet registries;
 - and address-publication mechanisms.
 
-### 6.6 Authority and Custody
+### 6.7 Authority and Custody
 
-Issues that could create or conceal:
+Issues that could create, conceal, or misuse:
 
 - unauthorized administrative authority;
 - undocumented upgrade authority;
 - hidden pause authority;
 - unsafe migration authority;
+- recovery authority;
 - signer concentration;
 - bypassable multisig controls;
 - unrestricted treasury access;
+- liquidity-withdrawal authority;
 - or improper custody of participant assets.
 
 ---
@@ -235,26 +294,25 @@ Examples include:
 
 - contradictory invariants;
 - ambiguous authority;
-- undefined administrator permissions;
+- undefined privileged permissions;
 - bypassable lock or vesting requirements;
 - unsafe presale custody;
-- incomplete refund conditions;
+- incomplete refund behavior;
 - incorrect finalization logic;
-- missing replay or reentrancy protections;
-- unsafe pricing assumptions;
-- oracle manipulation exposure;
-- insufficient rounding requirements;
-- unbounded fee authority;
-- hidden mint capability;
+- unsafe immediate-distribution accounting;
+- missing failed-sale settlement requirements;
+- incorrect fee limits;
+- hidden inflation path;
 - unsafe upgradeability;
 - incomplete migration constraints;
 - weak signer-management rules;
 - undefined emergency authority;
-- missing evidence-access controls;
-- privacy violations;
+- evidence-integrity weaknesses;
+- protected-data exposure;
+- Registry-history manipulation;
 - or misleading security claims.
 
-Specification issues should be reported privately where premature publication could create a practical risk for future implementations.
+Specification issues SHOULD be reported privately where premature publication could create practical risk for future implementations.
 
 ---
 
@@ -262,23 +320,26 @@ Specification issues should be reported privately where premature publication co
 
 Reports are particularly important where an issue could affect:
 
-- token supply integrity;
+- fixed token supply;
 - allocation integrity;
 - participant contributions;
 - presale refunds;
-- token entitlements;
-- claim rights;
+- immediate GFC distribution;
+- participant purchase accounting;
 - treasury assets;
 - liquidity assets;
 - Impact Vault restrictions;
 - Core Team vesting;
-- staking balances or rewards;
+- staking principal;
+- staking rewards;
 - governance execution;
-- multisig authority;
+- multisig or signer authority;
 - upgrade or migration authority;
 - fee collection;
+- fee limits;
 - contract ownership;
 - protected evidence;
+- Transparency Registry history;
 - personal data;
 - official contract identification;
 - release authenticity;
@@ -288,22 +349,24 @@ Reports are particularly important where an issue could affect:
 
 ## 9. Examples of Reportable Issues
 
-Reportable issues may include:
+Reportable issues MAY include:
 
 - unauthorized minting;
 - supply-cap bypass;
 - transfer-fee manipulation;
+- sell-fee increase beyond the applicable limit;
 - incorrect buy or sell classification;
 - allocation over-distribution;
-- early release of locked tokens;
-- vesting acceleration;
-- unauthorized treasury withdrawals;
+- early Impact Vault release;
+- Core Team vesting acceleration;
+- unauthorized treasury withdrawal;
 - unauthorized liquidity removal;
 - presale contribution theft;
-- refund denial;
-- claim duplication;
-- contribution-accounting errors;
-- oracle manipulation;
+- insufficient refund reserves;
+- failed-sale settlement inconsistency;
+- immediate-distribution accounting defects;
+- duplicate Presale distribution;
+- oracle or pricing manipulation;
 - stale-price acceptance;
 - rounding exploitation;
 - reentrancy;
@@ -313,29 +376,31 @@ Reportable issues may include:
 - proxy-administration compromise;
 - upgrade bypass;
 - pause bypass;
-- unsafe contract migration;
+- unsafe migration;
 - multisig threshold bypass;
-- signer replacement without approval;
-- governance-vote manipulation;
-- proposal-execution mismatch;
+- signer replacement without authorization;
+- governance-execution mismatch;
+- staking reward over-distribution;
+- staking principal loss;
 - evidence-record alteration;
+- Registry-history deletion;
 - protected-data exposure;
-- false evidence-status assignment;
+- false review or verification status;
 - portal data manipulation;
 - fake official contract publication;
 - compromised domain or DNS;
 - compromised release artifact;
 - exposed private key or credential;
 - dependency compromise;
-- or a specification contradiction that could foreseeably produce one of these outcomes.
+- or specification contradictions that could foreseeably produce material security harm.
 
 ---
 
-## 10. Issues That May Be Reported Publicly
+## 10. Issues Suitable for Normal Repository Channels
 
-Issues that do not create a meaningful security risk may generally be submitted through normal repository channels.
+Issues that do not create meaningful security risk may generally be submitted through ordinary repository channels.
 
-Examples may include:
+Examples include:
 
 - spelling mistakes;
 - formatting defects;
@@ -343,34 +408,33 @@ Examples may include:
 - unclear prose without security implications;
 - duplicate wording;
 - non-sensitive terminology inconsistencies;
-- or general architectural suggestions that do not identify a vulnerability.
+- and general design suggestions without a concrete security impact.
 
-Where uncertainty exists, the private security contact SHOULD be used.
+Where uncertainty exists, private reporting is preferred.
 
 ---
 
 ## 11. Generally Out-of-Scope Reports
 
-The following are generally not considered security vulnerabilities by themselves:
+The following are generally not security vulnerabilities by themselves:
 
 - token-price changes;
 - market losses;
 - low trading volume;
-- lack of exchange listing;
-- lack of liquidity;
+- absence of exchange listing;
+- absence of liquidity;
 - disagreement with tokenomics;
 - disagreement with governance policy;
-- general criticism without a concrete exploit or security impact;
-- unsupported speculative concerns;
-- public information already documented by GFC;
-- scanner output without validation or impact analysis;
-- missing non-security headers on a non-production static page;
-- user-device compromise not caused by GFC infrastructure;
+- criticism without a concrete security impact;
+- speculative concerns unsupported by a plausible impact path;
+- scanner output without validation;
+- missing non-security headers on a static non-production page;
+- user-device compromise not caused by authenticated GFC infrastructure;
 - loss caused solely by a user exposing their own keys;
-- third-party service issues that do not affect authenticated GFC systems;
-- or reports concerning fake systems that were never authenticated as official by GFC.
+- third-party issues that do not affect authenticated GFC systems;
+- or reports concerning fake systems never authenticated as official GFC infrastructure.
 
-An out-of-scope report may still be reviewed where it identifies a credible risk.
+An otherwise out-of-scope report MAY still be reviewed where it identifies a credible material risk.
 
 ---
 
@@ -382,7 +446,7 @@ GFC may rely on or interact with third-party systems such as:
 - RPC providers;
 - block explorers;
 - multisig providers;
-- oracle providers;
+- oracle or pricing providers;
 - hosting providers;
 - domain registrars;
 - email providers;
@@ -390,11 +454,11 @@ GFC may rely on or interact with third-party systems such as:
 - analytics systems;
 - wallets;
 - exchanges;
-- or external reviewers.
+- and external reviewers.
 
-Vulnerabilities located exclusively within a third-party service should normally be reported to that provider.
+Vulnerabilities exclusively within a third-party service should normally be reported to that provider.
 
-A report should still be submitted to GFC where the issue could materially affect:
+A report SHOULD also be sent to GFC where the issue could materially affect:
 
 - GFC users;
 - GFC assets;
@@ -407,7 +471,7 @@ A report should still be submitted to GFC where the issue could materially affec
 
 ## 13. Required Report Information
 
-A useful security report should include, where possible:
+A useful report SHOULD include, where possible:
 
 - reporter name or preferred identifier;
 - secure contact method;
@@ -424,9 +488,9 @@ A useful security report should include, where possible:
 - exploitation status;
 - disclosure status;
 - suggested mitigation;
-- and any time-sensitive considerations.
+- and time-sensitive considerations.
 
-Reports should clearly distinguish between:
+Reports SHOULD distinguish among:
 
 - confirmed behavior;
 - reproducible behavior;
@@ -442,14 +506,14 @@ A report does not need to be perfectly complete before submission where delay co
 
 Proof-of-concept material SHOULD:
 
-- demonstrate the issue with the minimum necessary impact;
+- demonstrate the issue with minimum necessary impact;
 - avoid accessing unrelated data;
 - avoid moving real participant or project assets;
-- avoid causing persistent state changes;
+- avoid persistent state changes;
 - avoid degrading service availability;
-- and avoid disclosing the issue publicly.
+- and avoid premature public disclosure.
 
-A proof of concept MUST NOT intentionally create greater harm than necessary to establish the vulnerability.
+A proof of concept MUST NOT intentionally create greater harm than necessary to establish the issue.
 
 ---
 
@@ -457,7 +521,7 @@ A proof of concept MUST NOT intentionally create greater harm than necessary to 
 
 Security reports may contain sensitive information.
 
-Reporters MUST NOT include unnecessary:
+Reporters SHOULD NOT include unnecessary:
 
 - private keys;
 - seed phrases;
@@ -480,41 +544,45 @@ GFC responders MUST limit access to sensitive reports according to:
 
 ---
 
-## 16. Encryption
+## 16. Encryption and Secure Transfer
 
 No mandatory public encryption key is currently established by this policy.
 
-Reporters should not assume that ordinary email provides end-to-end confidentiality.
+Ordinary email SHOULD NOT be assumed to provide end-to-end confidentiality.
 
-Before sending highly sensitive material, reporters SHOULD request a secure transfer method through the security contact.
+Before sending highly sensitive material, reporters SHOULD request a secure transfer method through:
 
-Before production deployment, GFC SHOULD publish a verified encryption key or another authenticated secure-reporting mechanism.
+```text
+info@globalfoundationcoin.org
+```
+
+Before production reliance, GFC SHOULD establish an authenticated encryption key or another secure reporting mechanism.
 
 ---
 
 ## 17. Reporter Conduct
 
-Responsible security research should follow these principles:
+Responsible security research SHOULD follow these principles:
 
-- stop testing after sufficient evidence has been obtained;
-- avoid accessing data that is not necessary;
+- stop testing after sufficient evidence is obtained;
+- avoid unnecessary access;
 - avoid retaining protected information;
 - avoid modifying or deleting records;
 - avoid transferring assets;
-- avoid creating persistent access;
-- avoid interfering with other users;
+- avoid persistent access;
+- avoid interference with other users;
 - avoid service degradation;
 - avoid impersonation;
-- avoid extortion or coercion;
+- avoid coercion;
 - and coordinate disclosure.
 
-A reporter who accidentally accesses sensitive information should:
+If a reporter accidentally accesses sensitive information, the reporter SHOULD:
 
 1. stop further access;
-2. avoid copying or distributing the data;
+2. avoid further copying or distribution;
 3. document only what is necessary;
-4. report the incident privately;
-5. and delete retained sensitive material when safely permitted.
+4. report privately;
+5. and delete retained sensitive material when safely appropriate.
 
 ---
 
@@ -534,36 +602,36 @@ Without prior written authorization, reporters MUST NOT perform:
 - employee or contractor impersonation;
 - malware deployment;
 - persistent access;
-- data exfiltration;
+- unnecessary data exfiltration;
 - theft or movement of assets;
 - manipulation of active governance;
 - manipulation of live market activity;
 - testing against uninvolved third parties;
-- or testing that creates a material risk to users.
+- or testing that creates material risk to users.
 
-The existence of a public repository does not authorize unrestricted testing against infrastructure, accounts, domains, wallets, or future production systems.
+A public repository does not authorize unrestricted testing against project infrastructure, accounts, domains, wallets, or future production systems.
 
 ---
 
 ## 19. Mainnet and Asset Safety
 
-Where official production contracts or wallets are introduced, researchers MUST NOT use real mainnet funds to demonstrate an exploit without prior written authorization.
+Where authenticated production contracts or wallets are introduced, researchers MUST NOT use real production funds to demonstrate an exploit without prior written authorization.
 
 A researcher MUST NOT:
 
 - withdraw GFC assets;
 - redirect fees;
-- claim another participant’s tokens;
-- trigger another participant’s refund;
-- alter governance outcomes;
+- trigger another participant's refund;
 - remove liquidity;
-- release locked tokens;
-- accelerate vesting;
+- release Impact Vault GFC;
+- accelerate Core Team vesting;
+- withdraw another participant's staking principal;
+- alter production governance;
 - or expose protected evidence
 
 solely to demonstrate a vulnerability.
 
-Testing should use:
+Testing SHOULD use:
 
 - local environments;
 - forks;
@@ -579,53 +647,51 @@ where reasonably possible.
 
 GFC intends to acknowledge validly received reports within a reasonable period.
 
-No guaranteed acknowledgment or resolution deadline is currently established.
+No guaranteed acknowledgment or remediation deadline is currently established.
 
-The security response process may depend on:
+Response may depend on:
 
-- issue severity;
+- severity;
 - available evidence;
 - reproduction complexity;
 - affected systems;
-- contributor availability;
+- available responsible personnel;
 - legal constraints;
 - third-party dependencies;
 - and remediation risk.
 
-Before production deployment, a formal response target SHOULD be established.
+Before production reliance, formal response targets SHOULD be established.
 
 ---
 
 ## 21. Initial Triage
 
-Initial triage may include:
+Initial triage MAY include:
 
 1. confirming receipt;
-2. protecting the report from unnecessary disclosure;
+2. restricting unnecessary disclosure;
 3. identifying affected specifications or systems;
 4. validating reproducibility;
-5. estimating potential impact;
+5. estimating impact;
 6. identifying exploitation status;
-7. assigning an initial severity;
+7. assigning initial severity;
 8. identifying responsible responders;
 9. determining immediate containment;
 10. and coordinating further communication.
 
 A report MAY be closed as non-security-relevant where no credible security impact can be established.
 
-The reason SHOULD be communicated to the reporter where appropriate.
-
 ---
 
 ## 22. Severity Classification
 
-Severity should consider:
+Severity SHOULD consider:
 
 - asset impact;
 - participant-rights impact;
-- confidentiality impact;
-- integrity impact;
-- availability impact;
+- confidentiality;
+- integrity;
+- availability;
 - authority gained;
 - exploitability;
 - required privileges;
@@ -637,63 +703,53 @@ Severity should consider:
 
 ### 22.1 Critical
 
-An issue may be Critical where it could enable:
+Potential examples include:
 
-- unrestricted theft or loss of material assets;
+- unrestricted theft of material assets;
 - arbitrary minting;
 - complete administrative takeover;
-- irreversible bypass of major locks or vesting;
-- systemic denial of refunds;
-- compromise of canonical release authentication;
+- irreversible bypass of the Impact Vault or Core Team vesting;
+- systemic denial of Presale refunds;
+- compromise of canonical production release authentication;
 - or large-scale exposure of highly sensitive protected information.
 
 ### 22.2 High
 
-An issue may be High where it could enable:
+Potential examples include:
 
-- material unauthorized withdrawals;
-- significant participant-rights violations;
+- material unauthorized withdrawal;
+- significant participant-rights violation;
 - governance or multisig bypass;
-- meaningful price or oracle manipulation;
+- serious pricing manipulation;
 - upgrade or migration abuse;
-- or serious exposure of protected information.
+- or serious protected-information exposure.
 
 ### 22.3 Medium
 
-An issue may be Medium where exploitation is limited by:
+An issue MAY be Medium where exploitation is meaningfully constrained by:
 
 - narrow conditions;
 - limited value;
 - partial authority;
 - significant user interaction;
 - recoverability;
-- or restricted affected scope.
+- or restricted scope.
 
 ### 22.4 Low
 
-An issue may be Low where it has:
-
-- minor security impact;
-- difficult exploitation;
-- limited affected scope;
-- or primarily defense-in-depth value.
+An issue MAY be Low where the security impact is minor or largely defense-in-depth.
 
 ### 22.5 Informational
 
-An issue may be Informational where it identifies:
+An issue MAY be Informational where it identifies hardening opportunities or assumptions without concrete current exploitation impact.
 
-- hardening opportunities;
-- documentation improvements;
-- minor assumptions;
-- or risks without a concrete current security impact.
-
-Initial severity may change during investigation.
+Initial severity MAY change during investigation.
 
 ---
 
 ## 23. Remediation Process
 
-A validated vulnerability may require:
+A validated issue MAY require:
 
 - specification correction;
 - code correction;
@@ -714,15 +770,16 @@ A validated vulnerability may require:
 
 Remediation MUST NOT silently weaken:
 
-- participant rights;
-- refund rights;
-- token-supply constraints;
-- allocation integrity;
-- locks;
-- vesting;
-- or historical accountability.
+- fixed supply;
+- Presale refund rights;
+- Presale allocation limits;
+- Impact Vault restrictions;
+- Core Team vesting;
+- participant staking rights;
+- historical accountability;
+- or protected evidence.
 
-Where emergency action is necessary, the authority, scope, reason, execution, and continuing risk SHOULD be documented.
+Emergency actions MUST remain within the applicable authority constraints.
 
 ---
 
@@ -730,41 +787,34 @@ Where emergency action is necessary, the authority, scope, reason, execution, an
 
 Where a security defect exists in a specification:
 
-- the affected requirement MUST be identified;
-- related specifications MUST be reviewed;
-- the change MUST be classified;
-- security implications MUST be documented;
-- participant-rights implications MUST be documented;
-- implementation implications MUST be documented;
-- and public technical claims MUST be reviewed.
+- the affected requirement SHOULD be identified;
+- related specifications SHOULD be reviewed;
+- the change SHOULD be classified;
+- security implications SHOULD be documented;
+- participant-rights implications SHOULD be reviewed;
+- implementation implications SHOULD be reviewed;
+- and public technical claims SHOULD be checked for inconsistency.
 
-A specification MUST NOT be changed retrospectively merely to conceal or normalize a security defect.
+A specification MUST NOT be changed retrospectively merely to conceal a security defect.
 
-Material defects should remain historically traceable through:
-
-- Git history;
-- pull requests;
-- release notes;
-- advisories;
-- or correction records.
+Material defects SHOULD remain historically traceable through repository history or later security records.
 
 ---
 
 ## 25. Coordinated Disclosure
 
-Disclosure timing should balance:
+Disclosure timing SHOULD balance:
 
-- user protection;
+- participant protection;
 - remediation readiness;
 - exploitation risk;
 - transparency;
 - legal obligations;
 - and reporter interests.
 
-A coordinated disclosure may include:
+A coordinated disclosure MAY include:
 
-- a general public advisory;
-- technical vulnerability details;
+- public advisory;
 - affected versions;
 - severity;
 - impact;
@@ -774,7 +824,7 @@ A coordinated disclosure may include:
 - deployment changes;
 - and reporter credit.
 
-Exact exploit details MAY be temporarily withheld where publication would create an unreasonable ongoing risk.
+Exact exploit details MAY be temporarily withheld where publication would materially increase active risk.
 
 ---
 
@@ -782,7 +832,7 @@ Exact exploit details MAY be temporarily withheld where publication would create
 
 Where appropriate, a resolved or materially contained vulnerability SHOULD be documented publicly.
 
-A public advisory SHOULD identify:
+A public advisory SHOULD identify, where applicable:
 
 - advisory identifier;
 - affected component;
@@ -802,21 +852,20 @@ A public advisory MUST NOT expose:
 - private keys;
 - credentials;
 - protected personal information;
-- unnecessary exploit details;
-- or information that would materially endanger unremediated systems.
+- or unnecessary exploit details that materially endanger unremediated systems.
 
 ---
 
 ## 27. Reporter Credit
 
-Reporter credit may be provided where:
+Reporter credit MAY be provided where:
 
 - the report is valid;
 - disclosure is appropriate;
-- the reporter requests or accepts attribution;
-- and attribution does not create a security or privacy risk.
+- the reporter accepts attribution;
+- and attribution does not create privacy or security risk.
 
-A reporter may request:
+A reporter MAY request:
 
 - full-name attribution;
 - organization attribution;
@@ -834,14 +883,14 @@ No bug-bounty program or monetary reward is currently established.
 Submission of a report does not create an entitlement to:
 
 - payment;
-- tokens;
+- GFC;
 - compensation;
 - reimbursement;
 - employment;
 - partnership;
 - or public recognition.
 
-Any future bounty program must define:
+Any future bounty program MUST define its own:
 
 - scope;
 - eligibility;
@@ -849,9 +898,7 @@ Any future bounty program must define:
 - exclusions;
 - duplicate handling;
 - disclosure conditions;
-- and payment requirements
-
-before reports can qualify for rewards under that program.
+- and payment requirements.
 
 ---
 
@@ -861,182 +908,247 @@ This Draft policy does not create a formal legal safe-harbor program.
 
 Researchers remain responsible for complying with applicable law and avoiding harmful or unauthorized activity.
 
-Before production launch, GFC SHOULD obtain appropriate legal review and determine whether a formal security-research safe-harbor policy can be offered.
+Before production reliance, GFC SHOULD obtain appropriate legal review and decide whether a formal security-research safe-harbor policy can be offered.
 
 ---
 
-## 30. Design-Level Security Principles
+## 30. Repository-Level Security Principles
 
-Security requirements begin at the specification stage.
+### 30.1 Explicit authority
 
-The GFC architecture is intended to apply:
+Material authority MUST be documented.
 
-### 30.1 Explicit Authority
+### 30.2 Least privilege
 
-Material authority must be documented.
+Roles SHOULD receive only the minimum authority required.
 
-### 30.2 Least Privilege
+### 30.3 Separation of duties
 
-Roles should receive only the minimum authority required.
+Proposal, approval, execution, custody, review, and reporting SHOULD be separated where reasonably possible.
 
-### 30.3 Separation of Duties
+### 30.4 Defense in depth
 
-Proposal, approval, execution, custody, review, and reporting should be separated where reasonably possible.
+No single control SHOULD be assumed sufficient for material assets or authority.
 
-### 30.4 Defense in Depth
+### 30.5 Fail-safe behavior
 
-No single control should be assumed sufficient for material assets or authority.
+Undefined or invalid conditions SHOULD fail toward safety rather than silently expanding authority.
 
-### 30.5 Fail-Safe Defaults
+### 30.6 Participant-rights protection
 
-Undefined or invalid conditions should default toward rejecting unsafe actions rather than allowing them.
+Operational convenience MUST NOT silently override participant rights.
 
-### 30.6 Participant-Rights Protection
+### 30.7 Fixed-supply protection
 
-Administrative convenience must not silently override participant entitlements or refund rights.
+No authority MAY create undocumented GFC inflation.
 
-### 30.7 Supply Integrity
+### 30.8 Lock and vesting integrity
 
-No authority should be capable of introducing undocumented inflation.
+Upgrade, migration, recovery, or emergency functions MUST NOT become concealed early-release paths.
 
-### 30.8 Lock and Vesting Integrity
+### 30.9 Transparency with privacy
 
-Upgrade, migration, or emergency mechanisms must not function as concealed early-release paths.
+Accountability MUST NOT require unnecessary publication of protected information.
 
-### 30.9 Transparency With Privacy
+### 30.10 Historical accountability
 
-Accountability must not require unnecessary disclosure of protected information.
+Material incidents, corrections, authority changes, and security-related deviations SHOULD remain reviewable where appropriate.
 
-### 30.10 Historical Accountability
+### 30.11 Pilot and production separation
 
-Material incidents, corrections, and security-related deviations should remain reviewable.
-
----
-
-## 31. Smart-Contract Security Requirements
-
-Before production deployment, material GFC contracts SHOULD be subject to:
-
-- threat modeling;
-- specification review;
-- architecture review;
-- unit testing;
-- integration testing;
-- invariant testing;
-- fuzz testing;
-- static analysis;
-- dependency review;
-- deployment simulation;
-- role and authority review;
-- upgrade and migration review;
-- incident-response planning;
-- and independent security review.
-
-High-value or high-authority components SHOULD receive an appropriately scoped independent smart-contract audit before production use.
-
-An audit does not guarantee safety.
+Pilot security state MUST NOT be represented as production security state.
 
 ---
 
-## 32. Presale Security Requirements
+## 31. Technical Security Model
 
-Before any presale activation, the implementation MUST define and test:
+Detailed technical requirements for:
 
-- accepted payment assets;
-- pricing logic;
-- oracle protections;
-- stale-price rejection;
-- decimal normalization;
-- deterministic rounding;
-- allocation limits;
-- purchase accounting;
-- soft-cap accounting;
-- contribution custody;
-- finalization;
-- token entitlement;
-- claims;
-- refunds;
-- cancellation;
-- pausing;
-- withdrawal restrictions;
-- access control;
-- reentrancy protection;
-- and failure recovery.
+- threat actors;
+- protected assets;
+- security invariants;
+- token security;
+- allocation security;
+- Impact Vault security;
+- vesting security;
+- treasury security;
+- liquidity security;
+- Presale security;
+- staking security;
+- governance security;
+- authority security;
+- multisig and signer security;
+- deployment security;
+- frontend security;
+- domain security;
+- evidence security;
+- monitoring;
+- incidents;
+- recovery;
+- and review
 
-Participant contributions MUST NOT become project-controlled merely because the soft cap is reached before presale completion.
+are defined in:
 
----
+[`specs/security-model.md`](specs/security-model.md)
 
-## 33. Token Security Requirements
-
-Before production deployment, the token implementation MUST define and test:
-
-- fixed total supply;
-- mint-authority status;
-- allocation creation;
-- transfer behavior;
-- buy classification;
-- sell classification;
-- fee calculation;
-- fee limits;
-- fee destinations;
-- exemptions;
-- recognized pools;
-- administrative roles;
-- pause behavior where applicable;
-- upgradeability;
-- and migration behavior.
-
-No production communication may claim immutable supply, fees, locks, or authority unless the deployed implementation supports the claim.
+This repository-level policy SHOULD NOT be treated as a replacement for that technical specification.
 
 ---
 
-## 34. Governance Security Requirements
+## 32. Presale Security Policy
 
-Before production governance activation, the system MUST define:
+Before any production Presale activation, the implementation MUST satisfy the applicable requirements in:
 
-- privileged roles;
-- controlling addresses;
-- signer requirements;
-- signer independence assumptions;
-- approval thresholds;
-- timelocks;
-- proposal authority;
-- execution authority;
-- pause authority;
-- upgrade authority;
-- migration authority;
-- emergency authority;
-- signer replacement;
-- conflict-of-interest handling;
-- and incident authority.
+- [`specs/presale.md`](specs/presale.md)
+- [`specs/economic-flows.md`](specs/economic-flows.md)
+- [`specs/security-model.md`](specs/security-model.md)
 
-A multisig alone MUST NOT be treated as proof of decentralization or independent control.
+The current Draft Presale design uses:
+
+- ETH, USDC, and DAI on Base;
+- immediate GFC distribution;
+- €0.05 reference price;
+- eight-week intended duration;
+- €250,000 soft cap;
+- and maximum Presale distribution of 150,000,000 GFC.
+
+The interaction between immediate GFC distribution and failed-sale refund rights remains unresolved.
+
+This issue is a production activation blocker.
+
+No current policy authorizes an improvised:
+
+- clawback;
+- forced burn;
+- forced return;
+- token invalidation;
+- or equivalent mechanism.
 
 ---
 
-## 35. Transparency-System Security
+## 33. Token Security Policy
 
-Future transparency and evidence systems must protect against:
+The production token design MUST preserve the current fixed-supply boundary:
 
-- unauthorized record modification;
+```text
+1,000,000,000 GFC
+```
+
+The current intended fee model is:
+
+```text
+Buy fee: 0%
+Sell fee: 1%
+```
+
+Production communication MUST NOT claim immutable supply, immutable fee behavior, or immutable authority unless actual deployed architecture supports the claim.
+
+Detailed requirements are defined in [`specs/token.md`](specs/token.md).
+
+---
+
+## 34. Allocation, Lock, and Vesting Security
+
+The current intended allocation model totals 100% of fixed GFC supply.
+
+Two long-term restrictions are especially security-sensitive:
+
+### Impact Vault
+
+```text
+250,000,000 GFC
+50-year intended lock
+```
+
+### Core Team
+
+```text
+50,000,000 GFC
+19-year intended linear vesting
+```
+
+No current production contract enforces these restrictions.
+
+Future production implementation MUST NOT include undisclosed paths that weaken them.
+
+Detailed requirements are defined in:
+
+- [`specs/allocations.md`](specs/allocations.md)
+- [`specs/vesting-and-unlocks.md`](specs/vesting-and-unlocks.md)
+
+---
+
+## 35. Staking Security Policy
+
+No production GFC staking system is currently operational.
+
+The current design direction is:
+
+**hybrid and non-inflationary**
+
+Staking MUST NOT create additional GFC beyond the fixed supply.
+
+No reward source is currently finalized.
+
+Security reports concerning future staking SHOULD consider:
+
+- principal custody;
+- reward accounting;
+- reward-pool solvency;
+- parameter authority;
+- lock and withdrawal behavior;
+- migration;
+- pause;
+- recovery;
+- and governance-related rights.
+
+Detailed requirements are defined in [`specs/staking.md`](specs/staking.md).
+
+---
+
+## 36. Governance and Authority Security
+
+Production authority has not yet been assigned through this policy.
+
+Future production governance and authority MUST remain consistent with:
+
+- [`specs/roles-and-authority.md`](specs/roles-and-authority.md)
+- [`specs/governance-constraints.md`](specs/governance-constraints.md)
+
+A multisig MUST NOT be treated as proof of:
+
+- decentralization;
+- signer independence;
+- or sufficient separation of duties.
+
+Token ownership or staking MUST NOT automatically create unrestricted administrative authority.
+
+---
+
+## 37. Transparency and Evidence Security
+
+No complete production Transparency Registry is currently deployed.
+
+The planned Registry is intended as:
+
+**versioned historical accountability, not a permanent approval badge**
+
+Security issues MAY include:
+
+- unauthorized status changes;
 - silent deletion;
-- evidence-status manipulation;
-- claim-status manipulation;
-- forged integrity anchors;
-- protected-data exposure;
+- false verification labels;
 - reviewer impersonation;
-- portal compromise;
-- indexer manipulation;
-- database corruption;
-- access-log deletion;
-- and false official-address publication.
+- evidence substitution;
+- historical-record manipulation;
+- protected-data exposure;
+- and portal compromise.
 
-Public interfaces must remain distinguishable from authenticated primary sources.
+Detailed requirements are defined in [`specs/transparency-model.md`](specs/transparency-model.md).
 
 ---
 
-## 36. Secrets and Credentials
+## 38. Secrets and Credentials
 
 The repository MUST NOT contain:
 
@@ -1050,19 +1162,19 @@ The repository MUST NOT contain:
 - unredacted recovery material;
 - or confidential personal information.
 
-Where a secret is committed accidentally:
+If a secret is committed accidentally:
 
 1. the secret MUST be treated as compromised;
-2. access MUST be revoked or rotated;
-3. affected systems MUST be reviewed;
+2. relevant access MUST be revoked or rotated;
+3. affected systems SHOULD be reviewed;
 4. Git-history removal MAY be considered;
-5. and the incident SHOULD be documented appropriately.
+5. and the event SHOULD be handled according to its actual security impact.
 
 Deleting a secret from the latest commit does not make it secure again.
 
 ---
 
-## 37. Dependency Security
+## 39. Dependency Security
 
 Future implementation dependencies SHOULD be:
 
@@ -1070,8 +1182,8 @@ Future implementation dependencies SHOULD be:
 - version-pinned where appropriate;
 - reviewed;
 - monitored;
-- reproducibly installed;
-- and updated through a controlled process.
+- reproducibly installed where feasible;
+- and updated through controlled processes.
 
 Security assessment SHOULD consider:
 
@@ -1085,50 +1197,59 @@ Security assessment SHOULD consider:
 
 ---
 
-## 38. Release Security
+## 40. Release Security
 
 Future production releases SHOULD be:
 
 - versioned;
 - authenticated;
-- reproducible where feasible;
-- linked to source-code commits;
-- linked to specification releases;
-- linked to audit or review results;
-- linked to deployment addresses;
+- linked to source commits;
+- linked to applicable specifications;
+- linked to deployment records;
+- linked to security-review status;
 - and accompanied by known deviations.
 
-A compromised release tag, deployment record, contract registry, or address-publication channel is a security incident.
+The continuously changing `main` branch is not automatically a production release.
+
+Compromise of:
+
+- a release tag;
+- deployment record;
+- contract registry;
+- wallet registry;
+- or production-address publication channel
+
+is a security incident.
 
 ---
 
-## 39. Domain and Communication Security
+## 41. Domain and Communication Security
 
-Official domains and communication channels may be used to publish:
+Official domains and communication channels may publish:
 
 - contract addresses;
 - wallet addresses;
-- release information;
+- releases;
 - security notices;
-- and presale information.
+- Presale information;
+- and production status.
 
-Compromise of these channels could create material phishing or asset-loss risk.
+Compromise of these channels can create material phishing or asset-loss risk.
 
-Before production use, GFC SHOULD establish:
+Before production reliance, GFC SHOULD maintain controls appropriate to the risk, including where available:
 
 - strong account authentication;
 - restricted administrative access;
-- domain-locking controls;
+- domain locking;
 - DNS monitoring;
 - recovery procedures;
-- authenticated release records;
 - and independent address-verification paths.
 
 ---
 
-## 40. Incident Response
+## 42. Incident Response
 
-Before production deployment, GFC MUST define an incident-response process covering:
+Before production reliance, GFC MUST define an incident-response process covering:
 
 - detection;
 - severity assessment;
@@ -1140,17 +1261,81 @@ Before production deployment, GFC MUST define an incident-response process cover
 - contract compromise;
 - frontend compromise;
 - domain compromise;
+- Presale incidents;
 - participant communication;
 - remediation;
 - migration;
 - disclosure;
 - and post-incident review.
 
-Emergency action MUST remain constrained by the applicable governance and architecture specifications.
+Emergency action MUST remain bounded by applicable authority and governance constraints.
 
 ---
 
-## 41. Limitations
+## 43. Security Claims and Status Vocabulary
+
+Public security communication MUST use status terminology consistently with [`specs/glossary.md`](specs/glossary.md).
+
+Relevant distinctions include:
+
+- Draft;
+- Proposed;
+- Planned;
+- Specified;
+- Implemented;
+- Tested;
+- Pilot;
+- Reviewed;
+- Audited;
+- Deployed;
+- Live;
+- Active;
+- Operational;
+- Independently Verified;
+- and Not Deployed.
+
+The following claims MUST NOT be treated as equivalent:
+
+> Source Verified ≠ Audited
+
+> Tested ≠ Audited
+
+> Audited ≠ Risk-Free
+
+> Pilot ≠ Production
+
+> Deployed ≠ Operational
+
+> Multisig ≠ Decentralized
+
+---
+
+## 44. Current Pilot Security Status
+
+The authenticated public pilot currently recorded by this repository is:
+
+```text
+Network: Base Sepolia
+Chain ID: 84532
+Token: tGFC
+Contract: 0x7262Cca91938ede6bB6560F81104Aa410848e7f3
+Source status: Verified
+Environment: Public Pilot / Non-Production
+```
+
+This does not establish:
+
+- production security;
+- production audit;
+- production authority;
+- Mainnet readiness;
+- or production conformance.
+
+Future production security must be evaluated independently.
+
+---
+
+## 45. Limitations
 
 This policy does not guarantee:
 
@@ -1163,33 +1348,41 @@ This policy does not guarantee:
 - confidentiality of ordinary email;
 - or compensation for reports.
 
-Security reviews, audits, formal verification, testing, monitoring, and disclosure processes reduce risk.
+Security reviews, audits, testing, monitoring, and disclosure processes reduce risk.
 
 They do not eliminate risk.
 
 ---
 
-## 42. Changes to This Policy
+## 46. Changes to This Policy
 
 Material changes to this policy SHOULD be:
 
 - documented;
 - reviewed;
-- committed through a dedicated branch;
-- submitted through a pull request;
-- classified according to their effect;
-- and recorded in the repository history.
+- committed through the normal repository process;
+- classified according to effect;
+- and reflected in repository history.
 
-Breaking changes affecting reporter expectations, disclosure, eligibility, authorization, or supported versions SHOULD be explicitly documented.
+This policy does not mandate a specific branch or pull-request workflow that the repository has not separately adopted.
+
+Breaking changes affecting:
+
+- reporter expectations;
+- disclosure;
+- authorization;
+- supported versions;
+- or safe-research expectations
+
+SHOULD be explicitly documented.
 
 ---
 
-## 43. Unresolved Security Decisions
+## 47. Current Unresolved Security-Policy Decisions
 
-The following matters remain unresolved:
+The following remain unresolved:
 
-- final security-contact domain;
-- secure-reporting platform;
+- secure reporting platform;
 - public encryption key;
 - formal acknowledgment target;
 - triage-response target;
@@ -1199,27 +1392,29 @@ The following matters remain unresolved:
 - bug-bounty program;
 - reporter-eligibility rules;
 - security-advisory format;
-- incident-response team;
+- final incident-response roles;
 - emergency contacts;
 - disclosure-approval authority;
 - release-signing mechanism;
 - dependency-monitoring process;
 - and production monitoring infrastructure.
 
+These unresolved matters MUST NOT be represented as established production controls.
+
 ---
 
-## 44. Requirements Before Stable Status
+## 48. Requirements Before Stable Status
 
 This policy MUST NOT be marked Stable until:
 
-- the security contact is confirmed and monitored;
+- the security contact remains confirmed and monitored;
 - account-recovery procedures are documented;
 - a secure reporting method is available;
 - an encryption or protected-transfer method is established;
 - supported-version rules are defined;
 - response targets are defined;
 - severity classification is finalized;
-- the vulnerability-handling workflow is assigned to responsible roles;
+- vulnerability-handling responsibilities are assigned;
 - coordinated-disclosure authority is defined;
 - reporter-credit rules are finalized;
 - legal review is completed;
@@ -1227,16 +1422,16 @@ This policy MUST NOT be marked Stable until:
 - bug-bounty status is finalized;
 - incident-response procedures are documented;
 - emergency authority is aligned with governance specifications;
-- contract and deployment security requirements are finalized;
+- production contract and deployment security requirements are finalized;
 - release authentication is defined;
 - monitoring responsibilities are defined;
 - domain and communication security controls are defined;
-- all related specifications are mutually consistent;
+- Base Sepolia pilot and Base Mainnet production security claims remain consistently separated;
 - and repository-wide security terminology is consistent.
 
 ---
 
-## 45. Final Security Principles
+## 49. Final Security Principles
 
 > Security begins before implementation.
 
@@ -1252,6 +1447,10 @@ This policy MUST NOT be marked Stable until:
 
 > Upgradeability is part of the security model.
 
+> Migration is part of the security model.
+
+> Recovery authority is privileged authority.
+
 > Participant rights are part of the security model.
 
 > Privacy is part of the security model.
@@ -1263,6 +1462,8 @@ This policy MUST NOT be marked Stable until:
 > Emergency authority must remain constrained.
 
 > A deleted credential must still be treated as compromised.
+
+> Pilot security does not establish production security.
 
 > No production claim should exceed the security evidence supporting it.
 
