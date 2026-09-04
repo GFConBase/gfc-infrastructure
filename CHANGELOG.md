@@ -6,7 +6,7 @@
 **Version:** Unreleased  
 **Implementation Status:** Pre-mainnet specification and pilot development  
 **Primary Product Focus:** GFC Token / Economic Layer  
-**Last Updated:** 2026-08-30
+**Last Updated:** 2026-09-04
 
 ---
 
@@ -144,8 +144,46 @@ The formal specification set now includes:
 - [`specs/staking.md`](specs/staking.md)
 - [`specs/presale.md`](specs/presale.md)
 - [`specs/transparency-model.md`](specs/transparency-model.md)
+- [`specs/conformance-verification.md`](specs/conformance-verification.md)
 
-The specification set now covers the Token / Economic Layer and its supporting authority, security, governance, and transparency constraints at substantially greater depth than the previous repository state.
+The specification set now covers the Token / Economic Layer and its supporting authority, security, governance, transparency, and conformance-verification constraints at substantially greater depth than the previous repository state.
+
+---
+
+### Conformance Verification Specification
+
+Added [`specs/conformance-verification.md`](specs/conformance-verification.md).
+
+The new specification defines the verification layer between normative requirements and the evidence used to evaluate those requirements.
+
+It introduces explicit mappings from:
+
+**requirement → observation → evidence → supported conclusion**
+
+The model defines:
+
+- claim-specific verification;
+- observable evidence requirements;
+- implementation-specific verification bindings;
+- authenticated production binding requirements;
+- evidence classes;
+- evidence ceilings;
+- state-read verification;
+- event and transaction-history verification;
+- source-code and bytecode review;
+- proxy and upgrade-path review;
+- authority verification;
+- historical-state verification;
+- negative observations;
+- mixed on-chain and off-chain evidence;
+- machine-readable result categories;
+- and constraints for a future read-only conformance checker.
+
+The specification explicitly separates specification-level verification requirements from production implementation bindings.
+
+No undeployed Base Mainnet contract call, event, storage slot, address, role identifier, custody architecture, or ABI is invented merely to make a conformance requirement appear currently verifiable.
+
+The current Base Sepolia pilot may be used to test verification concepts, but pilot observations do not constitute Base Mainnet production-conformance evidence.
 
 ---
 
@@ -518,6 +556,27 @@ The README now centers the current product focus:
 **GFC Token / Economic Layer**
 
 while preserving the long-term Accountability Infrastructure direction.
+
+---
+
+### Conformance Verification Integration
+
+Integrated the new conformance-verification model across the relevant specification and deployment documentation.
+
+The repository now requires applicable conformance claims to distinguish between:
+
+- the normative source requirement;
+- the verification method;
+- the expected observation;
+- the evidence class;
+- the evidence ceiling;
+- and the authenticated implementation-specific production binding where required.
+
+The Token, Allocation, Vesting and Unlock, Governance, Presale, and Transparency conformance sections now link to the central verification model.
+
+[`DEPLOYMENTS.md`](DEPLOYMENTS.md) now requires future production deployment records to identify the applicable conformance-verification mapping and authenticated implementation-specific bindings where relevant.
+
+The root [`README.md`](README.md) now exposes the verification specification as part of the formal specification set and verification model.
 
 ---
 
@@ -1116,6 +1175,7 @@ The following material matters remain unresolved and must not be represented as 
 - Stable approval process;
 - reviewer requirements;
 - production implementation mapping;
+- authenticated implementation-specific conformance-verification bindings;
 - and release authentication.
 
 ### Token

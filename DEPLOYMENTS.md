@@ -4,7 +4,7 @@
 **Status:** Informative deployment record  
 **Repository Stage:** Pre-mainnet specification and pilot development  
 **Primary Product Focus:** GFC Token / Economic Layer  
-**Last Updated:** 2026-08-30
+**Last Updated:** 2026-09-04
 
 ---
 
@@ -499,6 +499,8 @@ Before a component is represented as an official production deployment, the appl
 - security-review status;
 - audit status;
 - applicable specification version;
+- applicable conformance-verification mapping;
+- authenticated implementation-specific verification bindings where applicable;
 - known deviations;
 - pause status;
 - upgradeability;
@@ -508,6 +510,10 @@ Before a component is represented as an official production deployment, the appl
 Unknown fields MUST be identified as unknown or not yet authenticated.
 
 They MUST NOT be invented.
+
+Where a production conformance claim depends on a concrete contract read, event, transaction-history source, address, role, proxy implementation, bytecode property, or other implementation-specific observation, the deployment record SHOULD authenticate the corresponding binding defined by [`specs/conformance-verification.md`](specs/conformance-verification.md).
+
+A specification-level verification mapping without an authenticated production implementation binding is not production verification evidence.
 
 ---
 
@@ -661,6 +667,8 @@ This file records deployment state.
 
 Normative component requirements belong in the applicable files under [`specs/`](specs/).
 
+Conformance-verification methods, observable evidence requirements, implementation bindings, and evidence ceilings are defined in [`specs/conformance-verification.md`](specs/conformance-verification.md).
+
 Current overall project status is maintained in [`STATUS.md`](STATUS.md).
 
 The repository `main` branch is not automatically a production release.
@@ -713,6 +721,8 @@ This deployment registry preserves the following distinctions:
 > A future contract address must be authenticated before it is treated as official.
 
 > Production deployment records must describe actual deployed state, not intended architecture.
+
+> A verification mapping without an authenticated implementation-specific production binding does not establish production conformance.
 
 The current public pilot demonstrates limited testnet execution.
 

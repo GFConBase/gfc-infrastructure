@@ -315,6 +315,10 @@ It does not independently prove factual truth.
 
 See [`specs/transparency-model.md`](specs/transparency-model.md).
 
+The mapping from normative conformance requirements to observable evidence, authenticated implementation bindings, and explicit evidence ceilings is defined separately in [`specs/conformance-verification.md`](specs/conformance-verification.md).
+
+That verification layer does not assume undeployed Base Mainnet contracts, interfaces, events, storage layouts, or addresses. Production verification requires bindings to the authenticated production implementation.
+
 ---
 
 ## Formal Specification Set
@@ -337,6 +341,7 @@ The formal specification set is located in [`specs/`](specs/).
 | [`specs/staking.md`](specs/staking.md) | Hybrid non-inflationary staking requirements and unresolved design boundaries |
 | [`specs/presale.md`](specs/presale.md) | Presale pricing, payment assets, immediate distribution, refunds, custody, and finalization |
 | [`specs/transparency-model.md`](specs/transparency-model.md) | Evidence, claims, historical records, Registry design, privacy, review, and transparency |
+| [`specs/conformance-verification.md`](specs/conformance-verification.md) | Mapping of normative conformance requirements to observable evidence, implementation-specific bindings, and evidence ceilings |
 
 The recommended reading order and document relationships are maintained in [`specs/README.md`](specs/README.md).
 
@@ -679,6 +684,8 @@ A future production implementation should identify:
 - authenticated contract addresses;
 - authenticated wallet addresses;
 - deployment records;
+- applicable conformance-verification mapping;
+- authenticated implementation-specific verification bindings where required;
 - privileged authority;
 - upgradeability;
 - pause authority;
