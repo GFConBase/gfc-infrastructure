@@ -10,7 +10,7 @@
 **Production Chain ID:** 8453  
 **Public Pilot Network:** Base Sepolia  
 **Pilot Chain ID:** 84532  
-**Last Updated:** 2026-08-30
+**Last Updated:** 2026-09-04
 
 ---
 
@@ -1000,6 +1000,8 @@ Before a production GFC token is represented as official, the deployment record 
 - pause authority;
 - migration authority;
 - source-verification status;
+- applicable conformance-verification mapping;
+- authenticated implementation-specific verification bindings where applicable;
 - test status;
 - review or audit status;
 - and known deviations.
@@ -1105,6 +1107,10 @@ A token implementation conforms to this specification only when:
 - the production address is authenticated;
 - material deviations are documented;
 - and pilot status is not misrepresented as production status.
+
+The applicable verification methods, observable evidence, implementation bindings, and evidence ceilings for token-conformance requirements are defined in [`conformance-verification.md`](conformance-verification.md).
+
+A production token-conformance claim MUST use the authenticated implementation-specific verification binding for the evaluated deployment. Where a required production binding has not yet been established, the requirement remains specified but MUST NOT be represented as technically verified.
 
 A website, interface, wallet label, social-media statement, or unauthenticated token address does not establish conformance.
 
@@ -1247,6 +1253,8 @@ This document MUST NOT be marked Stable until:
 - migration behavior is finalized;
 - token-linked governance rights are finalized or explicitly excluded;
 - security invariants are mapped to the intended implementation;
+- token conformance requirements are mapped to verification methods and evidence ceilings;
+- production implementation-specific verification bindings are defined and authenticated;
 - deployment and authentication requirements are finalized;
 - Base Sepolia pilot and Base Mainnet production terminology are consistently separated;
 - and all related specifications are mutually consistent.
@@ -1270,6 +1278,7 @@ This document MUST be interpreted together with:
 - [`staking.md`](staking.md);
 - [`presale.md`](presale.md);
 - [`transparency-model.md`](transparency-model.md);
+- [`conformance-verification.md`](conformance-verification.md);
 - and repository-level [`../STATUS.md`](../STATUS.md).
 
 Where another Draft specification conflicts with this document, the conflict MUST be resolved explicitly before Stable status.

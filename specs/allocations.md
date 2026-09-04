@@ -11,7 +11,7 @@
 **Public Pilot Network:** Base Sepolia  
 **Pilot Chain ID:** 84532  
 **Total Intended Supply:** 1,000,000,000 GFC  
-**Last Updated:** 2026-08-30
+**Last Updated:** 2026-09-04
 
 ---
 
@@ -1003,6 +1003,8 @@ A production allocation record SHOULD disclose:
 - migration authority;
 - transfer history;
 - known deviations;
+- applicable conformance-verification mapping;
+- authenticated implementation-specific verification bindings where applicable;
 - and evidence supporting material public claims.
 
 Protected or security-sensitive information MAY remain non-public where justified.
@@ -1146,6 +1148,12 @@ An allocation implementation conforms to this specification only where:
 - material deviations are documented;
 - and the implementation is linked to authenticated production deployment records.
 
+The applicable verification methods, observable evidence, implementation bindings, and evidence ceilings for allocation-conformance requirements are defined in [`conformance-verification.md`](conformance-verification.md).
+
+A production allocation-conformance claim MUST use the authenticated implementation-specific verification binding for the evaluated deployment. Current balances alone MUST NOT be used to reconstruct an initial allocation where later transfers may have changed those balances; the applicable initialization transactions, reference block, or equivalent authenticated historical state MUST be used where the claim concerns initial allocation.
+
+Where a required production binding has not yet been established, the requirement remains specified but MUST NOT be represented as technically verified.
+
 A wallet label, allocation name, user interface, informal statement, website, or marketing claim does not establish conformance.
 
 ---
@@ -1238,6 +1246,8 @@ This document MUST NOT be marked Stable until:
 - allocation recovery requirements are finalized or explicitly excluded;
 - allocation disclosure requirements are finalized;
 - allocation security invariants are mapped to the intended implementation;
+- allocation conformance requirements are mapped to verification methods and evidence ceilings;
+- production implementation-specific verification bindings are defined and authenticated;
 - Base Sepolia pilot and Base Mainnet production allocation terminology are consistently separated;
 - and related specifications are mutually consistent.
 
@@ -1260,6 +1270,7 @@ This document MUST be interpreted together with:
 - [`staking.md`](staking.md);
 - [`presale.md`](presale.md);
 - [`transparency-model.md`](transparency-model.md);
+- [`conformance-verification.md`](conformance-verification.md);
 - and repository-level [`../STATUS.md`](../STATUS.md).
 
 Where another Draft specification conflicts with this document, the conflict MUST be resolved explicitly before Stable status.

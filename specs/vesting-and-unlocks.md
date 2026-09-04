@@ -10,7 +10,7 @@
 **Production Chain ID:** 8453  
 **Public Pilot Network:** Base Sepolia  
 **Pilot Chain ID:** 84532  
-**Last Updated:** 2026-08-30
+**Last Updated:** 2026-09-04
 
 ---
 
@@ -1142,6 +1142,8 @@ A production lock or vesting record SHOULD disclose:
 - migration authority;
 - recovery authority;
 - known deviations;
+- applicable conformance-verification mapping;
+- authenticated implementation-specific verification bindings where applicable;
 - and verification status.
 
 Public disclosure MUST distinguish between what is:
@@ -1225,6 +1227,12 @@ An implementation conforms to this specification only when:
 - public status matches authenticated implementation state;
 - material deviations are documented;
 - and production and pilot status remain correctly separated.
+
+The applicable verification methods, observable evidence, implementation bindings, and evidence ceilings for lock- and vesting-conformance requirements are defined in [`conformance-verification.md`](conformance-verification.md).
+
+A production lock- or vesting-conformance claim MUST use the authenticated implementation-specific verification binding for the evaluated deployment. A current state read MAY establish a current schedule value or balance, but absence of an early-release path requires review of the effective authority and executable code paths in addition to current state.
+
+Where a required production binding has not yet been established, the requirement remains specified but MUST NOT be represented as technically verified.
 
 A wallet label, frontend countdown, marketing statement, or Draft specification does not establish conformance.
 
@@ -1339,6 +1347,8 @@ This document MUST NOT be marked Stable until:
 - restricted-balance staking interaction is finalized or explicitly excluded;
 - authority surfaces are finalized;
 - security invariants are mapped to the intended implementation;
+- lock and vesting conformance requirements are mapped to verification methods and evidence ceilings;
+- production implementation-specific verification bindings are defined and authenticated;
 - production disclosure requirements are finalized;
 - Base Sepolia pilot and Base Mainnet production terminology are consistently separated;
 - and all related specifications are mutually consistent.
@@ -1362,6 +1372,7 @@ This document MUST be interpreted together with:
 - [`staking.md`](staking.md);
 - [`presale.md`](presale.md);
 - [`transparency-model.md`](transparency-model.md);
+- [`conformance-verification.md`](conformance-verification.md);
 - and repository-level [`../STATUS.md`](../STATUS.md).
 
 Where another Draft specification conflicts with this document, the conflict MUST be resolved explicitly before Stable status.

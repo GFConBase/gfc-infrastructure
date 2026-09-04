@@ -10,7 +10,7 @@
 **Production Chain ID:** 8453  
 **Public Pilot Network:** Base Sepolia  
 **Pilot Chain ID:** 84532  
-**Last Updated:** 2026-08-30
+**Last Updated:** 2026-09-04
 
 ---
 
@@ -1710,7 +1710,14 @@ A governance implementation conforms to this specification only when:
 - evidence and impact statuses are not assigned through undisclosed authority;
 - emergency powers remain limited;
 - governance actions are traceable;
+- applicable governance-conformance claims are traceable to the verification mappings defined in [`conformance-verification.md`](conformance-verification.md);
+- implementation-specific verification bindings are authenticated for the evaluated deployment where required;
+- evidence is not interpreted beyond its defined evidence ceiling;
 - and material deviations are disclosed.
+
+A read of an on-chain owner set, signer threshold, role assignment, or timelock configuration proves only the authenticated technical state represented by that observation. It does not independently prove signer independence, absence of off-chain control, compliance with conflict rules, or that every material authority has been disclosed.
+
+Where a required production binding has not yet been established, the requirement remains specified but MUST NOT be represented as technically verified.
 
 ---
 
@@ -1790,6 +1797,7 @@ This document MUST be interpreted together with:
 - [`staking.md`](staking.md);
 - [`presale.md`](presale.md);
 - [`transparency-model.md`](transparency-model.md);
+- [`conformance-verification.md`](conformance-verification.md);
 - and repository-level [`../STATUS.md`](../STATUS.md).
 
 Where another Draft specification conflicts with this document, the conflict MUST be resolved explicitly before Stable status.
@@ -1930,6 +1938,8 @@ This document MUST NOT be marked Stable until:
 - impact-governance boundaries are finalized;
 - incident and dispute processes are defined;
 - public disclosure requirements are approved;
+- governance conformance requirements are mapped to verification methods and evidence ceilings;
+- production implementation-specific verification bindings are defined and authenticated;
 - Base Sepolia pilot authority and Base Mainnet production authority are consistently separated;
 - security review is completed;
 - related specifications are mutually consistent;

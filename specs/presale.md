@@ -10,7 +10,7 @@
 **Production Chain ID:** 8453  
 **Public Pilot Network:** Base Sepolia  
 **Pilot Chain ID:** 84532  
-**Last Updated:** 2026-08-30
+**Last Updated:** 2026-09-04
 
 ---
 
@@ -149,6 +149,7 @@ This document MUST be interpreted together with:
 - [`economic-flows.md`](economic-flows.md);
 - [`staking.md`](staking.md);
 - [`transparency-model.md`](transparency-model.md);
+- [`conformance-verification.md`](conformance-verification.md);
 - repository-level [`../STATUS.md`](../STATUS.md);
 - and repository-level [`../SECURITY.md`](../SECURITY.md).
 
@@ -1779,7 +1780,18 @@ A presale implementation conforms to this specification only when:
 - unsold-GFC treatment is predefined;
 - production addresses are authenticated;
 - pilot status is not misrepresented;
+- applicable presale-conformance claims are traceable to the verification mappings defined in [`conformance-verification.md`](conformance-verification.md);
+- implementation-specific verification bindings are authenticated for the evaluated deployment where required;
+- evidence is not interpreted beyond its defined evidence ceiling;
 - and material deviations are disclosed.
+
+The applicable verification methods, observable evidence, implementation bindings, and evidence ceilings for presale-conformance requirements are defined in [`conformance-verification.md`](conformance-verification.md).
+
+A production presale-conformance claim MUST use the authenticated implementation-specific bindings for the actual production distribution, accounting, custody, finalization, refund, and withdrawal architecture. No particular escrow contract, custody function, state read, event, or interface name may be assumed merely for verification convenience.
+
+Until the immediate-distribution and failed-sale refund interaction is normatively resolved, technically implemented, and covered by authenticated verification bindings, no verification result may represent the production Presale as completely conforming.
+
+Where a required production implementation binding has not yet been established, the underlying Presale requirement remains specified but MUST NOT be represented as technically verified.
 
 A frontend, website, Draft specification, social-media post, or unauthenticated address does not establish conformance.
 
@@ -2024,6 +2036,8 @@ This document MUST NOT be marked Stable until:
 - participant-facing disclosures are finalized;
 - privacy processes are documented;
 - security requirements are mapped to the implementation;
+- presale conformance requirements are mapped to appropriate verification methods and evidence ceilings;
+- required production implementation-specific verification bindings can be authenticated;
 - independent review requirements are finalized;
 - production deployment and authentication procedures are defined;
 - Base Sepolia pilot and Base Mainnet production terminology are consistently separated;

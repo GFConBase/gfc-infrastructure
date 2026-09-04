@@ -10,7 +10,7 @@
 **Production Chain ID:** 8453  
 **Public Pilot Network:** Base Sepolia  
 **Pilot Chain ID:** 84532  
-**Last Updated:** 2026-08-30
+**Last Updated:** 2026-09-04
 
 ---
 
@@ -97,6 +97,7 @@ The specifications define or constrain:
 - custody and fund-flow rules;
 - transparency requirements;
 - evidence classifications;
+- conformance-verification mappings and evidence ceilings;
 - transaction, use-of-funds, output, outcome, and impact distinctions;
 - privacy and protected-information boundaries;
 - implementation-status terminology;
@@ -207,7 +208,11 @@ Technical and operational claims SHOULD be supported by appropriate evidence, in
 - contract state;
 - supporting evidence;
 - versioned specifications;
+- defined conformance-verification mappings;
+- authenticated implementation-specific verification bindings;
 - or defined review processes.
+
+Where a normative claim is intended to be independently verifiable, the applicable verification method and the maximum conclusion supported by that evidence SHOULD be explicit. A verification source MUST NOT be treated as proving more than its evidence ceiling permits.
 
 ### 5.4 Authority must remain visible
 
@@ -722,7 +727,31 @@ It covers:
 
 The intended Transparency Registry model is a **versioned historical record**, not a permanent approval badge.
 
-### 9.14 Specification Index
+### 9.14 `conformance-verification.md`
+
+Defines the verification layer between normative conformance requirements and the evidence used to evaluate them.
+
+It covers:
+
+- requirement-to-observation mappings;
+- evidence classes;
+- verification availability;
+- evidence ceilings;
+- authenticated implementation-specific bindings;
+- environment and deployment binding;
+- state reads;
+- event and transaction evidence;
+- source-code and bytecode review;
+- negative observations;
+- off-chain and protected evidence boundaries;
+- machine-readable checker outputs;
+- and the limits of automated conformance evaluation.
+
+The specification does not assume undeployed Base Mainnet contracts, ABIs, events, storage layouts, addresses, or authority structures.
+
+Implementation-specific verification bindings become production-authoritative only when they are linked to an authenticated production deployment and the applicable versioned specification release.
+
+### 9.15 Specification Index
 
 This file, `README.md`, defines:
 
@@ -756,6 +785,7 @@ For a complete first review, the recommended order is:
 12. `staking.md`
 13. `presale.md`
 14. `transparency-model.md`
+15. `conformance-verification.md`
 
 This order establishes:
 
@@ -772,7 +802,8 @@ This order establishes:
 11. economic movement;
 12. staking behavior;
 13. presale participant protections;
-14. evidence and accountability requirements.
+14. evidence and accountability requirements;
+15. requirement-to-evidence verification mappings and evidence ceilings.
 
 A reviewer evaluating an implementation must additionally review:
 
@@ -783,6 +814,8 @@ A reviewer evaluating an implementation must additionally review:
 - authenticated wallet addresses;
 - audit or review reports;
 - disclosed authority structures;
+- the applicable conformance-verification mapping;
+- authenticated implementation-specific verification bindings where applicable;
 - and known deviations.
 
 ---
@@ -838,6 +871,12 @@ Defines participant-facing presale mechanics, custody, rights, and protections.
 ### Transparency Model
 
 Defines how funds, authority, rules, decisions, outcomes, evidence, corrections, and historical changes are represented.
+
+### Conformance Verification
+
+Defines how applicable normative requirements are mapped to observable evidence, authenticated implementation-specific verification bindings, and explicit evidence ceilings.
+
+It does not replace the source requirement. It defines how evidence may support or fail to support a conformance claim against that requirement.
 
 Where two normative requirements conflict, the conflict MUST be resolved explicitly rather than silently choosing one document.
 
@@ -1275,8 +1314,15 @@ A component or implementation is conforming only when:
 - its implementation status is accurately represented;
 - its deployment environment is accurately represented;
 - its public interfaces accurately represent behavior;
+- applicable conformance claims are traceable to the verification mappings defined in [`conformance-verification.md`](conformance-verification.md);
+- implementation-specific verification bindings are authenticated for the evaluated deployment where such bindings are required;
+- evidence is not interpreted beyond its defined evidence ceiling;
 - material deviations are documented;
 - and related specifications are mutually consistent.
+
+A successful observation does not independently establish full conformance where the applicable requirement also depends on source-code behavior, authority configuration, historical state, protected evidence, or another verification source.
+
+Where a required production verification binding has not yet been established, the underlying requirement remains specified but MUST NOT be represented as technically verified.
 
 A Draft specification MAY guide development, implementation, testing, and review.
 
@@ -1489,6 +1535,7 @@ Before a specification is marked Stable, it SHOULD be reviewed for:
 - terminology consistency;
 - compatibility with related specifications;
 - implementation testability;
+- conformance requirements mapped to appropriate verification methods and evidence ceilings;
 - and consistency with public technical claims.
 
 A Stable designation does not independently mean that an implementation has been audited or deployed.
@@ -1724,6 +1771,8 @@ This index MUST NOT be marked Stable until:
 - change classification is finalized;
 - deprecation procedures are finalized;
 - specification-to-implementation linkage is finalized;
+- conformance-verification mapping requirements are finalized;
+- implementation-specific verification-binding requirements are finalized;
 - deployment-record requirements are finalized;
 - known-deviation requirements are finalized;
 - repository-wide outdated terminology is corrected;

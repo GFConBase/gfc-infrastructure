@@ -10,7 +10,7 @@
 **Production Chain ID:** 8453  
 **Public Pilot Network:** Base Sepolia  
 **Pilot Chain ID:** 84532  
-**Last Updated:** 2026-08-30
+**Last Updated:** 2026-09-04
 
 ---
 
@@ -318,6 +318,7 @@ This document MUST be interpreted together with:
 - [`economic-flows.md`](economic-flows.md);
 - [`staking.md`](staking.md);
 - [`presale.md`](presale.md);
+- [`conformance-verification.md`](conformance-verification.md);
 - repository-level [`../STATUS.md`](../STATUS.md);
 - and repository-level [`../SECURITY.md`](../SECURITY.md).
 
@@ -2074,7 +2075,16 @@ A transparency implementation conforms to this specification only when:
 - limitations remain visible;
 - production and pilot status are correctly separated;
 - public communication reflects actual implementation status;
+- applicable transparency-conformance claims are traceable to the verification mappings defined in [`conformance-verification.md`](conformance-verification.md);
+- implementation-specific verification bindings are authenticated for the evaluated deployment where required;
+- evidence is not interpreted beyond its defined evidence ceiling;
 - and material deviations are disclosed.
+
+The applicable verification methods, observable evidence, implementation bindings, and evidence ceilings for transparency-conformance requirements are defined in [`conformance-verification.md`](conformance-verification.md).
+
+A public on-chain observation MAY support a transaction-, state-, balance-, or authority-level claim within its defined scope. It MUST NOT be elevated into use-of-funds, outcome, impact, factual-truth, or complete-system-conformance claims without the additional evidence required by the applicable verification mapping.
+
+Where a required production implementation binding has not yet been established, the underlying transparency requirement remains specified but MUST NOT be represented as technically verified.
 
 ---
 
@@ -2306,6 +2316,8 @@ This document MUST NOT be marked Stable until:
 - staking transparency matches the final production staking model;
 - privacy responsibilities are identified;
 - security controls are mapped to the implementation;
+- transparency conformance requirements are mapped to appropriate verification methods and evidence ceilings;
+- required production implementation-specific verification bindings can be authenticated;
 - incident procedures are defined;
 - Base Sepolia pilot and Base Mainnet production terminology are consistently separated;
 - implementation feasibility is confirmed;
